@@ -8,11 +8,11 @@
             @if(Auth::guard('customer')->check())
                 {{-- @include('store.partials.cart-resumen-desktop') --}}
                 {{-- Cart Sidebar Trigger --}}
-                <div class="favs">
-                    <a href="{{ route('store.customer-wishlist') }}" data-toggle="tooltip" title="Mis Favoritos">
+                {{-- <div class="favs">
+                    <a href="{{ route('store.customer-wishlist') }}">
                         <i class="FavMainIcon {{ count($favs['favs']) > 0 ? "fa" : "far" }} fa-heart"></i>
                     </a>
-                </div>
+                </div> --}}
                 <div class="CartResumen cart" onclick="checkoutSidebar();">
                     <i class="icon-bag"></i><span class="TotalCartItems count">@if($activeCart['totalItems'] == 0) 0 @else {{ $activeCart['totalItems'] }} @endif</span>
                     <span class="CartSubTotal subtotal">@if($activeCart['totalItems'] != 0) $ {{ $activeCart['cartSubTotal'] }} @endif</span>
@@ -42,7 +42,7 @@
                 </div>
             @else
                 <div class="access-buttons">
-                    <a href="{{ route('customer.login') }}"><button class="btn  btn-main-sm-hollow">Ingresar</button></a>
+                    <a href="{{ route('customer.login') }}"><button class="btn  btn-secondary-sm">Ingresar</button></a>
                     <a href="{{ url('tienda/registro') }}"><button class="btn  btn-main-sm">Registrarse</button></a>
                 </div>
                 {{-- <div class="access-icons">

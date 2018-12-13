@@ -1,19 +1,22 @@
 @extends('store.partials.main')
 
 @section('header-image')
-	<img src="{{ asset('webimages/web/top-banner.jpg')}}" alt="Augustamoi Banner">		
+{{-- <img src="{{ asset('images/web/home-banner.jpg')}}" alt="Nolita Banner">		 --}}
 	{{-- <div class="index-header">	
 	</div> --}}
 @endsection
 
 @section('content')
-
-	@include('store.partials.filterbar')
+	<div class="header-with-banner">
+		<div class="filter-container">
+			@include('store.partials.filterbar')
+		</div>
+	</div>
 	<div id="main" class="main-container container-fluid padding-bottom-3x mb-1">
 		<div class="row">
 			{{-- col-xs-12 col-lg-9 col-sm-8 col-md-8 --}}
 			<div id="MainContent" class="col-xs-12 col-sm-12">
-				@if(!isset($_GET['checkout-on']))
+				{{-- @if(!isset($_GET['checkout-on']))
 					@if(isset($_GET['page']) && !isset($search) && count($_GET) == 1)
 					@else
 						@if(isset($search) && $search == true || count($_GET) > 0 && !isset($_GET['results']))
@@ -28,7 +31,7 @@
 							</div>
 						@endif
 					@endif
-				@endif
+				@endif --}}
 				<!-- Products Grid -->
 				<div class="row articles-container">
 					@if($articles->count() == '0')
@@ -104,9 +107,11 @@
 									<div class="footer">
 										<div class="col-price pad0">
 											{{-- <del>$ {{ $article->reseller_price + 0 }}</del>  --}}
-											<span class="price">
-												$ {{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount + 0) }}
-											</span>
+											@if(Auth::guard('customer')->check())
+												<span class="price">
+													$ {{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount + 0) }}
+												</span>
+											@endif
 											{{-- @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->group == '3')
 												@if($article->reseller_discount > 0)
 													<del>$ {{ $article->reseller_price + 0 }}</del> 

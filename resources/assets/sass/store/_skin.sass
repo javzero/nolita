@@ -11,16 +11,18 @@ h1,h2,h3,h4,h5,h6
     font-family: $font2
 
 // Cart sidebar
+$l: #dba1a1
+$d: #e5636c
 .cart-sidebar
     box-shadow: 7px 2px 13px 5px rgba(0, 0, 0, 0.55)
-    background: rgba(243,194,173,1);
-    background: -moz-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(243,194,173,1)), color-stop(100%, rgba(234,101,115,1)));
-    background: -webkit-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-    background: -o-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-    background: -ms-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-    background: linear-gradient(to bottom, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c2ad', endColorstr='#ea6573', GradientType=0 );
+    background: $l
+    // background: -moz-linear-gradient(top, $l 0%, $d 100%)
+    // background: -webkit-gradient(left top, left bottom, color-stop(0%, $l), color-stop(100%, $d))
+    // background: -webkit-linear-gradient(top, $l 0%, $d 100%)
+    // background: -o-linear-gradient(top, $l 0%, $d 100%)
+    // background: -ms-linear-gradient(top, $l 0%, $d 100%)
+    // background: linear-gradient(to bottom, $l 0%, $d 100%)
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$l, endColorstr=$d, GradientType=0 )
     color: #fff
     .item,a
         color: #fff
@@ -42,20 +44,34 @@ h1,h2,h3,h4,h5,h6
 
 // Index
 .topbar
-    background: #000
+    background-color: #000
     color: #fff
+    border: 0
     a
         margin: 5px
     span,i,p,a
         color: #fff
     .topbar-column
         color: #fff
-        a
+        a,i
             color: #fff !important
 
-.toolbar .cart
-    border: 0
-
+// UserBar
+.toolbar 
+    .inner
+        .tools
+            .favs i
+                color: red
+    .cart
+        border: 0
+        color: #000
+        i,a
+            color: #000
+        &:hover
+            background-color: transparent
+            // background-color: #ffffff
+            // border: 1px solid #ccc
+            // border-radius: 0 
 // UserBan
 .dropdown-item.active, .dropdown-item
     &:hover
@@ -74,23 +90,8 @@ h1,h2,h3,h4,h5,h6
         background-color: #D12F59
         color: #fff
 
-.product-show .products-details
-    background: #fff
-
-.product-card .discount-badge
-    .triangle
-        background-color: #D12F59
-    .text
-        color: #fff
 
 
-// UserBar
-.toolbar .cart
-    border: 1px solid #fff
-    &:hover
-        background-color: #ffffff
-        border: 1px solid #ccc
-        border-radius: 0 
 
 // FORMS
 .btn
@@ -104,3 +105,110 @@ h1,h2,h3,h4,h5,h6
 .form-control
     border-radius: 5px
     border: 1px solid $grey
+
+// NAVBAR
+
+.navbar
+	background: rgba(255,255,255,0.70)
+	border-bottom: 1px solid rgba(0,0,0,.4)
+
+
+@media (max-width: 768px)
+	.navbar
+		background: rgba(255,255,255,0.70)
+
+.toolbar .account > .toolbar-dropdown
+	border: 1px solid #ccc
+	background-color: #f9f9f9
+	box-shadow: -2px 8px 10px -2px rgba(0, 0, 0, 0.55)
+
+
+// FILTERS
+
+.trigger-filter-mobile
+	.inner
+		.form-control
+			border: 1px solid #000
+		form
+			background: rgba(255,255,255,0.70)
+			::placeholder
+				color: #000
+			:-ms-input-placeholder
+				color: #000
+			::-ms-input-placeholder
+				color: #000
+		a
+			@include flex-center
+			background: rgba(255,255,255,0.70)
+			color: #000
+			border: 1px solid #000
+
+    
+.search-filters
+	.column
+		input,select,select.form-control:not([size]):not([multiple])
+			border: 1px solid rgba(0,0,0,.4)
+			border-radius: 0
+	.filter-button
+		border: 1px solid #ccc
+	.back-to-list-desktop
+		border: 0
+		a
+			border: 0
+			background-color: $main-color
+			color: #fff
+
+
+@media (max-width: 768px)
+	.search-filters
+		background-color: #f9f9f9
+		.trigger-column
+			a
+				border: 1px solid #ccc
+				&:hover
+					cursor: pointer
+
+.header-with-banner
+	background: url("../images/web/home-banner.jpg") no-repeat top center
+	-webkit-background-size: cover
+	-moz-background-size: cover
+	-o-background-size: cover
+	background-size: cover
+	height: 400px
+	position: relative
+	margin-bottom: 15px
+	margin-top: -80px
+	.filter-container
+		width: 100%
+		position: absolute
+		bottom: 0
+		left: 0
+		.form-control
+			background: rgba(255,255,255,0.70)
+			color: #000
+		.search-filters
+			margin: 0
+			.column
+			.column input,  .column select
+				border: 1px solid rgba(0,0,0,.4)
+				color: #000
+			::placeholder
+				color: #000
+			:-ms-input-placeholder
+				color: #000
+			::-ms-input-placeholder
+				color: #000
+
+// ARTICLES
+
+.product-show .products-details
+    background: $main-color
+    h2
+        color: #fff
+    color: #fff
+
+.product-card .discount-badge
+    .triangle
+        background-color: #D12F59
+    .text
+        color: #fff

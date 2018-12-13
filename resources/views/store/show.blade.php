@@ -8,38 +8,41 @@
 @endif--}}
 <div class="container padding-bottom-3x mb-1 marg-top-25">
 	<div class="row product-show">
+		<div class="col-md-12">
+			<a href="{{ url('tienda') }}">
+				<button  class="btn btn-main-sm">
+					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
+				</button>
+			</a>
+		</div>
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-6 col-xs-pull-12 image">
 			{{-- Title Mobile --}}
 			<div class="title-mobile">
 				<span class="text-medium">Categoría:&nbsp;</span>
 				<a class="navi-link" href="#">{{ $article->category->name }}</a>
 				{{--  Article Name  --}}
-				<h2 class="text-normal">{{ $article->name }}</h2>
+				<h2 class="text-normal"><b>{{ $article->name }}</b></h2>
 			</div>
-			<a href="{{ url('tienda') }}">
-				<button  class="btn btn-main-sm">
-					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
-				</button>
-				</a>
+			
 			<div class="row product-gallery">
 				<div class="col-xs-12 col-sm-3 col-md-3 pad0">
 					<ul class="product-thumbnails">
-						@foreach($article->images as $image)
-						<li>
-							<a href="#{{ $image->id }}">
-									<img src="{{ asset('webimages/catalogo/'. $image->name) }}" class="CheckCatalogImg" alt="Producto Bruna">
-								</a>
-							</li>
-							@endforeach
-						</ul>
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-9 images-container pad0">
-						<div class="gallery-wrapper">
-							@foreach($article->images as $index => $image)
-							<div class="gallery-item {{ $index == 0 ? 'active' : '' }}">
-							<a href="{{ asset('webimages/catalogo/'. $image->name) }}" data-hash="{{ $image->id }}" data-size="500x750"><i class="icon-zoom-in"></i></a>
-						</div>
+					@foreach($article->images as $image)
+					<li>
+						<a href="#{{ $image->id }}">
+								<img src="{{ asset('webimages/catalogo/'. $image->name) }}" class="CheckCatalogImg" alt="Producto Bruna">
+							</a>
+						</li>
 						@endforeach
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-9 col-md-9 images-container pad0">
+					<div class="gallery-wrapper">
+						@foreach($article->images as $index => $image)
+						<div class="gallery-item {{ $index == 0 ? 'active' : '' }}">
+						<a href="{{ asset('webimages/catalogo/'. $image->name) }}" data-hash="{{ $image->id }}" data-size="500x750"><i class="icon-zoom-in"></i></a>
+					</div>
+					@endforeach
 					</div>
 					<div class="product-carousel owl-carousel">
 						@if(!$article->images->isEmpty())
@@ -71,22 +74,25 @@
 				<span class="text-medium">Categoría:&nbsp;</span>
 				<a class="navi-link" href="#">{{ $article->category->name }}</a>
 				{{--  Article Name  --}}
-				<h2 class="text-normal">{{ $article->name }}</h2>
+				<h2 class="text-normal"><b>{{ $article->name }}</b></h2>
 				<div class="mb-3"> #{{ $article->code }}</div>
 			</div>
 			{{-- PRICE --}}
-			@if($article->reseller_discount > 0)
-				DESCUENTO % {{ $article->reseller_discount }}!!
-				<span class="h2 d-block">
-					<del class="text-muted text-small">$ {{ $article->reseller_price }}</del>
-					&nbsp; ${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}
-				</span>
-			@else
-				<span class="h2 d-block">$ {{ $article->reseller_price }}</span>
-			@endif
+			<div class="prices">
+				@if($article->reseller_discount > 0)
+					% {{ $article->reseller_discount }} de DESCUENTO!!
+					<br>
+					<span class="big-price"><b>${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}</b></span>
+					<span class="small-price">($ {{ $article->reseller_price }})</span>
+					@else
+					<span class="big-price"><b>$ {{ $article->reseller_price }}</b></span>
+				@endif
+			</div>
 			{{-- Article Description --}}
 			<p>{{ strip_tags($article->description) }}</p>
 			<div class="item"><div class="title">Tela: {{ $article->textile }}</div> <br></div>
+			{{-- {{ dd($article->sizes) }} --}}
+			<div class="item"><div class="title">Talle: Único</div> <br></div>
 			@if(Auth::guard('customer')->check())
 			<div class="row">
 				<div class="col-sm-12 descriptions">
@@ -129,6 +135,14 @@
 							<input type="submit" id="AddToCartFormBtn" class="btn main-btn" value="Agregar al carro" disabled>
 						</div>
 					</div>
+					{!! Form::close() !!}
+					{!! Form::open(['class' => 'AddToCart form-group price']) !!}
+						{{ csrf_field() }}	
+						<div class="input-with-btn">
+							<input class="form-control input-field short-input" name="quantity" type="number" min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
+							<button class="btn input-btn">Agregar al carro</button>
+						</div>
+						<input type="hidden" value="{{ $article->id }}" name="articleId">
 					{!! Form::close() !!}
 				</div>
 			</div>

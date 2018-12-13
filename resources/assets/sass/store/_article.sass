@@ -1,0 +1,80 @@
+
+.product-gallery
+	padding: 0
+	border: 0
+	.product-carousel .owl-stage-outer .owl-stage .owl-item img
+		width: 100% 
+
+.product-gallery .gallery-item 
+	z-index: 50
+	position: absolute
+	top: 8px
+	right: 9px
+	margin-bottom: 0
+	background: #fff
+	border-radius: 50%
+	
+.product-show
+	.title-mobile
+		display: none
+	.navi-link
+		color: $second-color
+	.prices
+		.small-price
+			font-size: 1.2rem
+			text-decoration: line-through
+			color: #ccc
+		.big-price
+			color: #fff
+			font-size: 2rem
+	.products-details
+		padding: 15px
+		padding-right: 40px
+		padding-bottom: 40px
+		position: relative
+		min-height: 430px
+		.title-desktop
+			h2
+				margin-bottom: 0
+		.fav-container
+			position: absolute
+			right: 13px
+			top: 7px
+			font-size: 1.5rem
+			i
+				color: $red
+		// .back-btn
+		// 	position: absolute
+		// 	bottom: -30px
+		// 	right: 12px
+		// 	font-size: 1rem
+		// 	color: #000
+		h2
+			padding-top: 0
+	.back-btn
+		padding-left: 10px
+		margin-bottom: 10px
+	.descriptions
+		font-size: 1.1rem
+		.item
+			white-space: nowrap
+			.title
+				float: left
+				min-width: 60px
+				font-family: $font2
+
+			.prop
+	.price-and-stock
+
+@media (max-width: 575px)
+	.product-show
+		.title-mobile
+			display: block
+		.products-details
+			.title-desktop
+				display: none
+
+@media (max-width: 1190px)
+	.product-show .products-details
+		.fav-container
+			right: 20px

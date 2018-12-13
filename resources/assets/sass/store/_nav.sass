@@ -6,8 +6,6 @@
 					img
 						border-radius: 50%
 
-
-	
 .dropdown-product-item > .dropdown-product-info
 	max-width: 148px
 	width: 148px
@@ -31,8 +29,6 @@
 .top-info
 	padding-bottom: 20px
 
-
-
 @media (max-width: 1070px)
 	.toolbar 
 		.tools
@@ -46,8 +42,15 @@
 		position: absolute
 
 .navbar
+	height: 65px
+	min-height: auto
 	.site-logo-mobile
 		display: none
+
+@media (max-width: 768px)
+	.navbar
+		height: auto
+		border: 0
 
 @media (max-width: 481px)
 	.navbar
@@ -63,38 +66,15 @@
 	.toolbar .cart > .toolbar-dropdown
 		top: 100px
 
-
 // ------- Top Bar ---------
-.topbar 
+.topbar
 	.topbar-column
 		white-space: nowrap
-
-
 	
 @media (max-width: 490px)
 	.topbar .topbar-column
 		.e-mail-field
 			display: none !important
-
-
-.navbar
-	height: 65px
-	min-height: auto
-	border: 0
-	
-
-
-.site-branding
-	text-align: center
-	position: relative
-	top: auto
-	left: auto
-	max-height: 60px
-	a
-		max-height: 60px
-		padding: 2px
-		img
-			max-height: 100%
 
 .left-nav-items
 	position: absolute
@@ -103,11 +83,13 @@
 	height: 100%
 	z-index: 6
 	li
-		height: 30px
-		height: 100%
-		@include flex-center
+		// height: 30px
+		// height: 100%
+		// @include flex-center
 		a
-			padding: 20px
+			img
+				max-width: 100%
+				max-height: 100%
 
 .navbar-sticky	
 	.toolbar 
@@ -122,10 +104,7 @@
 .toolbar .account > .toolbar-dropdown
 	margin-left: -170px
 	top: 53px
-	border-radius: 0 
-	border: 1px solid #ccc
-	background-color: #f9f9f9
-	box-shadow: -2px 8px 10px -2px rgba(0, 0, 0, 0.55)
+	border-radius: 0
 	@include transition(0.2s)
 	li
 		&:hover,&:focus,&:active
@@ -137,8 +116,21 @@
 	.sub-menu-title
 		&:hover
 			background-color: #f9f9f9
-@media (min-width: 481px)
 
+.site-branding
+	text-align: left
+	position: relative
+	top: auto
+	left: auto
+	max-height: 60px
+	padding: 10px
+	a
+		height: 100%
+		padding: 2px
+		img
+			max-height: 100%
+
+@media (min-width: 481px)
 	.toolbar .cart > .toolbar-dropdown
 		width: 300px
 		padding-left: 18px !important
@@ -155,8 +147,12 @@
 
 @media (max-width: 768px)
 	.site-branding
-		a img
-			max-height: 60px
+		text-align: center
+		padding: 15px
+		position: relative
+		a
+			img
+				max-height: 50px
 
 
 @media (max-width: 710px)
@@ -164,6 +160,7 @@
 		min-height: auto
 		height: auto
 		.site-branding
+			border: 0
 			position: relative
 			@include flex-center
 			.site-logo
@@ -195,7 +192,7 @@
 					cursor: pointer
 
 
-@media (min-width: 852px)
+@media (min-width: 768px)
 	.toolbar
 		.text-links
 			display: block
@@ -205,13 +202,31 @@
 	.under-nav-container
 		display: none
 
-@media (max-width: 852px)
+@media (max-width: 768px)
+	.toolbar
+		display: none
 	.under-nav-container
-		text-align: center
 		display: block
 		margin-bottom: 10px
+		z-index: 990
+		width: 100%
+		text-align: center
+		border-bottom: 1px solid black
 		.text-links
 			margin-right: 10px
 			a
 				margin: 0 15px
 				white-space: nowrap
+
+.login-register-btn-mobile
+	display: none
+
+@media (max-width: 768px)
+	.login-register-btn-mobile
+		display: block
+
+@media (max-width: 400px)
+	.login-register-btn-mobile
+		.btn
+			margin: 0
+			margin-bottom: 6px
