@@ -15,27 +15,34 @@
 	border-radius: 50%
 	
 .product-show
-	.title-mobile
-		display: none
-	.navi-link
-		color: $second-color
-	.prices
-		.small-price
-			font-size: 1.2rem
-			text-decoration: line-through
-			color: #ccc
-		.big-price
-			color: #fff
-			font-size: 2rem
 	.products-details
-		padding: 15px
-		padding-right: 40px
-		padding-bottom: 40px
+		padding: 40px 40px 10px 60px
 		position: relative
 		min-height: 430px
 		.title-desktop
 			h2
 				margin-bottom: 0
+		.color-selector
+			margin: 10px 0 20px
+			.color-option
+				border: 1px solid #000
+				margin: 0 5px 5px 0
+				float: left
+				padding: 2px 10px
+				color: #000
+			.selected-color
+				background-color: #000
+				color: #fff
+		.prices
+			margin-top: 15px
+			margin-bottom: 15px
+			.if-discount
+				font-size: 1.2rem
+				text-decoration: line-through
+				color: #fff
+			.main-price
+				color: #000
+				font-size: 2rem
 		.fav-container
 			position: absolute
 			right: 13px
@@ -65,6 +72,10 @@
 
 			.prop
 	.price-and-stock
+	.image
+		.title-mobile
+			display: none
+
 
 @media (max-width: 575px)
 	.product-show

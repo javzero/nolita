@@ -22,16 +22,16 @@
 							{{-- <h1><i style="color: red" class="fa fa-exclamation-circle"></i> Mensaje del desarrollador</h1> --}}
 							{{-- <hr class="softhr"> --}}
 							<p>
-								<span style="color: blue; font-size: 2rem"><i class="fas fa-fire"></i> Actualización!</span>
+								{{-- <span style="color: blue; font-size: 2rem"><i class="fas fa-fire"></i> Actualización!</span>
 								<hr class="softhr">
 
 								- Nueva barra lateral
 								- Nuevos filtros en tienda (Con mejor responsividad en móvil)
+								<hr class="softhr"> --}}
+								<span style="color: blue; font-size: 1rem; font-weight: 300"><i class="fas fa-cogs"></i> Estamos en puesta a punto: </span><br>
+								Pronto vamos a tener todas las funcionalidades personalizas configuradas para poner en marcha la tienda.
 								<hr class="softhr">
-								<span style="color: blue; font-size: 1rem; font-weight: 300"><i class="fas fa-cogs"></i> En que estoy trabajando: </span><br>
-								- El tema diseño no está cerrado, yo hice todo lo referido a estructura y estoy esperando que viole termine de diseñar algunas cosas más para implementarlo.
-								<hr class="softhr">
-								Saludos ! <b>Lea. <i class="fas fa-blind"></i></b>
+								Saludos ! <b>Leandro</b>
 							</p>
 						</div>
 					</div>

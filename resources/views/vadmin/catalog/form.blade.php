@@ -34,12 +34,17 @@
             </div>
         </div>
          {{-- Season --}}
-         <div class="col-xs-12 col-sm-12 col-md-6">
+         {{-- <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
                 {!! Form::label('brand_id', 'Marca') !!}
                 {!! Form::select('brand_id', $brands, null, ['class' => 'Select-Brand form-control']) !!}
             </div>
-        </div>
+        </div> --}}
+        <div class="col-xs-12 col-md-12 form-group">
+            {!! Form::label('textile', 'Textil') !!}
+            {!! Form::text('textile', null, ['class' => 'form-control', 'placeholder' => 'Tipo de tela', 
+            'required' => '', 'maxlength' => '50']) !!}
+        </div>  
         {{-- Category --}}
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
@@ -56,11 +61,7 @@
             </div>
         </div>
         {{--  Textile  --}}
-        <div class="col-xs-12 col-md-6 form-group">
-            {!! Form::label('textile', 'Textil') !!}
-            {!! Form::text('textile', null, ['class' => 'form-control', 'placeholder' => 'Tipo de tela', 
-            'required' => '', 'maxlength' => '50']) !!}
-        </div>           
+               
         
         <div class="col-xs-12 variants">
             <div class="variants-selectors">
@@ -77,10 +78,10 @@
                 <div class="colors">
                     <span class="sub-title">Talles: </span>
                     @foreach($sizes as $size)
-                    <label class="items checkbox-inline">
-                        <input class="VariantSize" type="checkbox" name="size" 
-                        data-name="{{ $size->name }}" value="{{ $size->id }}"> {{ $size->name}}
-                    </label>
+                        <label class="items checkbox-inline">
+                            <input class="VariantSize" type="checkbox" name="size" checked 
+                            data-name="{{ $size->name }}" value="{{ $size->id }}"> {{ $size->name}}
+                        </label>
                     @endforeach
                 </div>
                 <button id="MakeVariantsBtn" onclick="makeVariants()" type="button" class="btnSm btnMain">Crear variantes</button>

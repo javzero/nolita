@@ -57,7 +57,7 @@
 			</div>
 		</div>
 
-		<div class="padding-top-2x hidden-md-up"></div>
+		{{-- <div class="padding-top-2x hidden-md-up"></div> --}}
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7 col-xl-6 products-details">
 			{{-- Favs --}}
 			<div class="fav-container">
@@ -71,76 +71,47 @@
 			</div>
 			{{-- Title Desktop --}}
 			<div class="title-desktop">
-				<span class="text-medium">Categoría:&nbsp;</span>
-				<a class="navi-link" href="#">{{ $article->category->name }}</a>
+				<h4>Categoría:&nbsp; <a class="color-white" href="#"><b>{{ $article->category->name }}</b></a></h4>
+				
 				{{--  Article Name  --}}
-				<h2 class="text-normal"><b>{{ $article->name }}</b></h2>
-				<div class="mb-3"> #{{ $article->code }}</div>
+				<div class="product-title"><b>{{ $article->name }}</b></div>
+				<span class="product-code"> #{{ $article->code }}</span>
 			</div>
 			{{-- PRICE --}}
 			<div class="prices">
 				@if($article->reseller_discount > 0)
 					% {{ $article->reseller_discount }} de DESCUENTO!!
 					<br>
-					<span class="big-price"><b>${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}</b></span>
-					<span class="small-price">($ {{ $article->reseller_price }})</span>
+					<span class="main-price"><b>${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}</b></span>
+					<span class="if-discount">($ {{ $article->reseller_price }})</span>
 					@else
-					<span class="big-price"><b>$ {{ $article->reseller_price }}</b></span>
+					<span class="main-price"><b>$ {{ $article->reseller_price }}</b></span>
 				@endif
 			</div>
 			{{-- Article Description --}}
-			<p>{{ strip_tags($article->description) }}</p>
-			<div class="item"><div class="title">Tela: {{ $article->textile }}</div> <br></div>
-			{{-- {{ dd($article->sizes) }} --}}
-			<div class="item"><div class="title">Talle: Único</div> <br></div>
+			<p class="description">{{ strip_tags($article->description) }}</p>
+			<h4>Tela:&nbsp; <a class="color-white" href="#"><b>{{ $article->textile }}</b></a></h4>
+			<h4>Talle:&nbsp; <a class="color-white" href="#"><b>Único</b></a></h4>
 			@if(Auth::guard('customer')->check())
 			<div class="row">
 				<div class="col-sm-12 descriptions">
 					{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
 					'data-route' => (url('tienda/checkVariantStock')) ]) !!}
 					<input type="hidden" name="article_id" value="{{ $article->id }}">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-4">
-							<div class="form-group">
-								<select name="color_id" class="form-control" placeholder="Color" required>
-									<option value="" selected disabled>Color</option>
-									@foreach($colors as $id => $name)
-										<option value="{{ $id }}">{{ $name }}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="col-xs-4 col-sm-4 col-md-4">
-							<div class="form-group">
-								<select name="size_id" class="form-control" placeholder="Talle" required>
-										<option selected disabled>Talle</option>
-									@foreach($sizes as $id => $name)
-										<option value="{{ $id }}">{{ $name }}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="col-xs-4 col-sm-4 col-md-4">
-							<div class="form-group">
-								{!! Form::number('quantity', null, ['id' => 'MaxQuantity', 'class' => 'form-control', 'min' => '0', 'required' => '', 'placeholder' => 'Cantidad']) !!}
-							</div>
+					<div class="row color-selector">
+						<div class="col-md-12 pad0">
+							@foreach($colors as $id => $name)
+								<div class="color-option" data-id="{{ $id }}">{{ $name }}</div>
+							@endforeach
 						</div>
 					</div>
 					<div class="row">
 						{{-- Display Remaining Stock --}}
 						<div class="AvailableStock col-md-12"></div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<input type="submit" id="AddToCartFormBtn" class="btn main-btn" value="Agregar al carro" disabled>
-						</div>
-					</div>
-					{!! Form::close() !!}
-					{!! Form::open(['class' => 'AddToCart form-group price']) !!}
-						{{ csrf_field() }}	
 						<div class="input-with-btn">
 							<input class="form-control input-field short-input" name="quantity" type="number" min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
-							<button class="btn input-btn">Agregar al carro</button>
+							<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>
 						</div>
 						<input type="hidden" value="{{ $article->id }}" name="articleId">
 					{!! Form::close() !!}

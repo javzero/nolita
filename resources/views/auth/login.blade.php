@@ -7,7 +7,7 @@
             <div class="card-header no-border">
                 <div class="card-title text-xs-center">
                     <div class="app-logo">
-                        <div class="app-logo"><img src="{{ asset('webimages/web/app-logo.png') }}" alt="Logo"></div>
+                        <div class="app-logo"><img src="{{ asset('images/web/app-logo.png') }}" alt="Logo"></div>
                     </div>
                     <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3"><span>Inicio de Sesión</span></h6>
                 </div>

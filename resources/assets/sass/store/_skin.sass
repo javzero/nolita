@@ -8,103 +8,103 @@ body
 
 
 h1,h2,h3,h4,h5,h6
-    font-family: $font2
+	font-family: $font2
 
 // Cart sidebar
 $l: #dba1a1
 $d: #e5636c
 .cart-sidebar
-    box-shadow: 7px 2px 13px 5px rgba(0, 0, 0, 0.55)
-    background: $l
-    // background: -moz-linear-gradient(top, $l 0%, $d 100%)
-    // background: -webkit-gradient(left top, left bottom, color-stop(0%, $l), color-stop(100%, $d))
-    // background: -webkit-linear-gradient(top, $l 0%, $d 100%)
-    // background: -o-linear-gradient(top, $l 0%, $d 100%)
-    // background: -ms-linear-gradient(top, $l 0%, $d 100%)
-    // background: linear-gradient(to bottom, $l 0%, $d 100%)
-    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$l, endColorstr=$d, GradientType=0 )
-    color: #fff
-    .item,a
-        color: #fff
-        font-weight: 300
-    a
-        font-weight: 600
-    .title,.values
-        color: #383838
-    .total-price-bottom
-        .inner-text
-            color: #383838
-    .inner
-        .item
-            .delete-item
-                color: #f9f9f9
-                &:hover
-                    color: red
+	box-shadow: 7px 2px 13px 5px rgba(0, 0, 0, 0.55)
+	background: $l
+	// background: -moz-linear-gradient(top, $l 0%, $d 100%)
+	// background: -webkit-gradient(left top, left bottom, color-stop(0%, $l), color-stop(100%, $d))
+	// background: -webkit-linear-gradient(top, $l 0%, $d 100%)
+	// background: -o-linear-gradient(top, $l 0%, $d 100%)
+	// background: -ms-linear-gradient(top, $l 0%, $d 100%)
+	// background: linear-gradient(to bottom, $l 0%, $d 100%)
+	// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$l, endColorstr=$d, GradientType=0 )
+	color: #fff
+	.item,a
+		color: #fff
+		font-weight: 300
+	a
+		font-weight: 600
+	.title,.values
+		color: #383838
+	.total-price-bottom
+		.inner-text
+			color: #383838
+	.inner
+		.item
+			.delete-item
+				color: #f9f9f9
+				&:hover
+					color: red
 
 
 // Index
 .topbar
-    background-color: #000
-    color: #fff
-    border: 0
-    a
-        margin: 5px
-    span,i,p,a
-        color: #fff
-    .topbar-column
-        color: #fff
-        a,i
-            color: #fff !important
+	background-color: #000
+	color: #fff
+	border: 0
+	a
+		margin: 5px
+	span,i,p,a
+		color: #fff
+	.topbar-column
+		color: #fff
+		a,i
+			color: #fff !important
 
 // UserBar
 .toolbar 
-    .inner
-        .tools
-            .favs i
-                color: red
-    .cart
-        border: 0
-        color: #000
-        i,a
-            color: #000
-        &:hover
-            background-color: transparent
-            // background-color: #ffffff
-            // border: 1px solid #ccc
-            // border-radius: 0 
+	.inner
+		.tools
+			.favs i
+				color: red
+	.cart
+		border: 0
+		color: #000
+		i,a
+			color: #000
+		&:hover
+			background-color: transparent
+			// background-color: #ffffff
+			// border: 1px solid #ccc
+			// border-radius: 0 
 // UserBan
 .dropdown-item.active, .dropdown-item
-    &:hover
-        color: #fff
-    &:active,&:focus
-        background-color: $main-color
-        color: #fff
+	&:hover
+		color: #fff
+	&:active,&:focus
+		background-color: $main-color
+		color: #fff
 
 .btn-outline-primary
-    border-radius: 4px
-    border: 1px solid #D12F59
-    color: #383838
-    padding-left: 10px
-    padding-right: 10px
-    &:hover,&:focus,&:active
-        background-color: #D12F59
-        color: #fff
+	border-radius: 4px
+	border: 1px solid #D12F59
+	color: #383838
+	padding-left: 10px
+	padding-right: 10px
+	&:hover,&:focus,&:active
+		background-color: #D12F59
+		color: #fff
 
 
 
 
 // FORMS
 .btn
-    border-radius: 0
-    border: 1px solid $main-color
-    &:hover
-        background-color: $main-color
+	border-radius: 0
+	border: 1px solid $main-color
+	&:hover
+		background-color: $main-color
 
 
 // FORMS
 .form-control
-    border-radius: 5px
-    border: 1px solid $grey
+	border-radius: 5px
+	border: 1px solid $grey
 
 // NAVBAR
 
@@ -143,7 +143,7 @@ $d: #e5636c
 			color: #000
 			border: 1px solid #000
 
-    
+	
 .search-filters
 	.column
 		input,select,select.form-control:not([size]):not([multiple])
@@ -174,7 +174,7 @@ $d: #e5636c
 	-moz-background-size: cover
 	-o-background-size: cover
 	background-size: cover
-	height: 400px
+	height: 450px
 	position: relative
 	margin-bottom: 15px
 	margin-top: -80px
@@ -199,16 +199,63 @@ $d: #e5636c
 			::-ms-input-placeholder
 				color: #000
 
+@media (max-width: 768px)
+	.header-with-banner
+		margin-top: -110px
 // ARTICLES
 
-.product-show .products-details
-    background: $main-color
-    h2
-        color: #fff
-    color: #fff
+.product-show 
+	.title-desktop
+		.product-title
+			color: #000
+			font-family: $font2
+			font-size: 2rem
+		.product-code
+			color: #000
+			border: 1px solid #000
+			padding: 2px 5px
+			font-weight: 300
+	.description
+		color: #000
+	.products-details
+		background: $main-color
+		color: #fff
+		h2
+			color: #fff
+		h4
+			a
+				&:hover
+					color: #000
+		.color-selector
+			.color-option
+				border: 1px solid #000
+				color: #000
+				@include transition(0.2s)
+				cursor: pointer
+				&:hover 
+					background-color: #000
+					color: #fff
+			.selected-color
+				background-color: #000
+				color: #fff
 
 .product-card .discount-badge
-    .triangle
-        background-color: #D12F59
-    .text
-        color: #fff
+	.triangle
+		background-color: #D12F59
+	.text
+		color: #fff
+
+
+.input-with-btn
+	.form-control:not(textarea)
+		height: 34px
+	.input-field
+		border-radius: 0
+		max-width: 90px
+		height: 34px
+	.input-btn
+		border-radius: 0
+		background-color: #000000
+		color: #fff
+		height: 34px
+		line-height: 1rem

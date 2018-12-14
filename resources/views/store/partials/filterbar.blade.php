@@ -46,7 +46,7 @@
     </div>
     
     {{-- Brands --}}
-    <div class="column">
+    {{-- <div class="column">
         <select class="form-control item" name="categories" onchange="location = this.value;">
             <option value="Marcas" selected disabled>MARCAS</option>
             <option value="{{ route('store') }}"> Todas </option>
@@ -54,7 +54,7 @@
                 <option value="{{ route('store', 'marca=').$brand->id }}"> {{ $brand->name }} </option>
             @endforeach
         </select>
-    </div>
+    </div> --}}
 
     <div class="column">
         {!! Form::open(['route' => 'store', 'method' => 'GET', 'class' => 'input-group form-group search-input']) !!}

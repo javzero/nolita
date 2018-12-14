@@ -1,5 +1,17 @@
 @extends('store.partials.main')
 
+@section('styles')
+    <style>
+        body {
+            background: url("{{ asset('images/web/background.jpg') }}") no-repeat center top fixed;
+	        -webkit-background-size: cover;
+	        -moz-background-size: cover;
+	        -o-background-size: cover;
+	        background-size: cover;
+        }    
+    </style>
+@endsection
+
 @section('content')
 <div class="container padding-bottom-3x">
 	<div class="row centered-form">

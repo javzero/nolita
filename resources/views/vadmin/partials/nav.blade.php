@@ -174,7 +174,7 @@
 					</a>
 				</li>
 				{{-- Sizes --}}
-				<li class="has-sub is-shown {{ Menu::activeMenu('cat_sizes') }}">
+				{{-- <li class="has-sub is-shown {{ Menu::activeMenu('cat_sizes') }}">
 					<a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
 						Talles
 					</a>
@@ -190,7 +190,7 @@
 							</a>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 
 				{{-- ===============================  --}}
 				{{-- Colors --}}
@@ -215,8 +215,8 @@
 
 				{{-- ===============================  --}}
 
-				{{-- Seasons --}}
-				<li class="has-sub is-shown {{ Menu::activeMenu('cat_brands') }}">
+				{{-- Brands --}}
+				{{-- <li class="has-sub is-shown {{ Menu::activeMenu('cat_brands') }}">
 					<a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
 						Marcas
 					</a>
@@ -232,7 +232,7 @@
 							</a>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 				{{-- Categories --}}
 				<li class="has-sub is-shown">
 					<a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
