@@ -120,7 +120,7 @@
 	<script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
-	<script type="text/javascript" src="{{ asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js') }}"></script>
+	{{-- <script type="text/javascript" src="{{ asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js') }}"></script> --}}
 	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
 	@include('vadmin.components.bladejs')
 @endsection

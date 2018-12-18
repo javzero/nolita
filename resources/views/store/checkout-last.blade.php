@@ -11,9 +11,10 @@
 		.floating-bottom-cta {  
 			bottom: 70px
 		}
+   
 	</style>
-@endsection
 
+@section('styles')
 
 @section('content')
 	<input id="CartId" class="form-control" type="hidden" name="cart_id" value="{{ $activeCart['rawdata']->id }}">

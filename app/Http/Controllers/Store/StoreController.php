@@ -246,11 +246,18 @@ class StoreController extends Controller
     {
         $variant = null;
         
-        if($request->color_id != null && $request->size_id != null && $request->article_id)
+        // If has unique size  
+        if($request->color_id != null && $request->article_id)
         {
-            $variant = CatalogVariant::where('article_id', $request->article_id)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->first();
+            $variant = CatalogVariant::where('article_id', $request->article_id)->where('color_id', $request->color_id)->first();
         }
+    
 
+        // If has differents sizes
+        // if($request->color_id != null && $request->size_id != null && $request->article_id)
+        // {
+        //     $variant = CatalogVariant::where('article_id', $request->article_id)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->first();
+        // }
         if($variant != null)
             return response()->json(['response' => true, 'message' => $variant->stock]);
         else

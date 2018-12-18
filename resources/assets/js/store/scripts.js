@@ -175,7 +175,6 @@ window.sumDivs = function (origins, target) {
 window.checkVariantStock = function() {
     let form = $('#AddToCartForm');
     let data = form.serialize();
-    console.log(form.data('route'));
     let allowSubmit = false;
     $.ajax({
         url: form.data('route'),
@@ -184,6 +183,7 @@ window.checkVariantStock = function() {
         async: false,
         data: data,
         success: function (data) {
+            console.log(data);
             if(data.response == true)
             {
                 if(data.message == '0')
@@ -273,7 +273,7 @@ window.addToCart = function (route, data) {
             $('#Error').html(data.responseText);
             console.log("Error en addtoCart()");
             // location.reload();
-            console.log(data);
+            // console.log(data);
         }
     });
 }

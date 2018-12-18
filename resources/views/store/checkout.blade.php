@@ -2,9 +2,10 @@
 
 @section('styles')
 	<style>
-			.floating-bottom-cta {  
-				bottom: 70px
-			}
+		.floating-bottom-cta {  
+			bottom: 70px
+		}
+				
 	</style>
 @endsection
 

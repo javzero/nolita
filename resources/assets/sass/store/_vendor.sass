@@ -1944,6 +1944,8 @@ kbd
 			align-self: center !important
 			margin-bottom: 0
 
+.form-group label
+	padding-left: 10px
 
 
 .form-control-lg 
@@ -2112,33 +2114,24 @@ kbd
 .has-success 
 	label 
 		color: $color_shamrock_approx
-
 	.form-control-feedback 
 		color: $color_shamrock_approx
-
 	.custom-control 
 		color: $color_shamrock_approx
-
 	.form-control 
 		border-color: $color_shamrock_approx
 		&:focus 
 			border-color: $color_shamrock_approx
 			~ .input-group-addon 
 				color: $color_shamrock_approx
-
-
-
 	.form-control-success 
 		padding-right: 42px
 		background-position: center right 15px
 		background-image: $url_3
-
 	.input-group .input-group-addon 
 		color: $color_shamrock_approx
-
 	&.input-group .input-group-addon 
 		color: $color_shamrock_approx
-
 
 .has-warning 
 	label 
@@ -2156,17 +2149,12 @@ kbd
 			border-color: $color_texas_rose_approx
 			~ .input-group-addon 
 				color: $color_texas_rose_approx
-
-
-
 	.form-control-warning 
 		padding-right: 42px
 		background-position: center right 15px
 		background-image: $url_4
-
 	.input-group .input-group-addon 
 		color: $color_texas_rose_approx
-
 	&.input-group .input-group-addon 
 		color: $color_texas_rose_approx
 
@@ -2174,7 +2162,6 @@ kbd
 .has-danger 
 	label 
 		color: $color_carnation_approx
-
 	.form-control-feedback 
 		color: $color_carnation_approx
 
@@ -2187,9 +2174,6 @@ kbd
 			border-color: $color_carnation_approx
 			~ .input-group-addon 
 				color: $color_carnation_approx
-
-
-
 	.form-control-danger 
 		padding-right: 42px
 		background-position: center right 15px
@@ -2202,7 +2186,6 @@ kbd
 	&.input-group .input-group-addon 
 		color: $color_carnation_approx
 
-
 .form-control-feedback 
 	padding-top: 2px
 	padding-left: 18px
@@ -2214,38 +2197,28 @@ kbd
 		color: $white
 		&:-ms-input-placeholder 
 			color: $white_50
-
 		&:focus 
 			border-color: $main-color
 			color: $white
-
-
 	.form-control 
 		border-color: $white_17
 		background-color: transparent
 		color: $white
 		&:-ms-input-placeholder 
 			color: $white_50
-
 		&:focus 
 			border-color: $main-color
 			color: $white
-
-
 	&.form-control::-moz-placeholder 
 		color: $white_50
 		opacity: 1
-
 	.form-control::-moz-placeholder 
 		color: $white_50
 		opacity: 1
-
 	&.form-control::-webkit-input-placeholder 
 		color: $white_50
-
 	.form-control::-webkit-input-placeholder 
 		color: $white_50
-
 	&.input-group .input-group-addon 
 		color: $white_50
 
@@ -2254,18 +2227,14 @@ kbd
 	.input-group 
 		width: calc(100% - 88px)
 		float: left
-
 	.btn 
 		margin: 0
 		float: right
 		> i 
 			margin-top: -6px
 			font-size: 1.5em
-
-
 	.form-text 
 		padding-top: 12px
-
 
 .coupon-form 
 	.form-control 
@@ -2276,7 +2245,6 @@ kbd
 
 	.btn 
 		margin-right: 0
-
 
 .login-box 
 	display: block
@@ -2292,158 +2260,131 @@ kbd
 .table 
 	td 
 		border-color: $color_mystic_approx
-
 	th 
 		border-color: $color_mystic_approx
-
 	&.table-inverse 
 		background-color: $color_bright_gray_approx
 		td 
 			border-color: $white_12
-
 		th 
 			border-color: $white_12
-
 		thead th 
 			border-color: $white_12
-
-
 	thead th 
 		border-color: $color_mystic_approx
-
 
 .table-striped 
 	tbody tr:nth-of-type(odd) 
 		background-color: $color_wild_sand_approx
-
 	&.table-inverse tbody tr:nth-of-type(odd) 
 		background-color: $black_8
-
 
 .table-hover 
 	tbody tr:hover 
 		background-color: $color_wild_sand_approx
-
 	&.table-inverse tbody tr:hover 
 		background-color: $black_8
-
 
 .table-active 
 	background-color: $black_5
 	td 
 		background-color: $black_5
-
 	th 
 		background-color: $black_5
-
 
 .table-success 
 	background-color: $color_shamrock_9_approx
 	td 
 		background-color: $color_shamrock_9_approx
-
 	th 
 		background-color: $color_shamrock_9_approx
-
 
 .table-info 
 	background-color: $color_picton_blue_9_approx
 	td 
 		background-color: $color_picton_blue_9_approx
-
 	th 
 		background-color: $color_picton_blue_9_approx
-
 
 .table-warning 
 	background-color: $color_texas_rose_9_approx
 	td 
 		background-color: $color_texas_rose_9_approx
-
 	th 
 		background-color: $color_texas_rose_9_approx
-
 
 .table-danger 
 	background-color: $color_carnation_9_approx
 	td 
 		background-color: $color_carnation_9_approx
-
 	th 
 		background-color: $color_carnation_9_approx
 
-
-.btn 
-	display: inline-block
-	position: relative
-	height: 44px
-	margin-top: 8px
-	margin-right: 12px
-	margin-bottom: 8px
-	padding: 0 22px
-	//If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
-	transform: translateZ(0)
-	//If you use compass, instead of the line below you could use + transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-	transition: all .4s
-	border: 1px solid transparent
-	//If you use compass, instead of the line below you could use + border-radius($radius, $vertical-radius)
-	border-radius: 22px
-	background-color: transparent
-	background-image: none
-	color: $color_shuttle_gray_approx
-	font-family: $font_0, $font_1, $font_2, $font_3
-	font-size: 14px
-	font-style: normal
-	font-weight: 500
-	letter-spacing: .07em
-	line-height: 42px
-	white-space: nowrap
-	cursor: pointer
-	vertical-align: middle
-	text-transform: uppercase
-	text-decoration: none
-	text-align: center
-	touch-action: manipulation
-	//If you use compass, instead of the line below you could use + user-select($select)
-	user-select: none
-	&:hover 
-		outline: none
-		background-image: none
-		text-decoration: none
-		//If you use compass, instead of the line below you could use + box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-		box-shadow: none
-		color: $color_shuttle_gray_approx
-
-	&.active 
-		outline: none
-		background-image: none
-		text-decoration: none
-		//If you use compass, instead of the line below you could use + box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-		box-shadow: none
-
-	> i 
-		display: inline-block
-		margin-top: -2px
-		vertical-align: middle
-
-	&.disabled 
-		cursor: not-allowed
-		opacity: .55
-		pointer-events: none
-
-	&.dropdown-toggle::after 
-		margin-top: -2px
-
-	&:focus .btn:active 
-		outline: none
-		background-image: none
-		text-decoration: none
-		//If you use compass, instead of the line below you could use + box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-		box-shadow: none
-
-	+ .dropdown-toggle-split 
-		padding-right: 15px
-		padding-left: 8px
+// .btn 
+// 	display: inline-block
+// 	position: relative
+// 	height: 44px
+// 	margin-top: 8px
+// 	margin-right: 12px
+// 	margin-bottom: 8px
+// 	padding: 0 22px
+// 	//If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+// 	transform: translateZ(0)
+// 	//If you use compass, instead of the line below you could use + transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+// 	transition: all .4s
+// 	border: 1px solid transparent
+// 	//If you use compass, instead of the line below you could use + border-radius($radius, $vertical-radius)
+// 	border-radius: 22px
+// 	background-color: transparent
+// 	background-image: none
+// 	color: $color_shuttle_gray_approx
+// 	font-family: $font_0, $font_1, $font_2, $font_3
+// 	font-size: 14px
+// 	font-style: normal
+// 	font-weight: 500
+// 	letter-spacing: .07em
+// 	line-height: 42px
+// 	white-space: nowrap
+// 	cursor: pointer
+// 	vertical-align: middle
+// 	text-transform: uppercase
+// 	text-decoration: none
+// 	text-align: center
+// 	touch-action: manipulation
+// 	//If you use compass, instead of the line below you could use + user-select($select)
+// 	user-select: none
+// 	&:hover 
+// 		outline: none
+// 		background-image: none
+// 		text-decoration: none
+// 		//If you use compass, instead of the line below you could use + box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+// 		box-shadow: none
+// 		color: $color_shuttle_gray_approx
+// 	&.active 
+// 		outline: none
+// 		background-image: none
+// 		text-decoration: none
+// 		//If you use compass, instead of the line below you could use + box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+// 		box-shadow: none
+// 	> i 
+// 		display: inline-block
+// 		margin-top: -2px
+// 		vertical-align: middle
+// 	&.disabled 
+// 		cursor: not-allowed
+// 		opacity: .55
+// 		pointer-events: none
+// 	&.dropdown-toggle::after 
+// 		margin-top: -2px
+// 	&:focus .btn:active 
+// 		outline: none
+// 		background-image: none
+// 		text-decoration: none
+// 		//If you use compass, instead of the line below you could use + box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+// 		box-shadow: none
+// 	+ .dropdown-toggle-split 
+// 		padding-right: 15px
+// 		padding-left: 8px
 
 
 .btn[disabled] 
@@ -2471,11 +2412,9 @@ kbd
 	&.btn-lg 
 		//If you use compass, instead of the line below you could use + border-radius($radius, $vertical-radius)
 		border-radius: 7px
-
 	&.btn-sm 
 		//If you use compass, instead of the line below you could use + border-radius($radius, $vertical-radius)
 		border-radius: 3px
-
 
 .btn-square 
 	//If you use compass, instead of the line below you could use + border-radius($radius, $vertical-radius)
@@ -2487,20 +2426,16 @@ kbd
 	&:hover 
 		background-color: $color_alto_approx
 
-
 .btn-primary 
 	color: $white
 	background-color: $main-color
 	&:hover 
 		color: $white
 		opacity: .8
-
 	&:active 
 		color: $white
-
 	&:focus 
 		color: $white
-
 
 .btn-success 
 	color: $white
@@ -2508,13 +2443,10 @@ kbd
 	&:hover 
 		color: $white
 		background-color: $color_mountain_meadow_approx
-
 	&:active 
 		color: $white
-
 	&:focus 
 		color: $white
-
 
 .btn-info 
 	color: $white
@@ -2522,13 +2454,10 @@ kbd
 	&:hover 
 		color: $white
 		background-color: $color_scooter_approx
-
 	&:active 
 		color: $white
-
 	&:focus 
 		color: $white
-
 
 .btn-warning 
 	color: $white
@@ -2536,13 +2465,10 @@ kbd
 	&:hover 
 		color: $white
 		background-color: $color_tree_poppy_approx
-
 	&:active 
 		color: $white
-
 	&:focus 
 		color: $white
-
 
 .btn-danger 
 	color: $white
@@ -2550,25 +2476,20 @@ kbd
 	&:hover 
 		color: $white
 		background-color: $color_torch_red_approx
-
 	&:active 
 		color: $white
-
 	&:focus 
 		color: $white
-
 
 .btn-white 
 	background-color: $white
 	&:hover 
 		background-color: $color_mercury_approx
 
-
 .btn-outline-secondary 
 	border-color: $color_mystic_approx
 	&:hover 
 		background-color: $color_wild_sand_approx
-
 
 .btn-outline-primary 
 	border-color: $main-color
@@ -2578,7 +2499,6 @@ kbd
 		background-color: $main-color
 		color: $white
 
-
 .btn-outline-success 
 	border-color: $color_shamrock_approx
 	background-color: transparent
@@ -2586,7 +2506,6 @@ kbd
 	&:hover 
 		background-color: $color_shamrock_approx
 		color: $white
-
 
 .btn-outline-info 
 	border-color: $color_picton_blue_approx
@@ -2596,7 +2515,6 @@ kbd
 		background-color: $color_picton_blue_approx
 		color: $white
 
-
 .btn-outline-warning 
 	border-color: $color_texas_rose_approx
 	background-color: transparent
@@ -2605,7 +2523,6 @@ kbd
 		background-color: $color_texas_rose_approx
 		color: $white
 
-
 .btn-outline-danger 
 	border-color: $color_carnation_approx
 	background-color: transparent
@@ -2613,7 +2530,6 @@ kbd
 	&:hover 
 		background-color: $color_carnation_approx
 		color: $white
-
 
 .btn-outline-white 
 	border-color: $white
@@ -2624,57 +2540,45 @@ kbd
 		color: $white
 		color: $color_shuttle_gray_approx
 
-
 .btn-link-secondary 
 	color: $color_shuttle_gray_approx
 	&:hover 
 		color: $color_trout_approx
-
 	> i 
 		margin-top: -4px
-
 
 .btn-link-primary 
 	color: $main-color
 	&:hover 
 		color: $color_lochmara_approx
-
 	> i 
 		margin-top: -4px
-
 
 .btn-link-success 
 	color: $color_shamrock_approx
 	&:hover 
 		color: $color_mountain_meadow_approx
-
 	> i 
 		margin-top: -4px
-
 
 .btn-link-info 
 	color: $color_picton_blue_approx
 	&:hover 
 		color: $color_scooter_approx
-
 	> i 
 		margin-top: -4px
-
 
 .btn-link-warning 
 	color: $color_texas_rose_approx
 	&:hover 
 		color: $color_tree_poppy_approx
-
 	> i 
 		margin-top: -4px
-
 
 .btn-link-danger 
 	color: $color_carnation_approx
 	&:hover 
 		color: $color_torch_red_approx
-
 	> i 
 		margin-top: -4px
 
@@ -2683,10 +2587,8 @@ kbd
 	color: $white
 	&:hover 
 		color: $color_mercury_approx
-
 	> i 
 		margin-top: -4px
-
 
 .btn-group 
 	display: inline-flex
@@ -2711,9 +2613,6 @@ kbd
 
 			&.btn-outline-secondary 
 				border-right: 0
-
-
-
 	> .dropdown-toggle:not(:first-child) 
 		//If you use compass, instead of the line below you could use + border-top-left-radius($radius)
 		border-top-left-radius: 0
@@ -2725,27 +2624,21 @@ kbd
 	.btn 
 		margin-right: 6px
 		margin-left: 6px
-
 	.btn-group 
 		margin-right: 6px
 		margin-left: 6px
-
 	.social-button 
 		margin-right: 9px
 		margin-left: 9px
 		&.shape-circle 
 			margin-right: 4px
 			margin-left: 4px
-
 		&.shape-rounded 
 			margin-right: 4px
 			margin-left: 4px
-
 		&.shape-square 
 			margin-right: 4px
 			margin-left: 4px
-
-
 	.tag 
 		margin-right: 2px
 		margin-left: 2px
@@ -2755,18 +2648,15 @@ kbd
 	.btn 
 		margin-right: 0
 		margin-left: 12px
-
 	.btn-group 
 		margin-right: 0
 		margin-left: 12px
-
 	.social-button 
 		margin-right: 0
 		margin-left: 18px
 		&.shape-circle 
 			margin-right: 0
 			margin-left: 8px
-
 		&.shape-rounded 
 			margin-right: 0
 			margin-left: 8px
@@ -2774,8 +2664,6 @@ kbd
 		&.shape-square 
 			margin-right: 0
 			margin-left: 8px
-
-
 	.tag 
 		margin-right: 0
 		margin-left: 4px
@@ -7902,3 +7790,20 @@ button:focus
 	text-decoration: none
 	&:hover 
 		color: $main-color
+
+
+// Checkbox Buttons
+.btn-group-toggle>.btn input[type=checkbox], .btn-group-toggle>.btn input[type=radio], .btn-group-toggle>.btn-group>.btn input[type=checkbox], .btn-group-toggle>.btn-group>.btn input[type=radio]
+	position: absolute
+	clip: rect(0,0,0,0)
+	pointer-events: none
+
+	input[type=checkbox], input[type=radio]
+		box-sizing: border-box
+		padding: 0
+
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle
+	color: #fff
+	background-color: #545b62
+	border-color: #4e555b

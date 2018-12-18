@@ -11,29 +11,35 @@ h1,h2,h3,h4,h5,h6
 	font-family: $font2
 
 // Cart sidebar
-$l: #dba1a1
-$d: #e5636c
+$l: #f4e1e1
+$d: #ff9292
 .cart-sidebar
 	box-shadow: 7px 2px 13px 5px rgba(0, 0, 0, 0.55)
 	background: $l
-	// background: -moz-linear-gradient(top, $l 0%, $d 100%)
-	// background: -webkit-gradient(left top, left bottom, color-stop(0%, $l), color-stop(100%, $d))
-	// background: -webkit-linear-gradient(top, $l 0%, $d 100%)
-	// background: -o-linear-gradient(top, $l 0%, $d 100%)
-	// background: -ms-linear-gradient(top, $l 0%, $d 100%)
-	// background: linear-gradient(to bottom, $l 0%, $d 100%)
-	// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$l, endColorstr=$d, GradientType=0 )
+	background: -moz-linear-gradient(top, $l 0%, $d 100%)
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, $l), color-stop(100%, $d))
+	background: -webkit-linear-gradient(top, $l 0%, $d 100%)
+	background: -o-linear-gradient(top, $l 0%, $d 100%)
+	background: -ms-linear-gradient(top, $l 0%, $d 100%)
+	background: linear-gradient(to bottom, $l 0%, $d 100%)
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$l, endColorstr=$d, GradientType=0 )
 	color: #fff
-	.item,a
-		color: #fff
+	.item
+		border-bottom: 1px solid rgba(255,255,255,0.4)
+		color: #fff	
 		font-weight: 300
-	a
-		font-weight: 600
+		color: #000
+		a
+			color: #000
+		.details-1
+			color: #000
+		.details-2
+			color: #000
 	.title,.values
-		color: #383838
+		color: #fff
 	.total-price-bottom
 		.inner-text
-			color: #383838
+			color: #fff
 	.inner
 		.item
 			.delete-item
@@ -96,9 +102,6 @@ $d: #e5636c
 // FORMS
 .btn
 	border-radius: 0
-	border: 1px solid $main-color
-	&:hover
-		background-color: $main-color
 
 
 // FORMS
@@ -149,6 +152,8 @@ $d: #e5636c
 		input,select,select.form-control:not([size]):not([multiple])
 			border: 1px solid rgba(0,0,0,.4)
 			border-radius: 0
+			font-weight: 300
+			font-size: 1.1rem
 	.filter-button
 		border: 1px solid #ccc
 	.back-to-list-desktop
@@ -168,40 +173,8 @@ $d: #e5636c
 				&:hover
 					cursor: pointer
 
-.header-with-banner
-	background: url("../images/web/home-banner.jpg") no-repeat top center
-	-webkit-background-size: cover
-	-moz-background-size: cover
-	-o-background-size: cover
-	background-size: cover
-	height: 450px
-	position: relative
-	margin-bottom: 15px
-	margin-top: -80px
-	.filter-container
-		width: 100%
-		position: absolute
-		bottom: 0
-		left: 0
-		.form-control
-			background: rgba(255,255,255,0.70)
-			color: #000
-		.search-filters
-			margin: 0
-			.column
-			.column input,  .column select
-				border: 1px solid rgba(0,0,0,.4)
-				color: #000
-			::placeholder
-				color: #000
-			:-ms-input-placeholder
-				color: #000
-			::-ms-input-placeholder
-				color: #000
 
-@media (max-width: 768px)
-	.header-with-banner
-		margin-top: -110px
+
 // ARTICLES
 
 .product-show 
@@ -259,3 +232,7 @@ $d: #e5636c
 		color: #fff
 		height: 34px
 		line-height: 1rem
+		@include transition(0.2s)
+		&:hover
+			background-color: $second-color
+			color: #fff

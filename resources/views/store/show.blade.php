@@ -6,11 +6,12 @@
     @include('store.partials.checkout-cart')
 </div> 
 @endif--}}
+
 <div class="container padding-bottom-3x mb-1 marg-top-25">
 	<div class="row product-show">
 		<div class="col-md-12">
 			<a href="{{ url('tienda') }}">
-				<button  class="btn btn-main-sm">
+				<button  class="btn btn-main-sm mb-1">
 					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
 				</button>
 			</a>
@@ -96,29 +97,45 @@
 			<div class="row">
 				<div class="col-sm-12 descriptions">
 					{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
-					'data-route' => (url('tienda/checkVariantStock')) ]) !!}
-					<input type="hidden" name="article_id" value="{{ $article->id }}">
-					<div class="row color-selector">
-						<div class="col-md-12 pad0">
-							@foreach($colors as $id => $name)
-								<div class="color-option" data-id="{{ $id }}">{{ $name }}</div>
-							@endforeach
+						'data-route' => (url('tienda/checkVariantStock')) ]) !!}
+						<input type="hidden" name="article_id" value="{{ $article->id }}">
+						<div class="row color-selector">
+							<div class="col-md-12 pad0">
+								<div class="btn-group-toggle" data-toggle="buttons">
+									@foreach($colors as $id => $name)
+										<label class="btn btn-main-sm-hollow">
+											<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" checked autocomplete="off"> {{ $name }}
+										</label>
+									@endforeach
+								</div>
+								<input type="hidden" name="size_id" value="{{ $article->size->first()->id }}">
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						{{-- Display Remaining Stock --}}
-						<div class="AvailableStock col-md-12"></div>
-					</div>
+						<div class="row">
+							{{-- Display Remaining Stock --}}
+							<div class="AvailableStock col-md-12"></div>
+						</div>
 						<div class="input-with-btn">
-							<input class="form-control input-field short-input" name="quantity" type="number" min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
+							<input id="MaxQuantity" class="form-control input-field short-input" name="quantity" type="number" min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
 							<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>
 						</div>
 						<input type="hidden" value="{{ $article->id }}" name="articleId">
 					{!! Form::close() !!}
 				</div>
 			</div>
+			@else
+			<br>
+			<div class="col-md-12 pad0">
+				<div class="btn-group-toggle" data-toggle="buttons">
+					@foreach($colors as $id => $name)
+						<label class="btn btn-main-sm-hollow">
+							<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" checked autocomplete="off"> {{ $name }}
+						</label>
+					@endforeach
+				</div>
+				<input type="hidden" name="size_id" value="{{ $article->size->first()->id }}">
+			</div>
 			@endif
-			
 		</div>
 	</div>
 </div>

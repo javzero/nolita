@@ -7,16 +7,15 @@
                     <i class="fas fa-shopping-cart"></i> Carro de Compras
                     <hr>
                 </div>
-                <div class="items">
+                {{-- <div class="items">
                     <div class="text values"> 
                         Prendas: <b><span class="TotalCartItemsSidebar count">@if($activeCart['totalItems'] == 0) 0 @else {{ $activeCart['totalItems'] }} @endif </b>
                         <br>
                         Total: <b>$<span>{{ $activeCart['cartTotal'] }}</span></b></div>
                     <div class="button">
-                        {{-- <button class="SubmitDataBtn main-btn-sm" type="button">Continuar <i class="fa fa-arrow-right"></i></button> --}}
                         <a href="{{ route('store.checkout')}}" class="main-btn-sm">Continuar <i class="fa fa-arrow-right"></i></a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             @foreach($activeCart['rawdata']->items as $item)
                 <div id="Item{{ $item->id }}" class="row item">
@@ -68,10 +67,9 @@
                     </div>
                 </div>{{-- / .item --}}
             @endforeach
-        <div class="update-btn">
+        {{-- <div class="update-btn">
             <button class="UpdateDataBtn block-btn-hollow"><i class="fas fa-sync"></i> Calcular nuevos totales</button>
-        </div>
-        <hr>
+        </div> --}}
         <div class="total-price-bottom row">
             <div class="col-xs-6 col-md-6 text-left inner-text" class="">
                 Prendas: <b><span class="TotalCartItemsSidebar count">@if($activeCart['totalItems'] == 0) 0 @else {{ $activeCart['totalItems'] }} @endif </b>
@@ -82,7 +80,8 @@
         </div>
         <div class="text-right">
             {{-- <button type="button" class="SubmitDataBtn main-btn-sm">Continuar <i class="fa fa-arrow-right"></i></button> --}}
-            <a href="{{ route('store.checkout')}}" class="main-btn-sm">Continuar <i class="fa fa-arrow-right"></i></a>
+            <a href="{{ route('store.checkout')}}" class="btn-main-sm-hollow">Actualizar <i class="fa fa-sync"></i></a>
+            <a href="{{ route('store.checkout')}}" class="btn-main-sm-black">CONTINUAR <i class="fa fa-arrow-right"></i></a>
         </div>
     @else
         <div class="empty-cart">

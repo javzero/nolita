@@ -14,8 +14,8 @@
 	<div class="under-nav-container">
 		@if(!Auth::guard('customer')->check())
 		<div class="login-register-btn-mobile">
-			<a href="{{ route('customer.login') }}"><button class="btn btn-primary btn-secondary-sm">Ingresar</button></a>
-			<a href="{{ url('tienda/registro') }}"><button class="btn btn-primary btn-main-sm">Registrarse</button></a>
+			<a href="{{ route('customer.login') }}"><button class="btn btn-main-sm-black">Ingresar</button></a>
+			<a href="{{ url('tienda/registro') }}"><button class="btn btn-main-sm">Registrarse</button></a>
 		</div>
 		@endif
 		{{-- <div class="text-links"> --}}
