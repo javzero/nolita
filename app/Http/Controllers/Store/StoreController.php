@@ -91,6 +91,15 @@ class StoreController extends Controller
             {
                 $articles = CatalogArticle::orderBy('discount', 'DESC')->active()->paginate($pagination);
             }
+            else if($request->filtrar == 'ultimos')
+            {
+                $articles = CatalogArticle::orderBy('created_at', 'ASC')->active()->paginate($pagination);
+            }
+            else if($request->filtrar == 'ultima-chance')
+            {
+                $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);
+                // $articles = CatalogArticle::orderBy('discount', 'DESC')->active()->paginate($pagination);
+            }
         }
         else if(isset($request->categoria))
         {
@@ -111,7 +120,10 @@ class StoreController extends Controller
         }
         else 
         {
-            $articles = CatalogArticle::orderByRaw('RAND()')->active()->paginate($pagination);
+            // If you want random articles order
+            //$articles = CatalogArticle::orderByRaw('RAND()')->active()->paginate($pagination);
+
+            $articles = CatalogArticle::orderBy($orderBy, $order)->active()->paginate($pagination);
         }      
         
         return view('store.index')->with('articles', $articles);
@@ -120,7 +132,6 @@ class StoreController extends Controller
     // Pagination
     public function getSetPaginationCookie($request)
     {
-       
         if($request)
         {
             Cookie::queue('store-pagination', $request, 2000);

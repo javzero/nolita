@@ -37,42 +37,60 @@ class ArticlesController extends Controller
         $category = $request->get('category');
         $order = $request->get('orden');
         $rowName = 'stock';
-        if ($request->orden_af) {
+
+        if ($request->orden_af) 
+        {
             $order = $request->orden_af;
             $rowName = "name";
         }
 
-
         // -------- Pagination -----------
-        if ($request->get('results')) {
+        if ($request->get('results')) 
+        {
             $pagination = $request->get('results');
             // With expiration
             Cookie::queue('stock-pagination', $pagination, 2000);
-        } else {
-            if ($request->get('redirect') != null && Cookie::get('stock-pagination')) {
+        } 
+        else
+        {
+            if ($request->get('redirect') != null && Cookie::get('stock-pagination')) 
+            {
                 $pagination = Cookie::get('stock-pagination');
-            } else {
+            } 
+            else 
+            {
                 $pagination = 15;
             }
         }    
         
         // ---------- Order --------------
-        if (!isset($order)) {
+        if (!isset($order)) 
+        {
             $rowName = 'id';
             $order = 'DESC';
         }
 
-        if ($order == 'limitados') {
+        if ($order == 'limitados') 
+        {
             $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);
-        } else {
+        } 
+        else 
+        {
             // ---------- Queries ------------    
-            if (isset($code)) {
+            if (isset($code)) 
+            {
                 $articles = CatalogArticle::where('code', 'LIKE', "%" . $code . "%")->paginate($pagination);
-            } elseif (isset($name)) {
+            } 
+            elseif (isset($name)) 
+            {
                 $articles = CatalogArticle::searchName($name)->orderBy($rowName, $order)->paginate($pagination);
-            } elseif (isset($category)) {
+            } 
+            elseif (isset($category))
+            {
                 $articles = CatalogArticle::where('category_id', $category)->orderBy($rowName, $order)->paginate($pagination);
-            } else {
+            } 
+            else
+            {
                 $articles = CatalogArticle::orderBy($rowName, $order)->paginate($pagination);
             }
 
@@ -80,7 +98,8 @@ class ArticlesController extends Controller
         $categories = CatalogCategory::orderBy('id', 'ASC')->pluck('name', 'id');
         
         // ---------- Redirect -------------
-        if ($request->redirect == 'stock') {
+        if ($request->redirect == 'stock') 
+        {
             return view('vadmin.catalog.stock')
                 ->with('articles', $articles)
                 ->with('categories', $categories);
@@ -298,14 +317,13 @@ class ArticlesController extends Controller
 
         // Creates directory if no exist
         if (!file_exists($imgPath)) {
-            $oldmask = umask(0);
-            mkdir($imgPath, 0777);
-            umask($oldmask);
+            echo "Falta crear el directorio webimages/catalogo";
+            die();
         }
+
         if (!file_exists($thumbPath)) {
-            $oldmask = umask(0);
-            mkdir($thumbPath, 0777);
-            umask($oldmask);
+            echo "Falta crear el directorio webimages/catalogo/thumbs";
+            die();
         }
 
         $extension = '.jpg';

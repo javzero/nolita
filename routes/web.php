@@ -2,7 +2,6 @@
 
 Auth::routes();
 
-
 /*
 |--------------------------------------------------------------------------
 | STORE LOGIN / REGISTER :: ROUTES
@@ -32,7 +31,6 @@ Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function(
 Route::get('registro-completo', function(){ return view('store.register-success'); })->middleware('active-customer');
 Route::get('registro-en-proceso', function(){ return view('store.register-in-process'); })->middleware('active-customer');
 
-
 /*
 |--------------------------------------------------------------------------
 | VADMIN LOGIN / REGISTER :: ROUTES
@@ -54,7 +52,6 @@ Route::group(['prefix'=> 'vadmin'], function() {
     Route::get('password/reset/{token}', ['as' => 'vadmin.password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
     Route::post('password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
 });
-
 
 /*
 |--------------------------------------------------------------------------

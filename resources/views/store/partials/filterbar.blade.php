@@ -17,12 +17,24 @@
             <option value="Orden" selected disabled>ORDENAR POR</option>
             <option value="{{ route('store', ['precio' => 'menor']) }}">Menor precio</option>
             <option value="{{ route('store', ['precio' => 'mayor']) }}">Mayor precio</option>
+            <option value="{{ route('store', ['filtrar' => 'ultimos']) }}">Últimos ingresos</option>
+            <option value="{{ route('store', ['filtrar' => 'ultima-chance']) }}">Última chance</option>
             <option value="{{ route('store', ['filtrar' => 'descuentos']) }}">Con Descuento</option>
             <option value="{{ route('store', ['filtrar' => 'populares']) }}">Populares</option>
         </select> 
         <div class="trigger-btn">
             <a onclick="openFilters()"><i class="fas fa-sliders-h"></i></a>
         </div>
+    </div>
+    
+    {{-- Categories --}}
+    <div class="column">
+        <select class="form-control item" name="categories" onchange="location = this.value;">
+            <option value="Categories" selected disabled>TIPOS DE PRENDA</option>
+            @foreach($categories as $category)
+                <option value="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }} </option>
+            @endforeach
+        </select>
     </div>
 
     {{-- Tags --}}
@@ -35,16 +47,6 @@
         </select>
     </div>
 
-    {{-- Categories --}}
-    <div class="column">
-        <select class="form-control item" name="categories" onchange="location = this.value;">
-            <option value="Categories" selected disabled>CATEGORÍAS</option>
-            @foreach($categories as $category)
-                <option value="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }} </option>
-            @endforeach
-        </select>
-    </div>
-    
     {{-- Brands --}}
     {{-- <div class="column">
         <select class="form-control item" name="categories" onchange="location = this.value;">
