@@ -97,7 +97,8 @@ class StoreController extends Controller
             }
             else if($request->filtrar == 'ultima-chance')
             {
-                $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);
+                $articles = CatalogArticle::orderBy('stock', 'ASC')->lowStock(15)->paginate($pagination);
+                // $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);
                 // $articles = CatalogArticle::orderBy('discount', 'DESC')->active()->paginate($pagination);
             }
         }

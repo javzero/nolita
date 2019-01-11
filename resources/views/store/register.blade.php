@@ -18,7 +18,6 @@
         <form class="login-box form-simple inner" method="POST" action="{{ route('customer.process-register') }}">
             {{ csrf_field() }}
             <input id="IsResellerCheckbox" type="checkbox" name="isreseller" class="Hidden">
-            {{--  Check if reseller --}}
             <div class="NormaClientTitle">
                 <h3 class="text-center">Registro de Usuario</h3>
             </div>
@@ -28,7 +27,7 @@
                 <p>Complete todos los datos</p>
             </div>
             <div class="row">
-                {{-- Username --}}
+                {{-- USERNAME --}}
                 <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                     <label for="reg-fn">Nombre de Usuario (Apodo)</label>
                     <input id="username" type="text" name="username" class="form-control round" placeholder="Ingrese su nombre de usuario" value="{{ old('username') }}" required>
@@ -38,7 +37,7 @@
                         </span>
                     @endif
                 </div> 	
-                {{-- E-mail --}}
+                {{-- EMAIL --}}
                 <div class="col-sm-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="reg-fn">E-Mail</label>
                     <input type="text" name="email" class="form-control round" placeholder="Ingrese su email" value="{{ old('email') }}" required>
@@ -50,17 +49,17 @@
                 </div> 
             </div>
             <div class="row">
-                {{-- Name --}}
-                <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                {{-- NAME --}}
+                <div class="col-sm-6 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label>Nombre</label>
                     <input  type="text" name="name" class="form-control round" placeholder="Ingrese su nombre" value="{{ old('name') }}" required>
                     @if ($errors->has('name'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('username') }}</strong>
+                            <strong>{{ $errors->first('name') }}</strong>
                         </span>
                     @endif
                 </div> 	
-                {{-- Surname --}}
+                {{-- LASTNAME --}}
                 <div class="col-sm-6 form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
                     <label for="reg-fn">Apellido</label>
                     <input type="text" name="surname" class="form-control round" placeholder="Ingrese su email" value="{{ old('surname') }}" required>
@@ -70,6 +69,69 @@
                         </span>
                     @endif
                 </div> 
+            </div>
+            <div class="row">
+                {{-- CUIT --}}
+                <div class="col-sm-6 form-group{{ $errors->has('cuit') ? ' has-error' : '' }}">
+                    <label>CUIT</label>
+                    <input  type="text" name="cuit" class="form-control round" placeholder="Ingrese su CUIT" value="{{ old('cuit') }}" required>
+                    @if ($errors->has('cuit'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('cuit') }}</strong>
+                        </span>
+                    @endif
+                </div> 	
+                {{-- PHONE --}}
+                <div class="col-sm-6 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                    <label>Teléfono</label>
+                    <input  type="text" name="phone" class="form-control round" placeholder="Ingrese su teléfono" value="{{ old('phone') }}" required>
+                    @if ($errors->has('phone'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </span>
+                    @endif
+                </div> 	
+            </div>
+            <div class="row">
+                {{-- ADDRESS --}}
+                <div class="col-sm-6 form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                    <label for="reg-fn">Dirección</label>
+                    <input type="text" name="address" class="form-control round" placeholder="Ingrese su dirección" value="{{ old('address') }}" required>
+                    @if ($errors->has('address'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('address') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                {{-- C.P. --}}
+                <div class="col-sm-6 form-group{{ $errors->has('cp') ? ' has-error' : '' }}">
+                    <label for="reg-fn">Código Postal</label>
+                    <input type="text" name="cp" class="form-control round" placeholder="Ingrese su código postal" value="{{ old('cp') }}" required>
+                    @if ($errors->has('cp'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('cp') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Provincia</label>
+                        {!! Form::select('geoprov_id', $geoprovs, null,
+                        ['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Localidad</label>
+                        <select id='GeoLocsSelect' name="geoloc_id" 
+                            data-actualloc="" 
+                            data-actuallocid="" 
+                            class="form-control GeoLocsSelect" required>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 {{-- Password --}}
@@ -93,8 +155,8 @@
                     @endif
                 </div>
             </div>
-            <input type="hidden" value="null" name="cuit">
-            <input type="hidden" value="null" name="dni">
+            {{-- <input type="hidden" value="null" name="cuit"> --}}
+            {{-- <input type="hidden" value="null" name="dni"> --}}
             <input type="hidden" value="3" name="group">
             {{-- Submit --}}
             <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock"></i> Registrarse</button>
@@ -103,7 +165,23 @@
     </div>
 </div>
 @endsection
-{{--     
+
 @section('scripts')
     @include('store.components.bladejs')
-@endsection --}}
+    <script>
+        $(document).ready(function(){
+            $('.GeoProvSelect').on('change', function(){
+                let prov_id = $(this).val();
+
+                getGeoLocs(prov_id);
+            });
+
+            $(".GeoProvSelect").mouseup(function() {
+                let prov_id = $(this).val();
+                getGeoLocs(prov_id);
+            });
+
+
+        });
+        </script>
+@endsection

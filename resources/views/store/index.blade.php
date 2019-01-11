@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 	<div class="header-with-banner">
 		<div class="filter-container">
 			@include('store.partials.filterbar')

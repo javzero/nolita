@@ -77,6 +77,32 @@ class CatalogArticle extends Model
         return $query->where('status', '1');
     }
 
+
+    // Search for all article variants, 
+    // sum all variants stock and return articles
+    // wich sum is less than min stock required
+    public function scopeLowStock($query, $ammount)
+    {
+        $articles = $query->where('status', '1')->get();
+        $idsToShow = [];
+        
+        foreach($articles as $article)
+        {
+            $totalStock = 0;
+            foreach($article->variants as $variant)
+            {
+                $totalStock += $variant->stock; 
+            }
+            if($totalStock > $ammount)
+            {
+                array_push($idsToShow, $article->id);
+            }
+        }
+
+        return $query->whereIn('id', $idsToShow);
+    }
+
+
     public function scopeSearch($query, $term, $categories, $tags)
     {  
         return $query

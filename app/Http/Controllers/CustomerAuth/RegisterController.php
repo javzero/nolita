@@ -82,6 +82,7 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
+        // dd($data);
         $status = '1'; // Active
         $group = '2'; // Min 
         if ($data['group'] == '3') {
@@ -97,9 +98,9 @@ class RegisterController extends Controller
         // if (isset($data['cuit'])) {
         //     $cuit = $data['cuit'];
         // }
-        // if (isset($data['dni'])) {
-        //     $dni = $data['dni'];
-        // }
+        //if (isset($data['dni'])) {
+        //    $dni = $data['dni'];
+        //}
         // if (isset($data['phone'])) {
         //     $phone = $data['phone'];
         // }
@@ -115,11 +116,13 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'username' => $data['username'],
             'email' => $data['email'],
-            // 'phone' => $phone,
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'cp' => $data['cp'],
+            'geoprov_id' => $data['geoprov_id'],
+            'geoloc_id' => $data['geoloc_id'],
+            'cuit' => $data['cuit'],
             'status' => $status,
-            // 'geoprov_id' => $geoProvId,
-            // 'geoloc_id' => $geoLocId,
-            // 'cuit' => $cuit,
             // 'dni' => $dni,
             'password' => bcrypt($data['password']),
             'group' => $group
@@ -133,9 +136,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        // $geoprovs = GeoProv::pluck('name','id');
-        return view('store.register');
-            // ->with('geoprovs',$geoprovs);
+        $geoprovs = GeoProv::pluck('name','id');
+        
+        return view('store.register')
+            ->with('geoprovs',$geoprovs);
     }
 
     public function showRegistrationFormReseller()
@@ -179,7 +183,7 @@ class RegisterController extends Controller
             }
             Mail::to(APP_EMAIL_1)->send(new SendMail($subject, 'SimpleMail', $message));
         } catch (\Exception $e) {
-            //
+            // dd($e->getMessage());
         }
 
         return $this->registered($request, $user)
