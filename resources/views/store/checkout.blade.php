@@ -88,30 +88,13 @@
 								</td>
 								{{-- Reseller Item Prices --}}
 								@php($articlePrice = '0')
-								@if(Auth::guard('customer')->user()->group == '3')
-									@php($articlePrice = $item->article->reseller_price)
-									@if($item->article->reseller_discount > 0)
-										<td class="text-lg dont-break">
-											@php($articlePrice = calcArticlePrice($item->article->reseller_price, $item->article->reseller_discount))
-											{{-- <del class="text-muted">$ {{ $item->article->reseller_price + 0 }} </del><br> --}}
-											$ {{ $articlePrice + 0 }}
-										</td>
+								<td class="text-lg dont-break"> $
+									@if(Auth::guard('customer')->user()->group == '3')
+										{{ $articlePrice = showPrice($item->article->reseller_price, $item->article->reseller_discount) }}
 									@else
-										<td class="text-lg dont-break">$ {{ $articlePrice + 0 }}</td>
+										{{ $articlePrice = showPrice($item->article->price, $item->article->discount) }}
 									@endif
-								@else
-									{{-- Estandar Item Prices --}}
-									@if($item->article->discount > 0)
-										<td>
-											@php($articlePrice = calcArticlePrice($item->article->price, $item->article->discount))
-											<del class="text-muted dont-break">$ {{ $item->article->price + 0 }}</del><br>
-											$ {{ $articlePrice }}
-										</td>
-									@else
-										@php($articlePrice = $item->article->price)
-										<td class="text-lg dont-break">${{ $articlePrice + 0 }}</td>
-									@endif
-								@endif
+								</td>
 								{{-- Add Quantity to Cart Item --}}
 								<td>
 									<div class="input-with-btn input-with-btn-mobile">
@@ -146,8 +129,8 @@
 					</table>
 				</div>
 					<div class="text-right hide-768">
-						<button type="button" class="UpdateDataBtn btn main-btn">Actualizar <i class="fas fa-sync-alt"></i></button>
-						<button type="button" class="SubmitDataBtn btn main-btn">Continuar <i class="fa fa-arrow-right"></i></button>
+						<button type="button" class="UpdateDataBtn btn btn-main">Actualizar <i class="fas fa-sync-alt"></i></button>
+						<button type="button" class="SubmitDataBtn btn btn-main">Continuar <i class="fa fa-arrow-right"></i></button>
 					</div>
 				<div class="back-to-store"><a href="{{ url('tienda') }}"><i class="icon-arrow-left"></i> Volver a la tienda</a></div>
 			</div>{{-- / col-md-12 --}}

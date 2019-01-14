@@ -10,13 +10,16 @@
 
 	<div class="header-with-banner">
 		<div class="filter-container">
-			@include('store.partials.filterbar')
+			@include('store.partials.filter-bar')
 		</div>
 	</div>
 	<div id="main" class="main-container container-fluid padding-bottom-3x mb-1">
 		<div class="row">
 			{{-- col-xs-12 col-lg-9 col-sm-8 col-md-8 --}}
-			<div id="MainContent" class="col-xs-12 col-sm-12">
+			<div class="col-sm-3 col-md-3 col-lg-2 pad0">
+				@include('store.partials.filter-sidebar')
+			</div>
+			<div id="MainContent" class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
 				{{-- @if(!isset($_GET['checkout-on']))
 					@if(isset($_GET['page']) && !isset($search) && count($_GET) == 1)
 					@else
@@ -41,7 +44,7 @@
 					</div>
 					@endif
 					@foreach($articles as $article)
-						<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 article">
+						<div class="col-xs-6 col-sm-6 col-md-5 col-lg-5 col-xl-4 article">
 							<div class="inner">
 								{{-- =========== Discount Badge =========== --}}
 								{{-- ====================================== --}}
@@ -50,7 +53,7 @@
 										<div class="triangle"></div>
 										<div class="text">	
 											{{-- %{{ $article->reseller_discount }} <br>  --}}
-											OFF
+											OFF !!
 										</div>
 									</div>
 								@endif
@@ -75,6 +78,17 @@
 								{{-- =============== Image ================ --}}
 								{{-- ====================================== --}}
 								<div class="image">
+									@foreach($article->tags as $tag)
+										@if($tag->name == 'Last Chance')
+											<div class="overlay-ribbon bottom-left-ribbon">
+												<div class="triangle"></div>
+												<div class="text" style="top: 52px; right: 41px;">LAST <br>CHANCE</div>
+											</div> 	
+											@break
+										@endif
+									@endforeach
+									{{-- {{ dd($article->tags->contains("Last Chance")) }} --}}
+									
 									{{-- @if($article->stock < $article->stockmin)
 										<div class="overlay-ribbon bottom-left-ribbon">
 											<div class="triangle"></div>

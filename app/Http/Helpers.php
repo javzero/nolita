@@ -4,6 +4,13 @@
 //         Numbers, Calcs. & Converts       //
 //////////////////////////////////////////////
 
+function showPrice($articlePrice, $articleDiscount)
+{
+    $price = calcValuePercentNeg($articlePrice, $articleDiscount);
+    return $price;
+}
+
+
 function calcFinalPriceConvert($cost, $percent, $currencyActualValue)
 {
     $percent = $cost * $percent / 100;
@@ -79,6 +86,7 @@ function calcFinalPrice($cost, $pje)
     $result = $result + $cost;
     return $result;
 }
+
 
 
 

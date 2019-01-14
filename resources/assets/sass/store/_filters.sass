@@ -134,3 +134,23 @@
 
 .header-with-banner .filter-container .search-filters .column input, .header-with-banner .filter-container .search-filters .column select
 	padding: .5rem .75rem
+
+
+.filter-sidebar
+	padding-top: 10px
+	input, select
+		border-radius: 0
+		margin-bottom: 10px
+	.filter-button
+		line-height: 2.5rem
+
+@media (min-width: 768px)
+	.filter-container
+		border: 1px solid red
+		display: none
+
+@media (max-width: 768px)
+	.filter-sidebar
+		display: none
+	.filter-container
+		display: block

@@ -60,8 +60,11 @@ Route::group(['prefix'=> 'vadmin'], function() {
 |
 */
 
-Route::get('/', ['as' => 'web', 'uses' => 'WebController@home']);
-// Route::get('contacto', function(){ return view('web.web.contacto'); });
+// If has front web
+// Route::get('/', ['as' => 'web', 'uses' => 'WebController@home']);
+
+// If has only e-shop
+Route::get('/', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
 
 /*
 |--------------------------------------------------------------------------

@@ -93,9 +93,9 @@ class StoreController extends Controller
             }
             else if($request->filtrar == 'ultimos')
             {
-                $articles = CatalogArticle::orderBy('created_at', 'ASC')->active()->paginate($pagination);
+                $articles = CatalogArticle::orderBy('created_at', 'DESC')->active()->paginate($pagination);
             }
-            else if($request->filtrar == 'ultima-chance')
+            else if($request->filtrar == 'last-chance')
             {
                 $articles = CatalogArticle::orderBy('stock', 'ASC')->lowStock(15)->paginate($pagination);
                 // $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);

@@ -35,24 +35,14 @@
                     <div class="details-2">
                         <div class="column-1 price">
                             {{-- PRICE --}}
-                        @php($articlePrice = '0')
-                        @if(Auth::guard('customer')->user()->group == '3')
-                            @php($articlePrice = $item->article->reseller_price)
-                            @if($item->article->reseller_discount > 0)
-                                @php($articlePrice = calcValuePercentNeg($item->article->reseller_price, $item->article->reseller_discount))
-                                {{-- <del class="text-muted small">$ {{ $item->article->reseller_price }}</del> --}}
-                            @endif
-                            $ {{ $articlePrice }}
-                        @else
-                            {{-- Estandar Item Prices --}}
-                            @if($item->article->discount > 0)
-                                    @php($articlePrice = calcValuePercentNeg($item->article->price, $item->article->discount))
-                                    <del class="text-muted small">$ {{ $item->article->price }}</del>
-                            @else
-                                @php($articlePrice = $item->article->price)
-                            @endif
-                            $ {{ $articlePrice }}
-                        @endif
+                            @php($articlePrice = '0')
+                            <td class="text-lg dont-break"> $
+                                @if(Auth::guard('customer')->user()->group == '3')
+                                    {{ $articlePrice = showPrice($item->article->reseller_price, $item->article->reseller_discount) }}
+                                @else
+                                    {{ $articlePrice = showPrice($item->article->price, $item->article->discount) }}
+                                @endif
+                            </td>
                         </div>
                         {{-- <div class=""> Stock: {{ $item->article->stock }} </div> --}}
                     </div>
