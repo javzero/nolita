@@ -15,7 +15,9 @@
     <div class="column trigger-column">
         <select class="form-control item" name="order" onchange="location = this.value;">
             <option value="Orden" selected disabled>ORDENAR POR</option>
-            <option value="{{ route('store', ['filtrar' => 'ultimos']) }}">Últimos ingresos</option>
+            <option value="{{ route('store', ['precio' => 'menor']) }}">Menor precio</option>
+            <option value="{{ route('store', ['precio' => 'mayor']) }}">Mayor precio</option>
+            {{-- <option value="{{ route('store', ['filtrar' => 'ultimos']) }}">Últimos ingresos</option> --}}
             <option value="{{ route('store', ['filtrar' => 'descuentos']) }}">Con Descuento</option>
             <option value="{{ route('store', ['filtrar' => 'populares']) }}">Populares</option>
             <option value="{{ route('store.search.tag', 'Last Chance') }}">Last Chance</option>
