@@ -79,6 +79,7 @@
 				<span class="product-code"> #{{ $article->code }}</span>
 			</div>
 			{{-- PRICE --}}
+			@if(Auth::guard('customer')->check())
 			<div class="prices">
 				@if($article->reseller_discount > 0)
 					% {{ $article->reseller_discount }} de DESCUENTO!!
@@ -89,6 +90,9 @@
 					<span class="main-price"><b>$ {{ $article->reseller_price }}</b></span>
 				@endif
 			</div>
+			@else
+			<br>
+			@endif
 			{{-- Article Description --}}
 			<p class="description">{{ strip_tags($article->description) }}</p>
 			<h4>Tela:&nbsp; <a class="color-white" href="#"><b>{{ $article->textile }}</b></a></h4>
