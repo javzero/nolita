@@ -49,52 +49,41 @@
 								{{-- =========== Discount Badge =========== --}}
 								{{-- ====================================== --}}
 								@if($article->reseller_discount > 0)
-									<div class="overlay-ribbon top-right-ribbon">
-										<div class="triangle"></div>
-										<div class="text">	
-											{{-- %{{ $article->reseller_discount }} <br>  --}}
-											OFF !!
-										</div>
+									<div class="ribbon-square top-right-absolute">
+										<div class="text">OFF!</div>
 									</div>
+								@else
+									@foreach($article->tags as $tag)
+										@if($tag->name == 'descuento')
+											<div class="ribbon-square top-right-absolute">
+												<div class="text">OFF!</div>
+											</div>
+										@endif
+									@endforeach
 								@endif
-								{{-- Reseller Discount --}}
-								{{-- @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->group == '3')
-									@if($article->reseller_discount > 0)
-										<div class="overlay-ribbon top-right-ribbon">
-											<div class="triangle"></div>
-											<div class="text">	%{{ $article->reseller_discount }} <br> off !!</div>
-										</div> 
-									@endif
-								@else --}}
-									{{-- Normal Customer Discount --}}
-									{{-- @if($article->discount > 0)
-										<div class="overlay-ribbon top-right-ribbon">
-											<div class="triangle"></div>
-											<div class="text">	%{{ $article->discount }} <br> off !!</div>
-										</div> 
-									@endif
-								@endif --}}
 								
 								{{-- =============== Image ================ --}}
 								{{-- ====================================== --}}
 								<div class="image">
 									@foreach($article->tags as $tag)
 										@if($tag->name == 'Last Chance')
-											<div class="overlay-ribbon bottom-left-ribbon">
+											<div class="ribbon-bordered-text bottom-left-absolute">
+												<div class="text-1">LAST </div>
+												<div class="text-2">CHANCE</div>
+											</div>
+											{{-- <div class="overlay-ribbon bottom-left-ribbon">
 												<div class="triangle"></div>
 												<div class="text" style="top: 52px; right: 41px;">LAST <br>CHANCE</div>
-											</div> 	
+											</div> 	 --}}
+											@break
+										@elseif($tag->name == 'nuevo')
+											<div class="ribbon-square bottom-left-absolute">
+												<div class="text">NUEVO</div>
+											</div>
 											@break
 										@endif
 									@endforeach
-									{{-- {{ dd($article->tags->contains("Last Chance")) }} --}}
 									
-									{{-- @if($article->stock < $article->stockmin)
-										<div class="overlay-ribbon bottom-left-ribbon">
-											<div class="triangle"></div>
-											<div class="text">Bajo <br>Stock</div>
-										</div> 
-									@endif --}}
 									<img src="{{ asset($article->featuredImageName()) }}" alt="Producto del Catálogo">
 									@if(Auth::guard('customer')->check())
 									{{--  Check if product is in favs  --}}
@@ -117,38 +106,15 @@
 										<a href="{{ url('tienda/articulo/'.$article->id) }}">
 											<h3 class="product-title max-text"><b>{{ $article->name }}</b></h3>
 										</a>
-										{{-- <h3 class="product-title max-text"> {{ $article->color}} |
-										@foreach($article->atribute1 as $atribute) 	{{ $atribute->name }} @endforeach
-										</h3> --}}
 									</div>
 									{{-- =============== Footer =============== --}}
 									<div class="footer">
 										<div class="col-price pad0">
-											{{-- <del>$ {{ $article->reseller_price + 0 }}</del>  --}}
 											@if(Auth::guard('customer')->check())
 												<span class="price">
 													$ {{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount + 0) }}
 												</span>
 											@endif
-											{{-- @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->group == '3')
-												@if($article->reseller_discount > 0)
-													<del>$ {{ $article->reseller_price + 0 }}</del> 
-													<span class="price">
-														 $ {{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount + 0) }}
-													</span>
-												@else
-													<span class="price">$ {{ $article->reseller_price + 0 }}</span>
-												@endif
-											@else
-												@if($article->discount > 0)
-													<del>$ {{ $article->price + 0 }}</del>
-													<span class="price">
-														$ {{ calcValuePercentNeg($article->price, $article->discount + 0) }}
-													</span>
-												@else
-													<span class="price">$ {{ $article->price + 0 }}</span>
-												@endif
-											@endif --}}
 										</div>
 										<div class="col-add pad0">
 											<a href="{{ url('tienda/articulo/'.$article->id) }}">

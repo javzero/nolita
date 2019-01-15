@@ -102,7 +102,7 @@
 	height: 450px
 	position: relative
 	margin-bottom: 15px
-	margin-top: -80px
+	// margin-top: -80px
 	.filter-container
 		width: 100%
 		position: absolute
@@ -139,9 +139,10 @@
 .filter-sidebar
 	padding-top: 10px
 	.sub-title
-		font-weight: 600
+		font-weight: 700
 		margin-bottom: 5px
 		border-bottom: 1px solid $grey
+		color: $grey
 	input
 		border: 1px solid #ccc
 	input, select
@@ -149,6 +150,26 @@
 		margin-bottom: 10px
 	.filter-button
 		line-height: 2.5rem
+	.featured-text
+		margin: 20px 0
+		.text
+			font-size: 1.2rem
+			font-weight: 900
+			@include transition(0.2s)
+			&:hover
+				text-decoration: line-through
+		.text-1 a
+			color: #000
+		.text-2 a
+			color: $grey
+	.filter-item
+		margin-bottom: 40px
+		ul li a
+			color: #000
+			@include transition(0.2s)
+			&:hover
+				font-weight: 600
+
 
 @media (min-width: 768px)
 	.filter-container
