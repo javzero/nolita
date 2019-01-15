@@ -48,7 +48,7 @@
 					</div>
 					@endif
 					@foreach($articles as $article)
-						<div class="col-xs-6 col-sm-6 col-md-5 col-lg-5 col-xl-3 article">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 article">
 							<div class="inner">
 								{{-- =========== Discount Badge =========== --}}
 								{{-- ====================================== --}}
