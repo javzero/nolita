@@ -7,7 +7,7 @@
     {!! Form::close() !!}
     <div class="featured-text">
         <div class="text text-1"><a href="{{ route('store.search.tag', 'Last Chance') }}">LAST CHANCE</a></div>
-        <div class="text text-2"><a href="{{ route('store.search.tag', 'nuevo') }}">#LO ÚLTIMO FW19</a></div>
+        <div class="text text-2"><a href="{{ route('store.search.tag', 'nuevo') }}">#ÚLTIMOS INGRESOS</a></div>
     </div>
 
     <div class="filter-item">
@@ -15,7 +15,7 @@
         <ul>
             {{-- <li><a href="{{ route('store', ['precio' => 'menor']) }}">Menor precio</a></li>
             <li><a href="{{ route('store', ['precio' => 'mayor']) }}">Mayor precio</a></li> --}}
-            <li><a href="{{ route('store', ['filtrar' => 'ultimos']) }}">Últimos ingresos</a></li>
+            {{-- <a><a href="{{ route('store', ['filtrar' => 'ultimos']) }}">Últimos ingresos</a></a> --}}
             <li><a href="{{ route('store', ['filtrar' => 'descuentos']) }}">Con Descuento</a></li>
             <li><a href="{{ route('store', ['filtrar' => 'populares']) }}">Populares</a></li>
             <li><a href="{{ route('store.search.tag', 'Last Chance') }}">Last Chance</a></li>

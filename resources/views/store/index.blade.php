@@ -7,19 +7,23 @@
 @endsection
 
 @section('content')
-
-	<div class="header-with-banner">
-		<div class="filter-container">
-			@include('store.partials.filter-bar')
-		</div>
+	<div class="header-banner">
+		<div class="desktop"><img src="{{ asset('images/web/home-banner.jpg')}}" alt=""></div>
+		<div class="mobile"><img src="{{ asset('images/web/home-banner-mobile.jpg')}}" alt=""></div>
 	</div>
+	<div class="mobile-filters">
+		@include('store.partials.filters-mobile')
+	</div>
+	{{-- <div class="filter-container">
+		
+	</div> --}}
 	<div id="main" class="main-container container-fluid padding-bottom-3x mb-1">
 		<div class="row">
 			{{-- col-xs-12 col-lg-9 col-sm-8 col-md-8 --}}
-			<div class="col-sm-3 col-md-3 col-lg-2 pad0">
+			<div class="col-sm-3 col-md-3 col-lg-2 pad0 hide-768">
 				@include('store.partials.filter-sidebar')
 			</div>
-			<div id="MainContent" class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+			<div id="MainContent" class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
 				{{-- @if(!isset($_GET['checkout-on']))
 					@if(isset($_GET['page']) && !isset($search) && count($_GET) == 1)
 					@else

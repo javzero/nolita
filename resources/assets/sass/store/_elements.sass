@@ -4,196 +4,211 @@
 //|--------------------------------------------------------------------------
 //*/
 
-  
-.white-container
-	background-color: #fff
-	padding: 20px
-	
-.grid-item
-	.product-card
-		padding: 0
-		a
-			text-decoration: none
-		.product-thumb
-			.inner
-				position: relative
-				img
-					min-width: 100%
-				.data
-					position: absolute
-					text-align: center
-					opacity: 0
-					width: 100%
-					height: 100%
-					background-color: rgba(241, 230, 226, 0.7)
-					@include transition(0.2s)
-					color: #383838
-					.text
-						font-size: 1rem
-						padding: 10px
-						padding-top: 25px
-						width: 100%	
-						hr
-							display: block
-							position: relative
-							padding: 0
-							margin: 2px auto
-							height: 0
-							width: 100%
-							max-height: 0
-							line-height: 0
-							clear: both
-							border: none
-							border-bottom: 1px solid #ffffff
-							max-width: 90px
-						span.item
-							font-size: 1.1rem
-							font-weight: 300
-				&:hover
-					.data
-						opacity: 1
-		.footer
-			height: 54px
-			position: relative
-			.product-buttons
-				position: absolute
-				bottom: 0
-				right: 6px
-				text-align: right
-				white-space: nowrap
-				@include flex-center()
-				.fav-btn
-					margin-right: 10px
-					font-size: 1.5rem
-			.price
-				position: absolute
-				bottom: 0
-				left: 0
-				width: 40%
-				padding-top: 6px
-				height: 100%
-				@include flex-center()
-				.inner
 
-.widget
-	.inline
-		ul
-			padding-left: 0
-			padding: 0
-			margin: 0
-			li
-				min-width: 60px
-				display: inline-block
-				list-style: none
+.header-banner
+    margin-bottom: 20px
+    .desktop
+        display: block
+    .mobile
+        display: none
 
-.login-box
-	background: #fff
-	margin-top: 20px
-	position: relative
-	padding-bottom: 50px
-	border-radius: 0
-	.bottom-text
-		position: absolute
-		width: 100%
-		text-align: center
-		bottom: 10px
-		left: 0
-	.top-left
-		position: absolute
-		left: 10px
-		top: 5px
-	.top-right
-		position: absolute
-		right: 10px
-		top: 5px
-	.error-active
-		padding: 10px
-		background: $red
-		color: #fff
-	input
-		border-radius: 0
 
 @media (max-width: 768px)
-	.login-box
-		margin: 0
+    .header-banner
+        .desktop
+            display: none
+        .mobile
+            display: block
+  
+.white-container
+    background-color: #fff
+    padding: 20px
+    
+.grid-item
+    .product-card
+        padding: 0
+        a
+            text-decoration: none
+        .product-thumb
+            .inner
+                position: relative
+                img
+                    min-width: 100%
+                .data
+                    position: absolute
+                    text-align: center
+                    opacity: 0
+                    width: 100%
+                    height: 100%
+                    background-color: rgba(241, 230, 226, 0.7)
+                    @include transition(0.2s)
+                    color: #383838
+                    .text
+                        font-size: 1rem
+                        padding: 10px
+                        padding-top: 25px
+                        width: 100%	
+                        hr
+                            display: block
+                            position: relative
+                            padding: 0
+                            margin: 2px auto
+                            height: 0
+                            width: 100%
+                            max-height: 0
+                            line-height: 0
+                            clear: both
+                            border: none
+                            border-bottom: 1px solid #ffffff
+                            max-width: 90px
+                        span.item
+                            font-size: 1.1rem
+                            font-weight: 300
+                &:hover
+                    .data
+                        opacity: 1
+        .footer
+            height: 54px
+            position: relative
+            .product-buttons
+                position: absolute
+                bottom: 0
+                right: 6px
+                text-align: right
+                white-space: nowrap
+                @include flex-center()
+                .fav-btn
+                    margin-right: 10px
+                    font-size: 1.5rem
+            .price
+                position: absolute
+                bottom: 0
+                left: 0
+                width: 40%
+                padding-top: 6px
+                height: 100%
+                @include flex-center()
+                .inner
+
+.widget
+    .inline
+        ul
+            padding-left: 0
+            padding: 0
+            margin: 0
+            li
+                min-width: 60px
+                display: inline-block
+                list-style: none
+
+.login-box
+    background: #fff
+    margin-top: 20px
+    position: relative
+    padding-bottom: 50px
+    border-radius: 0
+    .bottom-text
+        position: absolute
+        width: 100%
+        text-align: center
+        bottom: 10px
+        left: 0
+    .top-left
+        position: absolute
+        left: 10px
+        top: 5px
+    .top-right
+        position: absolute
+        right: 10px
+        top: 5px
+    .error-active
+        padding: 10px
+        background: $red
+        color: #fff
+    input
+        border-radius: 0
+
+@media (max-width: 768px)
+    .login-box
+        margin: 0
 
 
 .custom-page-title
-	padding: 0
-	width: 100%
+    padding: 0
+    width: 100%
 @media (min-width: 768px)
-	.index-header
-		margin-bottom: 25px
+    .index-header
+        margin-bottom: 25px
 
 
 
 .user-info-wrapper .user-info .user-avatar>img
-	width: 150px
-	height: 120px
+    width: 150px
+    height: 120px
 
 .checkout-accordion
-	.card
-		border-radius: 0
-	.card-header
-		border-radius: 0
-		padding: 0.2rem 1rem
+    .card
+        border-radius: 0
+    .card-header
+        border-radius: 0
+        padding: 0.2rem 1rem
 
 .checkout-table
-	margin-bottom: 0
-	
+    margin-bottom: 0
+    
 .full-loader
-	position: fixed
-	top: 0
-	left: 0
-	width: 100%
-	height: 100%
-	z-index: 9999
-	@include flex-column
-	.inner
-		width: 80px
-		height: 80px
-		border-radius: 4px
-		@include flex-column
-		@include box-shadow()
-		background-color: #ededed
-		img
-			width: 60px
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 9999
+    @include flex-column
+    .inner
+        width: 80px
+        height: 80px
+        border-radius: 4px
+        @include flex-column
+        @include box-shadow()
+        background-color: #ededed
+        img
+            width: 60px
 
 .info-container
-	background-color: #ffffff
-	border: 1px solid #ccc
-	border-top: 4px solid #ccc
-	padding: 20px 100px
-	margin-top: 50px
-	.centered-text
-		text-align: center
-		p
-			width: 100%
-		margin-bottom: 20px
-	.deco-title
-		width: 100%
-		text-align: center
-		margin-bottom: 20px
-		span
-			position: relative
-			font-family: $font2
-			font-style: italic
-			font-size: 2.2rem
-			.deco
-				position: absolute
-				top: -5px
-			.deco-left
-				left: -25px
-			.deco-right
-				right: -25px
-	.item
-		margin-bottom: 15px
-		i
-			font-size: 2rem
-			color: $main-color
-	.lone-item
-		@include flex-center()
-			
+    background-color: #ffffff
+    border: 1px solid #ccc
+    border-top: 4px solid #ccc
+    padding: 20px 100px
+    margin-top: 50px
+    .centered-text
+        text-align: center
+        p
+            width: 100%
+        margin-bottom: 20px
+    .deco-title
+        width: 100%
+        text-align: center
+        margin-bottom: 20px
+        span
+            position: relative
+            font-family: $font2
+            font-style: italic
+            font-size: 2.2rem
+            .deco
+                position: absolute
+                top: -5px
+            .deco-left
+                left: -25px
+            .deco-right
+                right: -25px
+    .item
+        margin-bottom: 15px
+        i
+            font-size: 2rem
+            color: $main-color
+    .lone-item
+        @include flex-center()
+            
 //////////////////////////////////////
 //                                  //
 //             ELEMENTS             //
@@ -201,140 +216,140 @@
 //////////////////////////////////////
 
 .main-overlay
-	display: none
-	position: fixed
-	top: 0
-	left: 0
-	width: 100%
-	height: 100%
-	background-color: rgba(0, 0, 0, 0.5)
-	z-index: 9900
-	
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.5)
+    z-index: 9900
+    
 .custom-badge
-	display: inline-block
-	min-width: 10px
-	padding: 3px 7px
-	font-size: 12px
-	font-weight: 700
-	line-height: 1
-	text-align: center
-	white-space: nowrap
-	vertical-align: middle
-	border-radius: 10px
-	margin-bottom: 5px
+    display: inline-block
+    min-width: 10px
+    padding: 3px 7px
+    font-size: 12px
+    font-weight: 700
+    line-height: 1
+    text-align: center
+    white-space: nowrap
+    vertical-align: middle
+    border-radius: 10px
+    margin-bottom: 5px
 
 .hollow-white
-	border: 1px solid #fff
-	background-color: transparent
-	color: #383838
-	font-size: 1rem
-	border-radius: 50px
-	font-weight: 300
-	margin-top: 5px
+    border: 1px solid #fff
+    background-color: transparent
+    color: #383838
+    font-size: 1rem
+    border-radius: 50px
+    font-weight: 300
+    margin-top: 5px
 
 
 
 .sq-badge
-	border: 1px solid $grey
-	color: $grey
-	padding: 4px 10px
-	margin: 2px
-	white-space: 
-	min-width: 40px
-	text-align: center
-	font-size: 0.8rem
-	@include transition(0.2s)
-	&:hover
-		background: $main-color
-		border: 1px solid $main-color
-		span
-			color: #fff
-	
+    border: 1px solid $grey
+    color: $grey
+    padding: 4px 10px
+    margin: 2px
+    white-space: 
+    min-width: 40px
+    text-align: center
+    font-size: 0.8rem
+    @include transition(0.2s)
+    &:hover
+        background: $main-color
+        border: 1px solid $main-color
+        span
+            color: #fff
+    
 .short-divisor
-	@include flex-center
-	.inner
-		width: 250px
-		border-bottom: 1px solid #ccc
-		text-align: center
-		margin-bottom: 10px
-		margin-top: 15px
+    @include flex-center
+    .inner
+        width: 250px
+        border-bottom: 1px solid #ccc
+        text-align: center
+        margin-bottom: 10px
+        margin-top: 15px
 
 .main-btn
-	background-color: $main-color
-	color: #ffffff
-	@include transition(0.2s)
-	&:hover
-		filter: brightness(1.2)
+    background-color: $main-color
+    color: #ffffff
+    @include transition(0.2s)
+    &:hover
+        filter: brightness(1.2)
 
 .main-btn-sm
-	white-space: nowrap
-	padding: 2px 2px
-	background-color: $main-color
-	color: #ffffff
-	padding: 8px 22px
-	border: 0
-	background-color: $main-color
-	@include transition(0.2s)
-	&:hover
-		filter: brightness(1.2)
-		cursor: pointer
-		color: #fff
+    white-space: nowrap
+    padding: 2px 2px
+    background-color: $main-color
+    color: #ffffff
+    padding: 8px 22px
+    border: 0
+    background-color: $main-color
+    @include transition(0.2s)
+    &:hover
+        filter: brightness(1.2)
+        cursor: pointer
+        color: #fff
 
 .floating-bottom-cta
-	display: none
-	position: fixed
-	left: 10px
-	bottom: 15px
-	z-index: 998
-	.inner
-		padding: 13px 14px
-		width: 50px
-		height: 50px
-		border-radius: 50%
-		background-color: #2cb742
-		i
-			color: #fff
-			font-size: 1.6rem
+    display: none
+    position: fixed
+    left: 10px
+    bottom: 15px
+    z-index: 998
+    .inner
+        padding: 13px 14px
+        width: 50px
+        height: 50px
+        border-radius: 50%
+        background-color: #2cb742
+        i
+            color: #fff
+            font-size: 1.6rem
 
 @media (max-width: 800px)
-	.floating-bottom-cta
-		display: block
+    .floating-bottom-cta
+        display: block
 
 .icon-button
-	background: 0
-	border: 0
-	font-size: 1.2rem
+    background: 0
+    border: 0
+    font-size: 1.2rem
 
 
 .big-btn
-	background-color: $main-color
-	padding: 15px
-	color: #fff
-	@include box-shadow-soft2
-	@include transition(0.2s)
-	.icon-btn
-		font-size: 2rem
-		margin-bottom: 5px
-	.text-btn
-		font-size: 1.2rem
-		span.text-1
-			font-size: 1.1rem
-			font-weight: 300
-		span.text-2
-			font-size: 1.5rem
-			font-weight: 400
-			font-family: $font2
-	&:hover
-		cursor: pointer
-		filter: brightness(1.5)
+    background-color: $main-color
+    padding: 15px
+    color: #fff
+    @include box-shadow-soft2
+    @include transition(0.2s)
+    .icon-btn
+        font-size: 2rem
+        margin-bottom: 5px
+    .text-btn
+        font-size: 1.2rem
+        span.text-1
+            font-size: 1.1rem
+            font-weight: 300
+        span.text-2
+            font-size: 1.5rem
+            font-weight: 400
+            font-family: $font2
+    &:hover
+        cursor: pointer
+        filter: brightness(1.5)
 
 @media (max-width: 575px)
-	.registration-selector
-		.inner-col
-			@include flex-column
-		.big-btn
-			margin-bottom: 15px
-			max-width: 200px
+    .registration-selector
+        .inner-col
+            @include flex-column
+        .big-btn
+            margin-bottom: 15px
+            max-width: 200px
 
 
 //////////////////////////////////////
@@ -344,14 +359,14 @@
 //////////////////////////////////////
 
 .centered-form
-	@include flex-column
-	margin-bottom: 15px
-	margin-top: 15px
-	.inner
-		max-width: 500px
+    @include flex-column
+    margin-bottom: 15px
+    margin-top: 15px
+    .inner
+        max-width: 500px
 
 .form-group
-	margin-bottom: 10px
+    margin-bottom: 10px
 
 // .form-control:not(textarea)
 // 	height: 30px
@@ -361,71 +376,71 @@
 
 
 select
-	option
-		line-height: 1rem
-		font-size: 1rem
-		font-weight: 300
+    option
+        line-height: 1rem
+        font-size: 1rem
+        font-weight: 300
 .bordered-box
-	border: 1px solid #cccccc
-	padding: 5px
+    border: 1px solid #cccccc
+    padding: 5px
 
 
 .input-with-btn
-	display: flex
-	position: relative
-	.input-field
-		flex: 1
-		border-radius: 5px 0px 0px 5px
-	.short-input
-		width: 100px
-	.input-btn
-		background: transparent
-		white-space: nowrap
-		border: 1px solid #383838
-		border-left: 0
-		border-radius: 0px 5px 5px 0px
-		margin: 0
-		&:hover
-			background-color: $main-color
-			color: #fff
+    display: flex
+    position: relative
+    .input-field
+        flex: 1
+        border-radius: 5px 0px 0px 5px
+    .short-input
+        width: 100px
+    .input-btn
+        background: transparent
+        white-space: nowrap
+        border: 1px solid #383838
+        border-left: 0
+        border-radius: 0px 5px 5px 0px
+        margin: 0
+        &:hover
+            background-color: $main-color
+            color: #fff
 
 @media (max-width: 415px)
-	.input-with-btn-mobile
-		display: block
-		.small-input
-			width: 60px
-			text-align: center
-		.input-btn
-			background: transparent
-			border: 1px solid #383838
-			border-top: 0
-			border-radius: 0
-			width: 60px
-			height: 35px
+    .input-with-btn-mobile
+        display: block
+        .small-input
+            width: 60px
+            text-align: center
+        .input-btn
+            background: transparent
+            border: 1px solid #383838
+            border-top: 0
+            border-radius: 0
+            width: 60px
+            height: 35px
 
 .small-input
-	width: 60px
-	max-width: 70px
-	padding: 5px 10px
-	border-radius: 0 
-	border: 1px solid $main-color 
+    width: 60px
+    max-width: 70px
+    padding: 5px 10px
+    border-radius: 0 
+    border: 1px solid $main-color 
 
 .under-input
-	position: absolute
-	bottom: -25px
-	left: 0
+    position: absolute
+    bottom: -25px
+    left: 0
 
 .small-form
-	input,select
-		border: 1px solid #ccc
-		height: 35px !important
-		border-radius: 0
-		padding: 0 18px 3px 18px
-	label
-		margin-bottom: 1px
-		padding-left: 8px
+    input,select
+        border: 1px solid #ccc
+        height: 35px !important
+        border-radius: 0
+        padding: 0 18px 3px 18px
+    label
+        margin-bottom: 1px
+        padding-left: 8px
 
-	
+    
 //////////////////////////////////////
 //                                  //
 //           CHECKOUT               //
@@ -435,80 +450,80 @@ select
 // Side Container fixed
 
 //.checkout-cart-fixed
-	// position: fixed
-	// top: 0
-	// right: 0
-	// width: 500px
-	//z-index: 9999
-	// .inner
-	// 	.item
-	// 		padding: 10px 5px
-	// 		padding-left: 65px
-	// 		padding-right: 20px
-	// 		margin-bottom: 5px
-	// 		position: relative
-	// 		.image
-	// 			position: absolute
-	// 			left: 10px
-	// 			padding: 0
-	// 			img
-	// 				max-width: 50px
-	// 		.details
-	// 			padding: 0 5px
-	// 			.input-with-btn
-	// 				.small-input
-	// 					padding: 0
-	// 					padding-left: 5px
-	// 		.quantity
-	// 			padding-top: 10px
-	// 			.small-input
-	// 				border: 0
-	// 		.delete-item
-	// 			position: absolute
-	// 			right: 0
-	// 			top: 0
-	// 			width: 25px
-	// 			height: 100%
-	// 			@include flex-center()
-	// 			i
-	// 				color: #9c9c9c
-	// 				@include transition(0.2s)
-	// 			&:hover
-	// 				cursor: pointer
-	// 				i
-	// 					color: #000
-	// 	.checkout-cart-error
-	// 		text-align: center
-	// 		margin-top: 15px
-	// 		padding: 15px
-	// 		font-size: 1.2rem
-	// 		font-family: $font2
+    // position: fixed
+    // top: 0
+    // right: 0
+    // width: 500px
+    //z-index: 9999
+    // .inner
+    // 	.item
+    // 		padding: 10px 5px
+    // 		padding-left: 65px
+    // 		padding-right: 20px
+    // 		margin-bottom: 5px
+    // 		position: relative
+    // 		.image
+    // 			position: absolute
+    // 			left: 10px
+    // 			padding: 0
+    // 			img
+    // 				max-width: 50px
+    // 		.details
+    // 			padding: 0 5px
+    // 			.input-with-btn
+    // 				.small-input
+    // 					padding: 0
+    // 					padding-left: 5px
+    // 		.quantity
+    // 			padding-top: 10px
+    // 			.small-input
+    // 				border: 0
+    // 		.delete-item
+    // 			position: absolute
+    // 			right: 0
+    // 			top: 0
+    // 			width: 25px
+    // 			height: 100%
+    // 			@include flex-center()
+    // 			i
+    // 				color: #9c9c9c
+    // 				@include transition(0.2s)
+    // 			&:hover
+    // 				cursor: pointer
+    // 				i
+    // 					color: #000
+    // 	.checkout-cart-error
+    // 		text-align: center
+    // 		margin-top: 15px
+    // 		padding: 15px
+    // 		font-size: 1.2rem
+    // 		font-family: $font2
 
 
 .checkout-cart-floating
-	position: absolute
-	right: 0
-	top: 120px
-	z-index: 998
-	.inner
-		background: #fff
-		box-shadow: -1px 2px 19px -7px rgba(0, 0, 0, 0.55)
+    position: absolute
+    right: 0
+    top: 120px
+    z-index: 998
+    .inner
+        background: #fff
+        box-shadow: -1px 2px 19px -7px rgba(0, 0, 0, 0.55)
 
 
 .no-articles
-		position: absolute
-		margin-top: 200px
-		width: 100%
-		left: 0
-		top: 0
-		@include flex-center()
+        position: absolute
+        margin-top: 200px
+        width: 100%
+        left: 0
+        top: 0
+        @include flex-center()
 
 @media (max-width: 576px)
-	.no-articles
-		margin: 80px
-		position: relative
-		width: 100%
-		text-align: center
+    .no-articles
+        margin: 80px
+        position: relative
+        width: 100%
+        text-align: center
 
 //////////////////////////////////////
 //                                  //
@@ -517,53 +532,53 @@ select
 //////////////////////////////////////
 
 ul.pagination
-	// border-color: #0da9ef
-	// background-color: #0da9ef
-	display: block
-	margin: 0
-	margin-top: 25px
-	padding: 0
-	list-style: none
-	border-top: 0
-	margin-bottom: 20px
-	li
-		display: inline-block
-		text-align: center
-		border-radius: 5px
-		font-size: 1rem
-		font-weight: bold
-		line-height: 24px
-		margin-bottom: 25px
-		a
-			padding: 10px 15px
-			text-decoration: none
-			margin-left: 2px
-			color: $main-color
-			font-weight: 600
-			font-size: 1.2rem
-			background-color: $main-color
-			color: #fff
-		span
-			color: #fff
-		&:hover
-			a
-				color: #fff
-		
-	li.disabled,li.active
-		font-weight: 300
-		color: #6b6161
-		span
-			padding: 10px 15px
-			background-color: $main-color
-			color: #fff
-		&:hover
-			cursor: not-allowed
+    // border-color: #0da9ef
+    // background-color: #0da9ef
+    display: block
+    margin: 0
+    margin-top: 25px
+    padding: 0
+    list-style: none
+    border-top: 0
+    margin-bottom: 20px
+    li
+        display: inline-block
+        text-align: center
+        border-radius: 5px
+        font-size: 1rem
+        font-weight: bold
+        line-height: 24px
+        margin-bottom: 25px
+        a
+            padding: 10px 15px
+            text-decoration: none
+            margin-left: 2px
+            color: $main-color
+            font-weight: 600
+            font-size: 1.2rem
+            background-color: $main-color
+            color: #fff
+        span
+            color: #fff
+        &:hover
+            a
+                color: #fff
+        
+    li.disabled,li.active
+        font-weight: 300
+        color: #6b6161
+        span
+            padding: 10px 15px
+            background-color: $main-color
+            color: #fff
+        &:hover
+            cursor: not-allowed
 
 .pagination-results
-	margin-top: 20px
-	a
-		margin: 0 10px
-		font-size: 1.1rem
+    margin-top: 20px
+    a
+        margin: 0 10px
+        font-size: 1.1rem
 
 //////////////////////////////////////
 //                                  //
@@ -572,289 +587,289 @@ ul.pagination
 //////////////////////////////////////
 
 .articles-container
-	padding: 0
-	.article
-		padding: 10px
-		.inner
-			background: #fff
-			position: relative
-			.image
-				position: relative
-				.add-to-favs
-					position: absolute
-					left: 6px
-					top: 1px
-					font-size: 1.5rem
-					z-index: 600
-				.overlay
-					position: absolute
-					width: 100%
-					height: 100%
-					top: 0
-					left: 0
-					@include flex-center()
-					background-color: rgba($main-color,.9)
-					color: #ffffff
-					font-size: 1.5rem
-					font-weight: 300
-					opacity: 0
-					@include transition(0.5s)
-					z-index: 500
-				&:hover
-					.overlay
-						opacity: 1	
-			.content
-				padding: 5px
-				padding-bottom: 15px
-				text-align: center
-				width: 100%
-				background-color: #f9f9f9
-				.title-info
-					font-family: $font2
-					width: 100%
-					// height: 80px
-					height: 40px
-					@include flex-column()
-					h3
-						font-weight: 300
-						font-size: 1rem
-						margin-bottom: 6px
-				.footer
-					.col-price
-						.price
-							font-size: 1.2rem
-							font-weight: 700
-							white-space: nowrap
-							text-align: center
-							color: $main-color
-						del
-							white-space: nowrap
-							color: #585656
-							margin-right: 5px
-							font-size: 1rem
-							font-weight: 300
-					.input-fit
-						display: flex
-						// flex-direction: row
-						input
-							max-width: 100%
-							// display: flex
-					.col-add
-						white-space: nowrap
-						.quantity-input
-							margin-right: 0
-							width: 45px
-							height: 34px
-							border: 1px solid #8e8e8e
-							border-right: 0
-							border-radius: 0
-							box-shadow: 0 0 0
-							text-align: center
-							margin-right: -4px
-						.input-button
-							background: #fff
-							border: 1px solid #8e8e8e
-							padding: 6px 10px
-							height: 34px
-							border-radius: 0
-							@include transition(0.2s)
-							&:hover
-								background: $main-color
-								color: #fff
-						.form-group
-							margin-bottom: 0
-					.col
-						.del
-							font-size: 0.9rem
+    padding: 0
+    .article
+        padding: 10px
+        .inner
+            background: #fff
+            position: relative
+            .image
+                position: relative
+                .add-to-favs
+                    position: absolute
+                    left: 6px
+                    top: 1px
+                    font-size: 1.5rem
+                    z-index: 600
+                .overlay
+                    position: absolute
+                    width: 100%
+                    height: 100%
+                    top: 0
+                    left: 0
+                    @include flex-center()
+                    background-color: rgba($main-color,.9)
+                    color: #ffffff
+                    font-size: 1.5rem
+                    font-weight: 300
+                    opacity: 0
+                    @include transition(0.5s)
+                    z-index: 500
+                &:hover
+                    .overlay
+                        opacity: 1	
+            .content
+                padding: 5px
+                padding-bottom: 15px
+                text-align: center
+                width: 100%
+                background-color: #f9f9f9
+                .title-info
+                    font-family: $font2
+                    width: 100%
+                    // height: 80px
+                    height: 40px
+                    @include flex-column()
+                    h3
+                        font-weight: 300
+                        font-size: 1rem
+                        margin-bottom: 6px
+                .footer
+                    .col-price
+                        .price
+                            font-size: 1.2rem
+                            font-weight: 700
+                            white-space: nowrap
+                            text-align: center
+                            color: $main-color
+                        del
+                            white-space: nowrap
+                            color: #585656
+                            margin-right: 5px
+                            font-size: 1rem
+                            font-weight: 300
+                    .input-fit
+                        display: flex
+                        // flex-direction: row
+                        input
+                            max-width: 100%
+                            // display: flex
+                    .col-add
+                        white-space: nowrap
+                        .quantity-input
+                            margin-right: 0
+                            width: 45px
+                            height: 34px
+                            border: 1px solid #8e8e8e
+                            border-right: 0
+                            border-radius: 0
+                            box-shadow: 0 0 0
+                            text-align: center
+                            margin-right: -4px
+                        .input-button
+                            background: #fff
+                            border: 1px solid #8e8e8e
+                            padding: 6px 10px
+                            height: 34px
+                            border-radius: 0
+                            @include transition(0.2s)
+                            &:hover
+                                background: $main-color
+                                color: #fff
+                        .form-group
+                            margin-bottom: 0
+                    .col
+                        .del
+                            font-size: 0.9rem
 
 
 @media screen and (min-width: 1200px) and (max-width: 1640px)
-	.fix-column
-		.articles-container
-			.article
-				flex: 1 0 20.666667% !important
-				max-width: 30.666667% !important
+    .fix-column
+        .articles-container
+            .article
+                flex: 1 0 20.666667% !important
+                max-width: 30.666667% !important
 
 
 @media (max-width: 576px)
-	.articles-container
-		.article
-			.inner
-				.image
-				.content
-					height: auto
-					padding: 0 10px
-					.title-info h3
-						font-size: 1rem
-						font-weight: 300
-					.footer
-						display: block
-						position: relative
-						bottom: 10px
-						margin-top: 0
-						.btn
-							margin: 0
-						.col-price
-							display: block
+    .articles-container
+        .article
+            .inner
+                .image
+                .content
+                    height: auto
+                    padding: 0 10px
+                    .title-info h3
+                        font-size: 1rem
+                        font-weight: 300
+                    .footer
+                        display: block
+                        position: relative
+                        bottom: 10px
+                        margin-top: 0
+                        .btn
+                            margin: 0
+                        .col-price
+                            display: block
 
 @media (max-width: 576px)
-	.articles-container
-		.col-sm-6
-			-webkit-box-flex: 0
-			-webkit-flex: 0 0 50%
-			-ms-flex: 0 0 50%
-			flex: 0 0 50%
-			max-width: 50%
+    .articles-container
+        .col-sm-6
+            -webkit-box-flex: 0
+            -webkit-flex: 0 0 50%
+            -ms-flex: 0 0 50%
+            flex: 0 0 50%
+            max-width: 50%
 
 @media (max-width: 768px)
-	.articles-container
-		.article
-			min-width: 250px
+    .articles-container
+        .article
+            min-width: 250px
 
 @media (max-width: 520px)
-	.articles-container
-		.article
-			min-width: auto
+    .articles-container
+        .article
+            min-width: auto
 
 @media (min-width: 1199px) and (max-width: 1340px)
-	.articles-container .article .inner .content .footer
-		.fa-icon
-			margin: 0
+    .articles-container .article .inner .content .footer
+        .fa-icon
+            margin: 0
 
 @media (max-width: 400px)
-	.articles-container
-		.article
-			min-width: 100%
+    .articles-container
+        .article
+            min-width: 100%
 
 .top-right-absolute
-	position: absolute
-	right: 0
-	top: 0
+    position: absolute
+    right: 0
+    top: 0
 
 
 .bottom-left-absolute
-	position: absolute
-	left: 0
-	bottom: 0
-	
+    position: absolute
+    left: 0
+    bottom: 0
+    
 .ribbon-square-small
-	background-color: #000000
-	color: #fff
-	width: 70px
-	height: 48px
-	padding: 10px
-	text-align: center
-	font-size: 1.2rem
-	font-weight: 700 
-	font-family: $font1
-	z-index: 50
+    background-color: #000000
+    color: #fff
+    width: 70px
+    height: 48px
+    padding: 10px
+    text-align: center
+    font-size: 1.2rem
+    font-weight: 700 
+    font-family: $font1
+    z-index: 50
 
 .ribbon-square
-	background-color: #000000
-	color: #fff
-	width: auto
-	height: 35px
-	padding: 7px 10px
-	text-align: center
-	font-size: 1rem
-	font-weight: 700 
-	font-family: $font1
-	z-index: 50
-	
+    background-color: #000000
+    color: #fff
+    width: auto
+    height: 35px
+    padding: 7px 10px
+    text-align: center
+    font-size: 1rem
+    font-weight: 700 
+    font-family: $font1
+    z-index: 50
+    
 .ribbon-bordered-text
-	text-align: left
-	z-index: 50
-	color: #000000
-	border-left: 6px solid #000
-	padding-left: 10px
-	.text-1
-		font-size: 1rem
-		font-weight: 800
-	.text-2
-		font-size: 0.9rem
-		font-weight: 400
+    text-align: left
+    z-index: 50
+    color: #000000
+    border-left: 6px solid #000
+    padding-left: 10px
+    .text-1
+        font-size: 1rem
+        font-weight: 800
+    .text-2
+        font-size: 0.9rem
+        font-weight: 400
 
 .top-right-ribbon
-	position: absolute
-	right: 0
-	top: 0
-	width: 100px
-	height: 100px
-	overflow: hidden
-	.triangle
-		position: absolute
-		right: 0
-		left: 0
-		text-align: center
-		padding: 10px
-		padding-top: 50px
-		background-color: $main-color
-		transform: rotate(45deg)
-		width: 150px
-		z-index: 50
-	.text
-		font-family: $font1
-		position: absolute
-		font-weight: 700
-		top: 18px
-		right: 13px
-		transform: rotate(45deg)
-		font-size: 1.2rem
-		z-index: 100
-		color: #fff
+    position: absolute
+    right: 0
+    top: 0
+    width: 100px
+    height: 100px
+    overflow: hidden
+    .triangle
+        position: absolute
+        right: 0
+        left: 0
+        text-align: center
+        padding: 10px
+        padding-top: 50px
+        background-color: $main-color
+        transform: rotate(45deg)
+        width: 150px
+        z-index: 50
+    .text
+        font-family: $font1
+        position: absolute
+        font-weight: 700
+        top: 18px
+        right: 13px
+        transform: rotate(45deg)
+        font-size: 1.2rem
+        z-index: 100
+        color: #fff
 
 .bottom-left-ribbon
-	position: absolute
-	left: 0
-	bottom: 0
-	width: 100px
-	height: 100px
-	overflow: hidden
-	.triangle
-		position: absolute
-		bottom: 0
-		left: -50px
-		text-align: center
-		padding: 10px
-		padding-top: 50px
-		background-color: rgba($main-color,.5)
-		transform: rotate(45deg)
-		width: 150px
-		z-index: 50
-	.text
-		font-family: $font1
-		position: absolute
-		font-weight: 700
-		top: 58px
-		right: 50px
-		line-height: 14px
-		z-index: 100
-		color: #fff
-		transform: rotate(45deg)
-		text-align: center
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100px
+    height: 100px
+    overflow: hidden
+    .triangle
+        position: absolute
+        bottom: 0
+        left: -50px
+        text-align: center
+        padding: 10px
+        padding-top: 50px
+        background-color: rgba($main-color,.5)
+        transform: rotate(45deg)
+        width: 150px
+        z-index: 50
+    .text
+        font-family: $font1
+        position: absolute
+        font-weight: 700
+        top: 58px
+        right: 50px
+        line-height: 14px
+        z-index: 100
+        color: #fff
+        transform: rotate(45deg)
+        text-align: center
 
 
 
 // FAVOURITES 
 .fa-icon
-	&:before
-	font-family: $fa-icon
-	font-weight: 900
-	display: inline-block
-	font-style: normal
-	font-variant: normal
-	text-rendering: auto
-	-webkit-font-smoothing: antialiased
-	&:hover
-		cursor: pointer
+    &:before
+    font-family: $fa-icon
+    font-weight: 900
+    display: inline-block
+    font-style: normal
+    font-variant: normal
+    text-rendering: auto
+    -webkit-font-smoothing: antialiased
+    &:hover
+        cursor: pointer
 
 .fav-icon-nofav::before
-	color: #f1f1f1
-	content: "\f004"
+    color: #f1f1f1
+    content: "\f004"
 
 .fav-icon-isfav::before
-	color: $red
-	content: "\f004"
+    color: $red
+    content: "\f004"
 
 // USERBAR
 // -------------------------------------
@@ -886,152 +901,152 @@ ul.pagination
 // 			font-weight: 600
 
 @media(min-width: 768px)
-	.cart-resume-details-mobile
-		display: none
+    .cart-resume-details-mobile
+        display: none
 
 @media(max-width: 768px)
-	.cart-resumen-desktop
-		display: none
-	.toolbar-user-dropdown
-		// display: none !important
-	.cart-resumen-mobile
-		display: block
+    .cart-resumen-desktop
+        display: none
+    .toolbar-user-dropdown
+        // display: none !important
+    .cart-resumen-mobile
+        display: block
 
 .toolbar .cart>.toolbar-dropdown
-	top: 36px
+    top: 36px
 
 .toolbar
-	.text-links
-		display: none
-	.access-icons
-		display: none
-	.tools
-		.favs
-			@include flex-center
-			i
-				font-size: 1.2rem
-				&:hover
-					cursor: pointer
+    .text-links
+        display: none
+    .access-icons
+        display: none
+    .tools
+        .favs
+            @include flex-center
+            i
+                font-size: 1.2rem
+                &:hover
+                    cursor: pointer
 
 
 
 // Index List
 .product-card
-	.max-text
-		max-height: 100px
-		overflow: hidden
-		white-space: nowrap
-		text-overflow: ellipsis
+    .max-text
+        max-height: 100px
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
 
 .review-bottom
-	background: #f9f9f97d
-	
+    background: #f9f9f97d
+    
 .back-to-store
-	margin-bottom: 10px
-	a
-		text-decoration: none
-		font-size: 1rem
+    margin-bottom: 10px
+    a
+        text-decoration: none
+        font-size: 1rem
 
 .checkout-container 
-	> .row	
-		background-color: #fff
-		padding-top: 10px
-	.warning
-		margin-bottom: 15px
-		span
-			border: 1px solid #ccc
-			padding: 5px
-			i
-				margin-right: 10px
-	.sub-title
-		border-bottom: 1px solid #ccc
-		font-size: 1.1rem
-		margin-bottom: 10px
-		i
-			margin-right: 10px
-			color: $main-color
+    > .row	
+        background-color: #fff
+        padding-top: 10px
+    .warning
+        margin-bottom: 15px
+        span
+            border: 1px solid #ccc
+            padding: 5px
+            i
+                margin-right: 10px
+    .sub-title
+        border-bottom: 1px solid #ccc
+        font-size: 1.1rem
+        margin-bottom: 10px
+        i
+            margin-right: 10px
+            color: $main-color
 
 
 @media (max-width: 991px)
-	.checkout-container
-		> .row	
-			padding-left: 0px
-		aside
-			border: 1px solid #e1e7ec
-			padding: 10px
-	.back-to-store
-		display: none
+    .checkout-container
+        > .row	
+            padding-left: 0px
+        aside
+            border: 1px solid #e1e7ec
+            padding: 10px
+    .back-to-store
+        display: none
 
 .checkout-sidebar
-	.top-info-cs
-		padding: 0.75rem
-		padding-top: 0
+    .top-info-cs
+        padding: 0.75rem
+        padding-top: 0
 
 
 .shopping-cart
-	.product-item
-		.product-thumb
-			max-width: 80px
+    .product-item
+        .product-thumb
+            max-width: 80px
 
 
 
 .coupon-message
-	.inner
-		padding: 10px
-		border: 1px solid #ccc
-		text-align: center
-		.small
-			font-size: 1.2rem
-		.big
-			font-size: 2rem
-			color: green
-			
+    .inner
+        padding: 10px
+        border: 1px solid #ccc
+        text-align: center
+        .small
+            font-size: 1.2rem
+        .big
+            font-size: 2rem
+            color: green
+            
 // ------------- whislist --------------- //
 .wishlist-table
-	.product-item 
-		.product-title
-			margin-top: 0
-			padding-top: 0
-		.stock-title
-			margin-right: 5px
+    .product-item 
+        .product-title
+            margin-top: 0
+            padding-top: 0
+        .stock-title
+            margin-right: 5px
 
 @media (min-width: 854px)
-	.wishlist-table
-		.product-item 
-			.small-btn-and-input
-				margin-top: 15px !important
+    .wishlist-table
+        .product-item 
+            .small-btn-and-input
+                margin-top: 15px !important
 
 
 // ------------- Show --------------- //
 
 .product-show
-	.product-gallery
-		.images-container
+    .product-gallery
+        .images-container
 
-		.product-thumbnails
-			padding-top: 0
-			margin-top: 0
+        .product-thumbnails
+            padding-top: 0
+            margin-top: 0
 
 .gallery-item
-	a
-		padding: 8px 12px
-		@include transition(0.2s)
-		i
-			color: #797575
-			font-size: 1.3rem
-			@include transition(0.2s)
-		&:hover
-			a
-				padding: 7px 10px
-			i
-				font-size: 1.5rem
+    a
+        padding: 8px 12px
+        @include transition(0.2s)
+        i
+            color: #797575
+            font-size: 1.3rem
+            @include transition(0.2s)
+        &:hover
+            a
+                padding: 7px 10px
+            i
+                font-size: 1.5rem
 
 
 @media (max-width: 575px)
-	.product-show
-		.product-gallery
-		.product-thumbnails
-			display: none
+    .product-show
+        .product-gallery
+        .product-thumbnails
+            display: none
 
 
 
@@ -1042,74 +1057,74 @@ ul.pagination
 //////////////////////////////////////
 // Izi Toast Alerts
 .iziToast-wrapper 
-	.iziToast-message
-		font-size: 1.2rem !important
-	
-	.iziToast.iziToast-color-red
-		background-color: $main-color !important
-		border: 0 
-		p
-			color: #fff
-		.iziToast-close
-			color: #fff
-			background-image: none
-			&:before
-				content: 'x'
-				font-size: 1.2rem
+    .iziToast-message
+        font-size: 1.2rem !important
+    
+    .iziToast.iziToast-color-red
+        background-color: $main-color !important
+        border: 0 
+        p
+            color: #fff
+        .iziToast-close
+            color: #fff
+            background-image: none
+            &:before
+                content: 'x'
+                font-size: 1.2rem
 
 // Bootstrap Alerts
 .alert
-	position: absolute
-	right: -100px
-	// right: 1px
-	top: 106px
-	z-index: 9000
-	padding: 14px 55px
-	color: #fff !important
-	-webkit-animation: slide 0.5s forwards
+    position: absolute
+    right: -100px
+    // right: 1px
+    top: 106px
+    z-index: 9000
+    padding: 14px 55px
+    color: #fff !important
+    -webkit-animation: slide 0.5s forwards
     -webkit-animation-delay: 2s
     animation: slide 0.5s forwards
     animation-delay: 2s
-	span
-		color: #fff !important
-	ul 
-		li
-			list-style: outside none none
-	.text
-		font-weight: 400
-			
+    span
+        color: #fff !important
+    ul 
+        li
+            list-style: outside none none
+    .text
+        font-weight: 400
+            
 @-webkit-keyframes slide
-	100%
-		right: -2px
+    100%
+        right: -2px
 
 @keyframes slide
-	100%
-		right: -2px
+    100%
+        right: -2px
 
 
 .alert-success
-	background-color: #D12F59
-	color: #fff
-	margin-top: 20px 
+    background-color: #D12F59
+    color: #fff
+    margin-top: 20px 
 
 .alert-danger
-	background-color: #D12F59
-	color: #fff
-	margin-top: 20px 
-	
+    background-color: #D12F59
+    color: #fff
+    margin-top: 20px 
+    
 
 .alert-success > :not(.text-white), .alert-success > :not(.text-light), .alert-success h1:not(.text-white), .alert-success h1:not(.text-light), .alert-success h2:not(.text-white), .alert-success h2:not(.text-light), .alert-success h3:not(.text-white), .alert-success h3:not(.text-light), .alert-success h4:not(.text-white), .alert-success h4:not(.text-light), .alert-success h5:not(.text-white), .alert-success h5:not(.text-light), .alert-success h6:not(.text-white), .alert-success h6:not(.text-light), .alert-success p:not(.text-white), .alert-success p:not(.text-light), .alert-success ul:not(.text-white), .alert-success ul:not(.text-light), .alert-success ol:not(.text-white), .alert-success ol:not(.text-light), .alert-success a:not(.text-white), .alert-success a:not(.text-light)
-	color: #000
+    color: #000
 
 .centered-notification
-	text-align: center
-	margin-top: 100px
-	font-size: 1.5rem
-	.content
-		padding: 10px
-		background: #f9f9f9
-	.bottom
-		margin-top: 50px
+    text-align: center
+    margin-top: 100px
+    font-size: 1.5rem
+    .content
+        padding: 10px
+        background: #f9f9f9
+    .bottom
+        margin-top: 50px
 
 //////////////////////////////////////
 //                                  //
@@ -1118,25 +1133,25 @@ ul.pagination
 //////////////////////////////////////
 
 .error-page
-	@include flex-center
-	text-align: center
-	height: 100vh
+    @include flex-center
+    text-align: center
+    height: 100vh
 
 #Error
-	position: fixed
-	padding-top: 150px
-	bottom: 0
-	left: 0
-	z-index: 9999
-	// width: 100%
-	max-height: 100%
-	background-color: #ccc
+    position: fixed
+    padding-top: 150px
+    bottom: 0
+    left: 0
+    z-index: 9999
+    // width: 100%
+    max-height: 100%
+    background-color: #ccc
 
 
 .site-footer
-	padding: 15px 5px
-	text-align: center
-	border: 0
-	background: #383838
-	.footer-copyright
-		padding: 0
+    padding: 15px 5px
+    text-align: center
+    border: 0
+    background: #383838
+    .footer-copyright
+        padding: 0
