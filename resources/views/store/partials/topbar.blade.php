@@ -1,7 +1,7 @@
 <!-- Topbar-->
 <div class="topbar">
 	<div class="topbar-column">
-		<a class="">&nbsp;<b> Whatsapp: 11-6059-5900</b></a>
+		{{-- <a class="">&nbsp;<b> Whatsapp: 11-6059-5900</b></a> --}}
 		<a class="e-mail-field" href="mailto:venta@augustamoi.com">
 			<i class="icon-mail"></i>&nbsp; info@nolita.com.ar
 		</a>
