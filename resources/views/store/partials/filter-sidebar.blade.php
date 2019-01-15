@@ -16,10 +16,10 @@
         <option value="{{ route('store', ['filtrar' => 'populares']) }}">Populares</option>
     </select>  --}}
     <div class="filter-item">
-        <label for="">ORDENAR POR</label><br>
+        <div class="sub-title">ORDENAR POR</div>
         <ul>
-            <li><a href="{{ route('store', ['precio' => 'menor']) }}">Menor precio</a></li>
-            <li><a href="{{ route('store', ['precio' => 'mayor']) }}">Mayor precio</a></li>
+            {{-- <li><a href="{{ route('store', ['precio' => 'menor']) }}">Menor precio</a></li>
+            <li><a href="{{ route('store', ['precio' => 'mayor']) }}">Mayor precio</a></li> --}}
             <li><a href="{{ route('store', ['filtrar' => 'ultimos']) }}">Últimos ingresos</a></li>
             <li><a href="{{ route('store', ['filtrar' => 'descuentos']) }}">Con Descuento</a></li>
             <li><a href="{{ route('store', ['filtrar' => 'populares']) }}">Populares</a></li>
@@ -28,17 +28,8 @@
     </div>
 
 
-
-    {{-- <select class="form-control item" name="categories" onchange="location = this.value;">
-        <option value="Categories" selected disabled>TIPOS DE PRENDA</option>
-        @foreach($categories as $category)
-            <option value="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }} </option>
-        @endforeach
-    </select> --}}
-
-
     <div class="filter-item">
-        <label for="">TIPOS DE PRENDA</label>
+        <div class="sub-title">TIPOS DE PRENDA</div>
         <ul>
             @foreach($categories as $category)
                 <li><a onchange="location = this.value;" value="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }} </a></li>
@@ -47,10 +38,14 @@
     </div>
 
     <div class="filter-item">
-        <label for="">ETIQUETAS</label>
+        <div class="sub-title">ETIQUETAS</div>
         <ul>
             @foreach($tags as $tag)
-                <span class="badge"><a href="{{ route('store.search.tag', $tag->name) }}"> {{ $tag->name }}</a></span>
+                @if($tag->name != 'Last Chance')
+                    @if($tag->name != 'Nuevo Ingreso')
+                        <span class="badge"><a href="{{ route('store.search.tag', $tag->name) }}"> {{ $tag->name }}</a></span>
+                    @endif
+                @endif
             @endforeach
         </ul>
     </div>

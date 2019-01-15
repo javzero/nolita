@@ -101,20 +101,35 @@
                         @endif
                         @if(isset($article))
                         @foreach($article->variants as $variant)
-                        <tr id="VariantID{{ $variant->id }}">
-                            <td class='Combination' data-combination="{{ $variant->color->name }}/{{ $variant->size->name }}">{{ $variant->color->name }} / {{ $variant->size->name }}</td>
+                        @if($variant->color == null)
+                            <tr id="VariantID{{ $variant->id }}">
+                                <td>Color Eliminado</td>
+                                <td></td>
+                                <td>
+                                    <a class="RemoveVariant delete-icon" 
+                                    data-id='{{ $variant->id }}'
+                                    data-route="{{ url('vadmin/destroy_cat_variant') }}" 
+                                    data-rowid="VariantID{{ $variant->id }}">
+                                        <i class='fa fa-trash'></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @else
+                            <tr id="VariantID{{ $variant->id }}">
+                                <td class='Combination' data-combination="{{ $variant->color->name }}/{{ $variant->size->name }}">{{ $variant->color->name }} / {{ $variant->size->name }}</td>
                                 <input name="variants[{{ $variant->combination }}][color]" value="{{ $variant->color_id }}" type='hidden' class='form-control'>
                                 <input name="variants[{{ $variant->combination }}][size]" value="{{ $variant->size_id }}" type='hidden' class='form-control'>
                                 <td class="width-100"><input name="variants[{{ $variant->combination }}][stock]" value='{{ $variant->stock }}' type='number' min='0' class='form-control'></td>
                                 <td>
                                     <a class="RemoveVariant delete-icon" 
-                                        data-id='{{ $variant->id }}'
-                                        data-route="{{ url('vadmin/destroy_cat_variant') }}" 
-                                        data-rowid="VariantID{{ $variant->id }}">
+                                    data-id='{{ $variant->id }}'
+                                    data-route="{{ url('vadmin/destroy_cat_variant') }}" 
+                                    data-rowid="VariantID{{ $variant->id }}">
                                         <i class='fa fa-trash'></i>
                                     </a>
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                         @endif
                     </tbody>
