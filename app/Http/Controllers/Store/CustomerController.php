@@ -10,21 +10,21 @@ class CustomerController extends Controller
 {
     public function update(Request $request)
     {
-        $user = auth()->guard('customer')->user();
-        $item = Customer::find($user->id);
+        $customer = Customer::findOrFail(auth()->guard('customer')->user()->id);
 
         if($request->cuit != null )
         {
             $this->validate($request,[
-                'cuit' => 'max:11|unique:customers,cuit,'.$user->id
+                'cuit' => 'max:11|unique:customers,cuit,'.$customer->id
             ]);
         }
         
         $this->validate($request,[
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'username' => 'required|string|max:20|unique:customers,username,'.$user->id,
-            'email' => 'required|string|email|max:255|unique:customers,email,'.$user->id,
+            'username' => 'required|string|max:20|unique:customers,username,'.$customer->id,
+            'email' => 'required|string|email|max:255|unique:customers,email,'.$customer->id,
+            'cuit' => 'int|digits:11|unique:customers,cuit,'.$customer->id,
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
             'cp' => 'required|max:255',
@@ -39,12 +39,13 @@ class CustomerController extends Controller
             'cp.required' => 'Debe ingresar su código postal'
         ]);
             
-        $item->fill($request->all());
-        $item->save();
-            
+        $customer->fill($request->all());
+        $customer->save();
+        
         if($request->from == "checkout"){
             return redirect()->route('store.checkout')->with('message','Datos actualizados');
-        } 
+        }
+
         return redirect()->route('store.customer-account')->with('message','Datos actualizados');
 
     }

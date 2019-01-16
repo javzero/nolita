@@ -16,7 +16,7 @@
     <tr>
         <td>{{ $item->article->code }}</td>
         <td><a href="">{{ $item->article->name }}</a></td>
-        <td>{{ $item->article->brand->name }}</td>
+        {{-- <td>{{ $item->article->brand->name }}</td> --}}
         <td>{{ $item->size }} | {{ $item->color }} | {{ $item->textile }}</td>
         <td>$ {{ $item->final_price }}</td>
         <td>{{ $item->quantity }}</td>

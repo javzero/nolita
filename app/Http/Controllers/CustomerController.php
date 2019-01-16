@@ -204,7 +204,7 @@ class CustomerController extends Controller
             'name' => 'required|max:255',
             'username' => 'required|max:20|unique:customers,username,'.$customer->id,
             'email' => 'required|email|max:255|unique:customers,email,'.$customer->id,
-            'cuit' => 'min:11|max:11|unique:customers,cuit,'.$customer->id,
+            // 'cuit' => 'digits:11|int|unique:customers,cuit,'.$customer->id,
             'password' => 'required|min:6|confirmed',
             
         ],[

@@ -103,7 +103,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Tipo de Negocio</label>
-                            {!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], null,
+                            {!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], 
+                            Auth::guard('customer')->user()->business_type,
                             ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required' => '']) !!}
                         </div>
                     </div>
