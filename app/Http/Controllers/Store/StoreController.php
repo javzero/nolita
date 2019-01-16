@@ -376,7 +376,7 @@ class StoreController extends Controller
                 // Notify Customer
                 $customerEmail = auth()->guard('customer')->user()->email;
                 //$customerEmail = 'javzero1@gmail.com';
-                Mail::to($customerEmail)->send(new SendMail('Bruna Indumentaria - Compra recibida !', 'CustomerCheckout', ''));
+                Mail::to($customerEmail)->send(new SendMail('Compra recibida !', 'CustomerCheckout', ''));
             } catch (\Exception $e) {
                 //
             }
