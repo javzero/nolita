@@ -60,11 +60,11 @@
 			</footer>
 
 			{{-- Whats App Cta--}}
-			<div class="floating-bottom-cta">
+			{{-- <div class="floating-bottom-cta">
 				<div class="inner">
 					<a href="https://wa.me/5491160595900" target="_blank"><i class="fab fa-whatsapp"></i></a>
 				</div>
-			</div>
+			</div> --}}
 		
 			{{-- Back To Top Button --}}
 			<a class="scroll-to-top-btn" href="#"> <i class="icon-arrow-up"></i> </a>
