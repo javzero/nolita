@@ -161,7 +161,7 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $Customer = new Customer($request->all());
+        $customer = new Customer($request->all());
         $this->validate($request,[
             'name'           => 'required',
             'email'          => 'min:3|max:250|required|unique:customers,email',
@@ -175,13 +175,13 @@ class CustomerController extends Controller
 
         if($request->file('avatar') != null){
             $avatar   = $request->file('avatar');
-            $filename = $Customer->Customername.'.jpg';
+            $filename = $customer->username.'.jpg';
             Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
             $Customer->avatar = $filename;
         }
 
-        $Customer->password = bcrypt($request->password);
-        $Customer->save();
+        $customer->password = bcrypt($request->password);
+        $customer->save();
 
         return redirect('vadmin/customers')->with('message', 'Cliente creado correctamente');
     }
@@ -193,23 +193,24 @@ class CustomerController extends Controller
     */
     public function edit($id)
     {
-        $Customer = Customer::findOrFail($id);
-        return view('vadmin.customers.edit', compact('Customer'));
+        $customer = Customer::findOrFail($id);
+        return view('vadmin.customers.edit', compact('customer'));
     }
 
     public function update(Request $request, $id)
     {
-        $Customer = Customer::findOrFail($id);
+        $customer = Customer::findOrFail($id);
         $this->validate($request,[
             'name' => 'required|max:255',
-            'Customername' => 'required|max:20|unique:customers,Customername,'.$Customer->id,
-            'email' => 'required|email|max:255|unique:customers,email,'.$Customer->id,
+            'username' => 'required|max:20|unique:customers,username,'.$customer->id,
+            'email' => 'required|email|max:255|unique:customers,email,'.$customer->id,
+            'cuit' => 'min:11|max:11|unique:customers,cuit,'.$customer->id,
             'password' => 'required|min:6|confirmed',
             
         ],[
             'name.required' => 'Debe ingresar un nombre',
-            'Customername.required' => 'Debe ingresar un nombre de usuario',
-            'Customername.unique' => 'El nombre de usuario ya está siendo utilizado',
+            'username.required' => 'Debe ingresar un nombre de usuario',
+            'username.unique' => 'El nombre de usuario ya está siendo utilizado',
             'email.required' => 'Debe ingresar un email',
             'email.unique' => 'El email ya existe',
             'password.min' => 'El password debe tener al menos :min caracteres',
@@ -217,19 +218,19 @@ class CustomerController extends Controller
             'password.confirmed' => 'Las contraseñas no coinciden',
         ]);
 
-        $Customer->fill($request->all());
+        $customer->fill($request->all());
 
-        $Customer->password = bcrypt($request->password);
+        $customer->password = bcrypt($request->password);
         if($request->file('avatar') != null){
             $avatar   = $request->file('avatar');
-            $filename = $Customer->Customername.'.jpg';
+            $filename = $customer->username.'.jpg';
             Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
-            $Customer->avatar = $filename;
+            $customer->avatar = $filename;
         }
 
-        $Customer->save();
+        $customer->save();
 
-        return redirect('vadmin/customers')->with('Message', 'Usuario '. $Customer->name .'editado correctamente');
+        return redirect('vadmin/customers')->with('Message', 'Usuario '. $customer->name .'editado correctamente');
     }
 
     // ---------- Update Avatar --------------- //

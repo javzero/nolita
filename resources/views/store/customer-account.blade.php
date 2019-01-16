@@ -22,14 +22,14 @@
                     {{ csrf_field() }}
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="email" name="email" value="{{ Auth::guard('customer')->user()->email }}" required>
+                            <label>Nombre de Usuario</label>
+                            <input class="form-control" type="text" name="username" value="{{ Auth::guard('customer')->user()->username }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nombre de Usuario</label>
-                            <input class="form-control" type="text" name="username" value="{{ Auth::guard('customer')->user()->username }}" required>
+                            <label>E-mail</label>
+                            <input class="form-control" type="email" name="email" value="{{ Auth::guard('customer')->user()->email }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Teléfono</label>
+                            <label>WhatsApp</label>
                             <input class="form-control" type="text" name="phone" value="{{ Auth::guard('customer')->user()->phone }}" required>
                         </div>
                     </div>
@@ -100,7 +100,15 @@
                              @if(Auth::guard('customer')->user()->group == '3') required @endif/>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Tipo de Negocio</label>
+                            {!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], null,
+                            ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required' => '']) !!}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-12">
                         <div class="d-flex flex-wrap justify-content-between align-items-center">
                             <button class="btn btn-main margin-right-none" type="submit">Actualizar Datos</button>
                         </div>

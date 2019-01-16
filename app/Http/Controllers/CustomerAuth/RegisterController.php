@@ -110,11 +110,12 @@ class RegisterController extends Controller
         // if (isset($data['geoloc_id'])) {
         //     $geoLocId = $data['geoloc_id'];
         // }
-
+        
         return Customer::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'username' => $data['username'],
+            'business_type' => $data['business_type'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'address' => $data['address'],
