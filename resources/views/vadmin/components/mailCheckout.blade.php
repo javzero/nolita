@@ -2,7 +2,7 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            {{ APP_BUSSINESS_NAME }} Indumentaria
+            {{ APP_BUSSINESS_NAME }}
         @endcomponent
     @endslot
     

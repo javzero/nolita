@@ -21,8 +21,7 @@
     <li class="links"><a href="{{ url('puntos-de-venta') }}" class="venta">Puntos de venta</a>
 </ul>
 <ul id="social_ul">
-    <li><a href="https://www.facebook.com/santaosadia.indumentaria?fref=ts" target="_blank" class="fb">Facebook</a></li>
-    <li><a href="https://twitter.com/santaosadia" target="_blank" class="tw">Twitter</a></li>
+    
     <li><a href="{{ asset('descargar-pdf/catalogo2017.pdf') }}" target="_blank" class="cat">Catalogo</a></li>
     <li><a href="{{ url('contacto') }}" class="msj">Contacto</a></li>
 </ul> --}}

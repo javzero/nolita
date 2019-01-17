@@ -334,7 +334,7 @@ Route::get('/vadmin/clients', function(){
 //    // Bussiness
 //    return new App\Mail\SendMail('Subject', 'SimpleMail', $message);
 //    // Customer
-//    //return new App\Mail\SendMail('Bruna Indumentaria | Compra recibida !', 'CustomerCheckout', $cart);
+//    //return new App\Mail\SendMail('Nolita | Compra recibida !', 'CustomerCheckout', $cart);
 //});
 
 
