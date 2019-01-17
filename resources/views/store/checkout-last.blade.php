@@ -208,9 +208,8 @@
 								<div id="CouponDiv">
 									<label for="">Ingresá el código de tu cupón</label>
 									<input id="CuponCodeInput" class="form-control mw-200" type="" name="coupon_id" value="">
-									
 									<div class="button-and-loader">
-										<button id="CheckCoupon" type="button" class="btn btn-blue btm-sm">Ingresar</button>
+										<button id="CheckCoupon" type="button" class="btn btn-primary">Ingresar</button>
 										<div class="CouponLoader Hidden"><img src="{{ asset('images/gral/loader-sm.svg') }}" alt=""> Validando...</div>
 										<div id="CouponValidationMessage"></div>
 									</div>

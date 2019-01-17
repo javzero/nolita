@@ -11,7 +11,7 @@
 	<div class="row product-show">
 		<div class="col-md-12">
 			<a href="{{ url('tienda') }}">
-				<button  class="btn btn-main-sm mb-1">
+				<button  class="btn btn-main mb-1">
 					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
 				</button>
 			</a>

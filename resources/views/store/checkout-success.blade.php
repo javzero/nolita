@@ -15,8 +15,8 @@
                     <p class="card-text">Podés revisar el estado del mismo en la <b><a href="{{ route('store.customer-orders') }}">"Lista de Pedidos"</a></b> desde tu perfil<br>
                     
                     <div class="padding-top-1x padding-bottom-1x">
-                        <a class="btn btn-outline-primary btn-sm" href="{{ url('tienda/descargar-comprobante', [$cart->id, 'stream']) }}" target="_blank"><i class="icon-eye"></i> Ver Comprobante</a>
-                        <a class="btn btn-outline-primary btn-sm" href="{{ url('tienda/descargar-comprobante', [$cart->id, 'download']) }}" target="_blank"><i class="icon-download"></i> Descargar Comprobante</a>
+                        <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart->id, 'stream']) }}" target="_blank"><i class="icon-eye"></i> Ver Comprobante</a>
+                        <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart->id, 'download']) }}" target="_blank"><i class="icon-download"></i> Descargar Comprobante</a>
                     </div>
                 </div>
             </div>
