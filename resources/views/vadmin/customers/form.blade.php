@@ -78,15 +78,17 @@
                     </select>
                 @endif
             </div>
-            {{-- <div class="form-group">
-                {!! Form::label('password', 'Contraseña') !!}
-                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Ingrese la contraseña', 'required' => '']) !!}
-            </div>
+            @if(!isset($customer))
+                <div class="form-group">
+                    {!! Form::label('password', 'Contraseña') !!}
+                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Ingrese la contraseña', 'required' => '']) !!}
+                </div>
 
-            <div class="form-group">
-                {!! Form::label('password_confirmation', 'Confirme la contraseña') !!}
-                {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirme la contraseña', 'required' => '']) !!}
-            </div> --}}
+                <div class="form-group">
+                    {!! Form::label('password_confirmation', 'Confirme la contraseña') !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirme la contraseña', 'required' => '']) !!}
+                </div>
+            @endif
             <div class="form-group">
                 <label>Estado</label>
                 {!! Form::select('status', ['1' => 'Activo', '0' => 'Inactivo'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
