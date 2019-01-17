@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\GeoProv;
 use Auth;
 use Image;
 use File;
@@ -156,7 +157,10 @@ class CustomerController extends Controller
 
     public function create()
     {
-        return view('vadmin.customers.create');
+        $geoprovs = GeoProv::pluck('name','id');
+
+        return view('vadmin.customers.create')
+            ->with('geoprovs',$geoprovs);
     }
 
     public function store(Request $request)
@@ -165,8 +169,7 @@ class CustomerController extends Controller
         $this->validate($request,[
             'name'           => 'required',
             'email'          => 'min:3|max:250|required|unique:customers,email',
-            'password'       => 'min:4|max:12listado-usuarios0|required|',
-            
+            'password'       => 'min:4|max:12listado-usuarios0|required|',   
         ],[
             'email.required' => 'Debe ingresar un email',
             'email.unique'   => 'El email ya existe',
@@ -177,7 +180,7 @@ class CustomerController extends Controller
             $avatar   = $request->file('avatar');
             $filename = $customer->username.'.jpg';
             Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
-            $Customer->avatar = $filename;
+            $customer->avatar = $filename;
         }
 
         $customer->password = bcrypt($request->password);
@@ -193,8 +196,12 @@ class CustomerController extends Controller
     */
     public function edit($id)
     {
+        $geoprovs = GeoProv::pluck('name','id');
         $customer = Customer::findOrFail($id);
-        return view('vadmin.customers.edit', compact('customer'));
+
+        return view('vadmin.customers.edit')
+            ->with('geoprovs',$geoprovs)
+            ->with('customer',$customer);
     }
 
     public function update(Request $request, $id)
@@ -205,8 +212,7 @@ class CustomerController extends Controller
             'username' => 'required|max:20|unique:customers,username,'.$customer->id,
             'email' => 'required|email|max:255|unique:customers,email,'.$customer->id,
             // 'cuit' => 'digits:11|int|unique:customers,cuit,'.$customer->id,
-            'password' => 'required|min:6|confirmed',
-            
+            // 'password' => 'required|min:6|confirmed',
         ],[
             'name.required' => 'Debe ingresar un nombre',
             'username.required' => 'Debe ingresar un nombre de usuario',
@@ -215,12 +221,12 @@ class CustomerController extends Controller
             'email.unique' => 'El email ya existe',
             'password.min' => 'El password debe tener al menos :min caracteres',
             'password.required' => 'Debe ingresar una contraseña',
-            'password.confirmed' => 'Las contraseñas no coinciden',
+            // 'password.confirmed' => 'Las contraseñas no coinciden',
         ]);
 
         $customer->fill($request->all());
+        // $customer->password = bcrypt($request->password);
 
-        $customer->password = bcrypt($request->password);
         if($request->file('avatar') != null){
             $avatar   = $request->file('avatar');
             $filename = $customer->username.'.jpg';
@@ -230,7 +236,7 @@ class CustomerController extends Controller
 
         $customer->save();
 
-        return redirect('vadmin/customers')->with('Message', 'Usuario '. $customer->name .'editado correctamente');
+        return redirect('vadmin/customers')->with('Message', 'Cliente '. $customer->name .'editado correctamente');
     }
 
     // ---------- Update Avatar --------------- //
