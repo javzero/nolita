@@ -176,6 +176,7 @@ window.checkVariantStock = function() {
     let form = $('#AddToCartForm');
     let data = form.serialize();
     let allowSubmit = false;
+
     $.ajax({
         url: form.data('route'),
         method: 'GET',
@@ -202,7 +203,9 @@ window.checkVariantStock = function() {
             }
             else
             {
-                $('#Error').html(data.responseText);
+                $('.AvailableStock').html(data.message);
+                $('#AddToCartFormBtn').prop('disabled', true);
+                // $('#Error').html(data.responseText);
                 console.log("Entro en error 1");
             }
         },

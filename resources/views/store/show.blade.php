@@ -9,7 +9,7 @@
 
 <div class="container padding-bottom-3x mb-1 marg-top-25">
 	<div class="row product-show">
-		<div class="col-md-12">
+		<div class="col-md-12 top-actions">
 			<a href="{{ url('tienda') }}">
 				<button  class="btn btn-main mb-1">
 					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
@@ -73,7 +73,6 @@
 			{{-- Title Desktop --}}
 			<div class="title-desktop">
 				<h4>Categoría:&nbsp; <a class="color-white" href="#"><b>{{ $article->category->name }}</b></a></h4>
-				
 				{{--  Article Name  --}}
 				<div class="product-title"><b>{{ $article->name }}</b></div>
 				<span class="product-code"> #{{ $article->code }}</span>
@@ -96,23 +95,33 @@
 			{{-- Article Description --}}
 			<p class="description">{{ strip_tags($article->description) }}</p>
 			<h4>Tela:&nbsp; <a class="color-white" href="#"><b>{{ $article->textile }}</b></a></h4>
-			<h4>Talle:&nbsp; <a class="color-white" href="#"><b>Único</b></a></h4>
+			{{-- <h4>Talle:&nbsp; <a class="color-white" href="#"><b>Único</b></a></h4> --}}
 			@if(Auth::guard('customer')->check())
 			<div class="row">
 				<div class="col-sm-12 descriptions">
+					{{-- NOLITA --}}
 					{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
 						'data-route' => (url('tienda/checkVariantStock')) ]) !!}
 						<input type="hidden" name="article_id" value="{{ $article->id }}">
 						<div class="row color-selector">
 							<div class="col-md-12 pad0">
-								<div class="btn-group-toggle" data-toggle="buttons">
+								<div class="btn-group-toggle form-selector" data-toggle="buttons">
+									<span>Colores:</span>
 									@foreach($colors as $id => $name)
 										<label class="btn btn-main-sm-hollow">
-											<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" checked autocomplete="off"> {{ $name }}
+											<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" autocomplete="off"> {{ $name }}
 										</label>
 									@endforeach
 								</div>
-								<input type="hidden" name="size_id" value="{{ $article->size->first()->id }}">
+								<div class="btn-group-toggle form-selector" data-toggle="buttons">
+									<span>Talles:</span>
+									@foreach($sizes as $id => $name)
+										<label class="btn btn-main-sm-hollow">
+											<input onclick="checkVariantStock()" name="size_id" value="{{ $id }}" type="radio" autocomplete="off"> {{ $name }}
+										</label>
+									@endforeach
+								</div>
+								{{-- <input type="hidden" name="size_id" value="{{ $article->size->first()->id }}"> --}}
 							</div>
 						</div>
 						<div class="row">
@@ -130,14 +139,21 @@
 			@else
 			<br>
 			<div class="col-md-12 pad0">
-				<div class="btn-group-toggle" data-toggle="buttons">
+				<h4>Colores:&nbsp; <a class="color-white" href="#">
+					<b>@foreach($colors as $id => $name) {{ $name }} @if(!$loop->last) | @endif @endforeach</b>
+				</a></h4>
+				<br>
+				<h4>Talles:&nbsp; <a class="color-white" href="#">
+					<b>@foreach($sizes as $id => $name) {{ $name }} @if(!$loop->last) | @endif @endforeach</b>
+				</a></h4>
+				{{-- <div class="btn-group-toggle" data-toggle="buttons">
 					@foreach($colors as $id => $name)
 						<label class="btn btn-main-sm-hollow">
-							<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" checked autocomplete="off"> {{ $name }}
+							<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" checked autocomplete="off"> {{ $name }} dsds
 						</label>
 					@endforeach
 				</div>
-				<input type="hidden" name="size_id" value="{{ $article->size->first()->id }}">
+				<input type="hidden" name="size_id" value="{{ $article->size->first()->id }}"> --}}
 			</div>
 			@endif
 		</div>
