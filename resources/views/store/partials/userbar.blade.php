@@ -46,8 +46,8 @@
                 </div>
             @else
                 <div class="access-buttons">
-                    <a href="{{ route('customer.login') }}">Términos y Condiciones</a>
-                    <a href="{{ route('customer.login') }}">Medidas</a>
+                    <a href="{{ url('terminos-y-condiciones') }}">Términos y Condiciones</a>
+                    <a href="{{ url('medidas') }}">Medidas</a>
                     <a href="{{ route('customer.login') }}">Ingresar</a>
                     <a href="{{ url('tienda/registro') }}">Registrarse</a>
                 </div>
