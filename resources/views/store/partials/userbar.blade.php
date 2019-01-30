@@ -13,6 +13,10 @@
                         <i class="FavMainIcon {{ count($favs['favs']) > 0 ? "fa" : "far" }} fa-heart"></i>
                     </a>
                 </div> --}}
+                <div class="toolbar-nav-link">
+                    <div><a href="{{ url('terminos-y-condiciones') }}">Términos y Condiciones</a></div>
+                    <div><a href="{{ url('medidas') }}">Medidas</a></div>
+                </div>
                 <div class="CartResumen cart" onclick="checkoutSidebar();">
                     <i class="icon-bag"></i><span class="TotalCartItems count">@if($activeCart['totalItems'] == 0) 0 @else {{ $activeCart['totalItems'] }} @endif</span>
                     <span class="CartSubTotal subtotal">@if($activeCart['totalItems'] != 0) $ {{ $activeCart['cartSubTotal'] }} @endif</span>
@@ -42,6 +46,8 @@
                 </div>
             @else
                 <div class="access-buttons">
+                    <a href="{{ route('customer.login') }}">Términos y Condiciones</a>
+                    <a href="{{ route('customer.login') }}">Medidas</a>
                     <a href="{{ route('customer.login') }}">Ingresar</a>
                     <a href="{{ url('tienda/registro') }}">Registrarse</a>
                 </div>

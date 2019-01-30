@@ -89,27 +89,16 @@ class RegisterController extends Controller
             $group = '3'; // Reseller
         }
 
-        // $cuit = null;
-        // $dni = null;
-        // $phone = null;
-        // $geoProvId = null;
-        // $geoLocId = null;
-
-        // if (isset($data['cuit'])) {
-        //     $cuit = $data['cuit'];
-        // }
-        //if (isset($data['dni'])) {
-        //    $dni = $data['dni'];
-        //}
-        // if (isset($data['phone'])) {
-        //     $phone = $data['phone'];
-        // }
-        // if (isset($data['geoprov_id'])) {
-        //     $geoProvId = $data['geoprov_id'];
-        // }
-        // if (isset($data['geoloc_id'])) {
-        //     $geoLocId = $data['geoloc_id'];
-        // }
+        $cuit = NULL;
+        $dni = NULL;
+        $phone = NULL;
+        $geoProvId = NULL;
+        $geoLocId = NULL;
+        if(isset($data['cuit']))       { $cuit = $data['cuit']; }
+        if(isset($data['dni']))        { $dni = $data['dni']; }
+        if(isset($data['phone']))      { $phone = $data['phone']; }
+        if(isset($data['geoprov_id'])) { $geoProvId = $data['geoprov_id']; }
+        if(isset($data['geoloc_id']))  { $geoLocId = $data['geoloc_id']; }
         
         return Customer::create([
             'name' => $data['name'],
@@ -124,7 +113,7 @@ class RegisterController extends Controller
             'geoloc_id' => $data['geoloc_id'],
             'cuit' => $data['cuit'],
             'status' => $status,
-            // 'dni' => $dni,
+            'dni' => $dni,
             'password' => bcrypt($data['password']),
             'group' => $group
         ]);
@@ -157,15 +146,15 @@ class RegisterController extends Controller
         if ($request->group != '2' && $request->group != '3')
             return back()->withErrors('No se ha seleccionado un tipo de usuario');
 
-        if ($request->group == '3') {
+        if ($request->group == '3') 
+        {
             if ($request->CuitOrDni == 'Cuit')
                 if (strlen($request->cuit) != 11)
-                return redirect()->back()->withErrors('El CUIT debe tener 11 números');
+                    return redirect()->back()->withErrors('El CUIT/CUIL debe tener 11 números');
 
             if ($request->CuitOrDni == 'Dni')
                 if (strlen($request->dni) != 8)
-                return redirect()->back()->withErrors('El DNI debe tener 8 números');
-
+                    return redirect()->back()->withErrors('El DNI debe tener 8 números');
         }
 
         $this->validator($request->all())->validate();

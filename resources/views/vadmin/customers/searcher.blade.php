@@ -11,7 +11,7 @@
                 </div>
             </div>
         {!! Form::close() !!}
-        {!! Form::open(['method' => 'GET', 'route' => 'customers.index', 'class' => 'col-md-3 col-xs-12 pad0', 'role' => 'search']) !!} 
+        {{-- {!! Form::open(['method' => 'GET', 'route' => 'customers.index', 'class' => 'col-md-3 col-xs-12 pad0', 'role' => 'search']) !!} 
             <div class="form-control">
                 {!! Form::label('group', 'Tipo de cliente') !!}
                 <div class="input-group">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-        {!! Form::close() !!}
+        {!! Form::close() !!} --}}
     </div>
     {{-- /Search --}}
     <div class="btnClose btn-close"><i class="icon-android-cancel"></i></div>		

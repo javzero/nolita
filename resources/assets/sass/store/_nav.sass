@@ -1,10 +1,28 @@
-.navbar-sticky
+
+.toolbar
+	.toolbar-items .navbar-sticky
+.toolbar
+	.toolbar-nav-link
+		@include flex-center
+		div
+			height: 100%
+			border-right: 1px solid #e1e7ec
+			padding: 0 16px
+		span 
+			display: inline-block
+		a
+			color: #000
+	.inner
+		.tools
+			.account
+				img
+					border-radius: 50%
+
+@media (max-width: 768px)
 	.toolbar
-		.inner
-			.tools
-				.account
-					img
-						border-radius: 50%
+		.toolbar-nav-link
+			display: none
+				
 
 .dropdown-product-item > .dropdown-product-info
 	max-width: 148px

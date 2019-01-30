@@ -70,10 +70,10 @@
 								{{-- ====================================== --}}
 								<div class="image">
 									@foreach($article->tags as $tag)
-										@if($tag->name == 'Last Chance')
+										@if($tag->name == 'Edición Limitada')
 											<div class="ribbon-bordered-text bottom-left-absolute">
-												<div class="text-1">LAST </div>
-												<div class="text-2">CHANCE</div>
+												<div class="text-1">EDICIÓN </div>
+												<div class="text-2">LIMITADA</div>
 											</div>
 											{{-- <div class="overlay-ribbon bottom-left-ribbon">
 												<div class="triangle"></div>

@@ -48,9 +48,9 @@
 				<a href="{{ route('customers.index', ['orderBy' => 'name', 'order' => 'ASC']) }}" >A-Z</a>
 				<a href="{{ route('customers.index', ['orderBy' => 'name', 'order' => 'DESC']) }}" >Z-A</a>
 			@endif
-			<a href="{{ route('customers.index', ['orderBy' => 'name', 'group' => '2']) }}" >Minorístas</a>
-			<a href="{{ route('customers.index', ['orderBy' => 'name', 'group' => '3']) }}" >Mayorístas</a>
-			<a href="{{ route('customers.index', ['orderBy' => 'created_at', 'order' => 'DESC']) }}">Fecha de Registro</a>
+			{{-- <a href="{{ route('customers.index', ['orderBy' => 'name', 'group' => '2']) }}" >Minorístas</a>
+			<a href="{{ route('customers.index', ['orderBy' => 'name', 'group' => '3']) }}" >Mayorístas</a> --}}
+			{{-- <a href="{{ route('customers.index', ['orderBy' => 'created_at', 'order' => 'DESC']) }}">Fecha de Registro</a> --}}
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
@@ -77,8 +77,9 @@
 						<th>Nombre (Usuario)</th>
 						<th>Email</th>
 						<th>Registro</th>
-						<th style="min-width: 150px">Tipo</th>
+						{{-- <th style="min-width: 150px">Tipo</th> --}}
 						<th>Estado</th>
+						<th>Activo</th>
 					@else
 						<th></th>
 					@endif
@@ -101,7 +102,7 @@
 								<td>{{ $item->email }}</td>
 								<td>{{ transDateT($item->created_at) }}</td>
 								<td>
-									{!! Form::select('group', [1 => 'Esperando aprobación', 2 => 'Minorísta', 3 => 'Mayorísta'], $item->group, ['class' => 'form-control', 'onChange' => 'updateCustomerGroup(this, this.dataset.id)', 'data-id' => $item->id]) !!}
+									{!! Form::select('group', [1 => 'Esperando aprobación', 3 => 'Aprobado'], $item->group, ['class' => 'form-control', 'onChange' => 'updateCustomerGroup(this, this.dataset.id)', 'data-id' => $item->id]) !!}
 								</td>
 								{{-- {{ clientGroupTrd($item->group) }}</td> --}}
 								<td class="w-50 pad0 centered">

@@ -15,7 +15,7 @@
 @section('content')
 <div class="container padding-bottom-3x">
 	<div class="row centered-form">
-        <form class="login-box form-simple inner" method="POST" action="{{ route('customer.process-register') }}">
+        <form id="RegisterForm" class="login-box form-simple inner" method="POST" action="{{ route('customer.process-register') }}">
             {{ csrf_field() }}
             <input id="IsResellerCheckbox" type="checkbox" name="isreseller" class="Hidden">
             <div class="NormaClientTitle">
@@ -71,25 +71,14 @@
                 </div> 
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Tipo de Negocio</label>
                         {!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], null,
                         ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required' => '']) !!}
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                {{-- CUIT --}}
-                <div class="col-sm-6 form-group{{ $errors->has('cuit') ? ' has-error' : '' }}">
-                    <label>CUIT</label>
-                    <input  type="text" name="cuit" class="form-control round" placeholder="Ingrese su CUIT" value="{{ old('cuit') }}" required>
-                    @if ($errors->has('cuit'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('cuit') }}</strong>
-                        </span>
-                    @endif
-                </div> 	
+
                 {{-- PHONE --}}
                 <div class="col-sm-6 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                     <label>WhatsApp</label>
@@ -101,6 +90,7 @@
                     @endif
                 </div> 	
             </div>
+            
             <div class="row">
                 {{-- ADDRESS --}}
                 <div class="col-sm-6 form-group{{ $errors->has('address') ? ' has-error' : '' }}">
@@ -143,6 +133,24 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <label>Ingrese CUIT/CUIL o DNI</label>
+                    <div id="UseCuitContainer" class="">
+                        <input id="CuitInput" type="number" name="cuit" class="IfResellerEnable form-control round" min="0" placeholder="Ingrese número de CUIT/CUIL">
+                    </div>
+                    <div id="UseDniContainer" class="Hidden">
+                        <input id="DniInput" type="number" name="dni" class="IfResellerEnable form-control round" min="0" placeholder="Ingrese número de DNI">
+                    </div>
+                    <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                        <div class="col-md-3">
+                            <label class="radio-inline"><input id="UseCuit" type="radio" name="CuitOrDni" value="Cuit" checked> CUIT</label>
+                            <label class="radio-inline"><input id="UseDni"  type="radio" name="CuitOrDni" value="Dni"> DNI</label>
+                        </div>
+                        <div id="CuitDniValidation" class="col-md-9"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 {{-- Password --}}
                 <div class="col-sm-6 form-group{{ $errors->has('password') ? ' has-error' : '' }} position-relative has-icon-left">
                     <label for="reg-fn">Contraseña</label>
@@ -164,21 +172,25 @@
                     @endif
                 </div>
             </div>
-            {{-- <input type="hidden" value="null" name="cuit"> --}}
-            {{-- <input type="hidden" value="null" name="dni"> --}}
+            {{-- Group 3 is reseller --}}
             <input type="hidden" value="3" name="group">
             {{-- Submit --}}
-            <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock"></i> Registrarse</button>
+            <button id="SubmitFormBtn" type="button" class="btn btn-primary btn-block cursor-pointer"><i class="icon-unlock"></i> Registrarse</button>
+            <button id="SubmitForm" type="submit" class="Hidden"> Registrarse</button>
             <div class="bottom-text">Ya tiene cuenta? | <a href="{{ route('customer.login') }}">Ingresar</a></div>
         </form>
     </div>
 </div>
+@if(isset($selectedLoc))
+    dd($selectedLoc)
+@endif
 @endsection
 
 @section('scripts')
     @include('store.components.bladejs')
     <script>
         $(document).ready(function(){
+
             $('.GeoProvSelect').on('change', function(){
                 let prov_id = $(this).val();
 
@@ -191,6 +203,46 @@
             });
 
 
+            $('#UseCuit').click(function(){
+                $('#UseCuitContainer').removeClass('Hidden');
+                $('#UseDniContainer').addClass('Hidden');
+                // $('#UseCuit').prop('checked', true);
+                // $('#UseDni').prop('checked', false);
+            });
+
+            $('#UseDni').click(function(){
+                $('#UseCuitContainer').addClass('Hidden');
+                $('#UseDniContainer').removeClass('Hidden');
+                // $('#UseCuit').prop('checked', false);
+                // $('#UseDni').prop('checked', true);
+            });
+
+            $('#SubmitFormBtn').on('click', function(){
+                let cuit = $('#CuitInput').val();
+                let dni = $('#DniInput').val();
+                
+                if($('#UseCuit').prop('checked'))
+                    if(cuit.length != 11)
+                        $('#CuitDniValidation').html("El CUIT debe tener 11 números");   
+                    else
+                    {
+                        $('#CuitDniValidation').html(" ");
+                        $('#SubmitForm').click();
+                    }
+                
+                if($('#UseDni').prop('checked'))
+                    if(dni.length != 8)
+                        $('#CuitDniValidation').html("El DNI debe tener 8 números");
+                    else
+                    {
+                        $('#CuitDniValidation').html(" ");
+                        $('#SubmitForm').click();
+                    }
+            });
+
+
+            
+           
         });
         </script>
 @endsection

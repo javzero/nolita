@@ -18,7 +18,12 @@
     @foreach($items as $item)
     <tr>
         <td class="w-50">#{{ $item->id }}</td>
-        <td class="max-text">{{ $item->name }} {{ $item->surname }}<br>({{ groupTrd($item->group) }}) <br>{{ $item->cuit }}</td>
+        <td class="max-text">{{ $item->name }} {{ $item->surname }}<br>
+            {{-- ({{ groupTrd($item->group) }}) --}}
+        CUIT: <br>{{ $item->cuit }}</td> 
+        @if($item->dni != '' || $iten->dni != null)
+        DNI: <br>{{ $item->dni }}</td> 
+        @endif
         <td>{{ $item->email }}</td>
         <td>@if($item->address != '') {{ $item->address }} <br>({{$item->cp }}) @endif</td>
         <td>@if($item->geoprov['name'] != '') {{ $item->geoprov['name'] }} <br>({{ $item->geoloc['name'] }}) @endif</td>
