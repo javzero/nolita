@@ -15,13 +15,16 @@
 @endsection
 
 @section('table-content')
-    @foreach($items as $item)
+@foreach($items as $item)
     <tr>
         <td class="w-50">#{{ $item->id }}</td>
         <td class="max-text">{{ $item->name }} {{ $item->surname }}<br>
+        {{ $item->business_type}} <br>
             {{-- ({{ groupTrd($item->group) }}) --}}
+        @if($item->cuit != '' || $item->cuit != null)
         CUIT: <br>{{ $item->cuit }}</td> 
-        @if($item->dni != '' || $iten->dni != null)
+        @endif
+        @if($item->dni != '' || $item->dni != null)
         DNI: <br>{{ $item->dni }}</td> 
         @endif
         <td>{{ $item->email }}</td>

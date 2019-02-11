@@ -108,7 +108,7 @@
 								<div class="btn-group-toggle form-selector" data-toggle="buttons">
 									<span>Colores:</span>
 									@foreach($colors as $id => $name)
-										<label class="btn btn-main-sm-hollow">
+										<label class="ColorsSelector btn btn-main-sm-hollow">
 											<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" autocomplete="off"> {{ $name }}
 										</label>
 									@endforeach
@@ -116,7 +116,7 @@
 								<div class="btn-group-toggle form-selector" data-toggle="buttons">
 									<span>Talles:</span>
 									@foreach($sizes as $id => $name)
-										<label class="btn btn-main-sm-hollow">
+										<label class="SizesSelector btn btn-main-sm-hollow">
 											<input onclick="checkVariantStock()" name="size_id" value="{{ $id }}" type="radio" autocomplete="off"> {{ $name }}
 										</label>
 									@endforeach
@@ -126,7 +126,7 @@
 						</div>
 						<div class="row">
 							{{-- Display Remaining Stock --}}
-							<div class="AvailableStock col-md-12"></div>
+							<span class="AvailableStock action-info-container"></span>
 						</div>
 						@if($article->status == 1)
 						<div class="input-with-btn">
@@ -142,7 +142,7 @@
 			</div>
 			@else
 			<br>
-			<div class="col-md-12 pad0">
+			<div class="col-md-12 pad0">onload="clickMe()"
 				<h4>Colores:&nbsp; <a class="color-white" href="#">
 					<b>@foreach($colors as $id => $name) {{ $name }} @if(!$loop->last) | @endif @endforeach</b>
 				</a></h4>
@@ -204,4 +204,15 @@
 
 @section('scripts')
 	@include('store.components.bladejs')
+	<script>
+		let sizes = $('.SizesSelector');
+		let colors = $('.ColorsSelector');
+
+		if(sizes.length == 1)
+			sizes.click();
+		if(colors.length == 1)
+			colors.click();
+
+
+	</script>
 @endsection

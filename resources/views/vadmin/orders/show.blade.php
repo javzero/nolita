@@ -1,57 +1,76 @@
 @extends('vadmin.partials.main')
 @section('title')
-    Vadmin | Pedido #{{ $order['rawdata']->id }}
+Vadmin | Pedido #{{ $order['rawdata']->id }}
 @endsection
 
 {{-- HEADER --}}
 @section('header')
-	@component('vadmin.components.header-list')
-		@slot('breadcrums')
-		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('orders.index')}}">Listado de pedidos</a></li>
-            <li class="breadcrumb-item active">Pedido <b>#{{ $order['rawdata']->id }} </b></li>
-		@endslot
-		@slot('actions')
-			{{-- Actions --}}
-			<div class="list-actions">
-                {{-- Edit --}}
-				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
-				<input id="EditId" type="hidden">
-				{{-- Delete --}}
-				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
-				<input id="ModelName" type="hidden" value="cartitems">
-				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
-				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
-
-			</div>
-		@endslot
-		@slot('searcher')
-			@include('vadmin.catalog.payments.searcher')
-		@endslot
-	@endcomponent
+@component('vadmin.components.header-list')
+@slot('breadcrums')
+<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
+<li class="breadcrumb-item"><a href="{{ route('orders.index')}}">Listado de pedidos</a></li>
+<li class="breadcrumb-item active">Pedido <b>#{{ $order['rawdata']->id }} </b></li>
+@endslot
+@slot('actions')
+{{-- Actions --}}
+<div class="list-actions">
+    {{-- Edit --}}
+    <button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
+    <input id="EditId" type="hidden">
+    {{-- Delete --}}
+    {{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
+    <input id="ModelName" type="hidden" value="cartitems">
+    <button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+    <input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
+    
+</div>
+@endslot
+@slot('searcher')
+@include('vadmin.catalog.payments.searcher')
+@endslot
+@endcomponent
 @endsection
 
 {{-- CONTENT --}}
 @section('content')
-    <div class="row">
-        @component('vadmin.components.list')
-            @slot('title')
-            Pedido #{{ $order['rawdata']->id }}
-                    <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#CustomerDataModal"></b>
-                        {{ $order['rawdata']->customer->name }} {{ $order['rawdata']->customer->surname }}</a> 
-                <p>
-                    {{ transDateT($order['rawdata']->created_at) }}</span>
-                </p>
-            @endslot
+<div class="row">
+    @component('vadmin.components.list')
+    @slot('title')
+    Pedido N°: {{ $order['rawdata']->id }}
+    <span class="small-text">({{ transDateT($order['rawdata']->created_at) }})</span>
+    <br>
+    <p>
+        <b>Cliente: <a href="" data-toggle="modal" data-target="#CustomerDataModal"></b>
+        {{ $order['rawdata']->customer->name }} {{ $order['rawdata']->customer->surname }}</a>  ({{ $order['rawdata']->customer->business_type }})
+        <br>
+        @if($order['rawdata']->customer->cuit != null)
+        <b>Cuit:</b> {{ $order['rawdata']->customer->cuit }} <br>
+        @endif
+        @if($order['rawdata']->customer->dni != null)
+        <b>Dni:</b> {{ $order['rawdata']->customer->dni }} <br>
+        @endif
+        <b>Dirección:</b> {{ $order['rawdata']->customer->address }} <br>
+        @if($order['rawdata']->customer->geoprov_id)
+        {{ $order['rawdata']->customer->geoprov->name }} - 
+        @endif
+        @if($order['rawdata']->customer->geoloc_id)
+        {{ $order['rawdata']->customer->geoloc->name }}
+        @endif
+        ({{ $order['rawdata']->customer->cp }}) <br>
+        {{ $order['rawdata']->customer->phone }}
+        @if($order['rawdata']->customer->phone2 != '')
+        | {{ $order['rawdata']->customer->phone2 }}
+        @endif
+    </p>
+        @endslot
             @slot('actions')
-            
             @if($order['rawdata']->status != 'Active')
             <a class="icon-container green" href="{{ url('vadmin/exportOrderCsv', [$order['rawdata']->id]) }}" data-toggle="tooltip" title="Exportar .XLS" target="_blank">
                 <i class="fas fa-file-excel"></i></a>
-            <a class="icon-container blue" href="{{ url('vadmin/exportOrderXls', [$order['rawdata']->id]) }}" data-toggle="tooltip" title="Exportar .CSV" target="_blank">
-                <i class="fas fa-file-excel"></i></a>
-            <a class="icon-container red" href="{{ url('vadmin/descargar-comprobante', [$order['rawdata']->id, 'download']) }}" data-toggle="tooltip" title="Exportar .PDF" target="_blank">
-                <i class="fas fa-file-pdf"></i></a>
+                <a class="icon-container blue" href="{{ url('vadmin/exportOrderXls', [$order['rawdata']->id]) }}" data-toggle="tooltip" title="Exportar .CSV" target="_blank">
+                    <i class="fas fa-file-excel"></i></a>
+                    <a class="icon-container red" href="{{ url('vadmin/descargar-comprobante', [$order['rawdata']->id, 'download']) }}" data-toggle="tooltip" title="Exportar .PDF" target="_blank">
+                        <i class="fas fa-file-pdf"></i></a>
             <a class="icon-container black" href="{{ url('vadmin/descargar-comprobante', [$order['rawdata']->id, 'stream']) }}" data-toggle="tooltip" title="Ver PDF online" target="_blank">
                 <i class="fas fa-eye"></i></a>
             @endif

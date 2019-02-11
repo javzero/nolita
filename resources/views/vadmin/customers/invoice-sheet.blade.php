@@ -7,7 +7,7 @@
             <th>Cód.</th>
             <th>Nombre y Apellido</th>
             <th>Nombre de Usuario</th>
-            {{-- <th>Tipo de Cliente</th> --}}
+            <th>Tipo de Cliente</th>
             <th>E-Mail</th>
             <th>CUIT</th>
             <th>DNI</th>
@@ -29,6 +29,7 @@
         <td class="max-text">{{ $item->name }} {{ $item->surname }}</td>
         {{-- <td>{{ groupTrd($item->group) }}</td> --}}
         <td>{{ $item->username }}</td>
+        <td>{{ $item->business_type }}</td>
         <td>{{ $item->email }}</td>
         <td>@if($item->cuit != null || $item->cuit != 'null') {{ $item->cuit }} @endif </td>
         <td>@if($item->dni != null || $item->dni != 'null') {{ $item->dni }} @endif </td>
