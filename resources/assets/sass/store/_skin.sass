@@ -2,10 +2,8 @@
 //      Store Skin
 //--------------------------------------------------
 
-
 body
 	background-color: #fff
-
 
 h1,h2,h3,h4,h5,h6
 	font-family: $font2
@@ -46,7 +44,6 @@ $d: #ff9292
 				color: #f9f9f9
 				&:hover
 					color: red
-
 
 // Index
 .topbar
@@ -99,9 +96,18 @@ $d: #ff9292
 
 
 
-// FORMS
+// BUTTONS
 .btn
 	border-radius: 0
+
+.pink-btn
+	background-color: $third-color
+	color: #fff !important
+	@include transition(0.2s)
+	&:hover
+		background-color: $third-color !important
+		filter: brightness(1.2)
+		color: #000 !important
 
 
 // FORMS
@@ -253,3 +259,5 @@ $d: #ff9292
 
 .text-links a
 	color: #000
+
+

@@ -49,7 +49,7 @@
                     <a href="{{ url('terminos-y-condiciones') }}">Términos y Condiciones</a>
                     <a href="{{ url('medidas') }}">Medidas</a>
                     <a href="{{ route('customer.login') }}">Ingresar</a>
-                    <a href="{{ url('tienda/registro') }}">Registrarse</a>
+                    <a class="pink-btn"  href="{{ url('tienda/registro') }}">Registrarse</a>
                 </div>
                 {{-- <div class="access-icons">
                     <a href="{{ route('customer.login') }}"><button class="icon-button"><i class="fas fa-sign-in-alt"></i></button></a>
