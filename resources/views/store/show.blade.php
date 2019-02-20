@@ -142,7 +142,7 @@
 			</div>
 			@else
 			<br>
-			<div class="col-md-12 pad0">onload="clickMe()"
+			<div class="col-md-12 pad0">
 				<h4>Colores:&nbsp; <a class="color-white" href="#">
 					<b>@foreach($colors as $id => $name) {{ $name }} @if(!$loop->last) | @endif @endforeach</b>
 				</a></h4>
@@ -212,7 +212,5 @@
 			sizes.click();
 		if(colors.length == 1)
 			colors.click();
-
-
 	</script>
 @endsection
