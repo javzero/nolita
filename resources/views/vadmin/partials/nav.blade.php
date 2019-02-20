@@ -155,24 +155,30 @@
 		<li class="nav-item has-sub {{ Menu::activeMenu('catalogo') }}"><a href="#"><i class="icon-clipboard"></i>
 			<span data-i18n="nav.menu_levels.main" class="menu-title">Catálogo</span></a>
 			<ul class="menu-content" style="">
-				{{-- Article List --}}
-				<li class="@if(app('request')->input('redirect') != 'stock')
-					{{ Menu::activeMenu('catalogo') }}
-					@endif">
-					<a href="{{ route('catalogo.index') }}" class="menu-item">
-					<i class="icon-list"></i> Listado</a></li>
-				{{-- Article Stock --}}
-				{{-- <li class="@if(app('request')->input('redirect') == 'stock') active @endif">
-					<a href="{{ route('catalogo.index', ['redirect' => 'stock']) }}" class="menu-item">
-						<i class="fas fa-box-open"></i> Stock
-					</a>
-				</li> --}}
 				{{-- New Article --}}
 				<li class="{{ Menu::activeMenu('catalogo.create') }}">
 					<a href="{{ route('catalogo.create') }}" class="menu-item">
 						<i class="icon-plus-round"></i> Nuevo Artículo
 					</a>
 				</li>
+				{{-- Article List --}}
+				<li class="@if(app('request')->input('redirect') != 'stock')
+					{{ Menu::activeMenu('catalogo') }}
+					@endif">
+					<a href="{{ route('catalogo.index', ['status' => '1']) }}" class="menu-item">
+					<i class="icon-list"></i> Listado</a></li>
+				{{-- Article List --}}
+				<li class="@if(app('request')->input('redirect') != 'stock')
+					{{ Menu::activeMenu('catalogo') }}
+					@endif">
+					<a href="{{ route('catalogo.index', ['status' => '0']) }}" class="menu-item">
+					<i class="icon-list"></i> Pausados</a></li>
+				{{-- Article Stock --}}
+				{{-- <li class="@if(app('request')->input('redirect') == 'stock') active @endif">
+					<a href="{{ route('catalogo.index', ['redirect' => 'stock']) }}" class="menu-item">
+						<i class="fas fa-box-open"></i> Stock
+					</a>
+				</li> --}}
 				{{-- Sizes --}}
 				<li class="has-sub is-shown {{ Menu::activeMenu('cat_sizes') }}">
 					<a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
@@ -402,9 +408,9 @@
 			<i class="fas fa-sliders-h"></i> Configuracion 
 		</a></li>
 		{{-- TESTS --}}
-		<li class="{{ Menu::activeMenu('tests') }}"><a href="{{ route('vadmin.tests') }}" class="menu-item">
+		{{-- <li class="{{ Menu::activeMenu('tests') }}"><a href="{{ route('vadmin.tests') }}" class="menu-item">
 			<i class="fas fa-sliders-h"></i> Tests 
-		</a></li>
+		</a></li> --}}
 		{{-- Public sections --}}
 		<li class="navigation-header"><span data-i18n="nav.category.support">Secciones Públicas</span>
 			<i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>

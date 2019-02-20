@@ -77,6 +77,9 @@ class CatalogArticle extends Model
         return $query->where('status', '1');
     }
 
+    public function scopeInActive($query){
+        return $query->where('status', '0');
+    }
 
     // Search for all article variants, 
     // sum all variants stock and return articles

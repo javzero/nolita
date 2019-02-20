@@ -17,24 +17,24 @@
 					<h4 class="card-title"><i class="icon-android-hand"></i> Bienvenid@ {{ Auth::user()->name }}</h4>
 				</div>
 				<div class="card-body collapse in">
-					<div class="card-block">
-						<div class="card-text">
+					{{-- <div class="card-block"> --}}
+						{{-- <div class="card-text"> --}}
 							{{-- <h1><i style="color: red" class="fa fa-exclamation-circle"></i> Mensaje del desarrollador</h1> --}}
 							{{-- <hr class="softhr"> --}}
-							<p>
+							{{-- <p> --}}
 								{{-- <span style="color: blue; font-size: 2rem"><i class="fas fa-fire"></i> Actualización!</span>
 								<hr class="softhr">
 
 								- Nueva barra lateral
 								- Nuevos filtros en tienda (Con mejor responsividad en móvil)
 								<hr class="softhr"> --}}
-								<span style="color: blue; font-size: 1rem; font-weight: 300"><i class="fas fa-cogs"></i> Estamos en puesta a punto: </span><br>
+								{{-- <span style="color: blue; font-size: 1rem; font-weight: 300"><i class="fas fa-cogs"></i> Estamos en puesta a punto: </span><br>
 								Pronto vamos a tener todas las funcionalidades personalizas configuradas para poner en marcha la tienda.
 								<hr class="softhr">
-								Saludos ! <b>Leandro</b>
-							</p>
-						</div>
-					</div>
+								Saludos ! <b>Leandro</b> --}}
+							{{-- </p> --}}
+						{{-- </div> --}}
+					{{-- </div> --}}
 				</div>
 			</section>
 			<div class="row">

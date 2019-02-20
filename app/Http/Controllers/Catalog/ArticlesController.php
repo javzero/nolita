@@ -37,6 +37,9 @@ class ArticlesController extends Controller
         $category = $request->get('category');
         $order = $request->get('orden');
         $rowName = 'stock';
+        $status = $request->get('status');
+        if($status == null)
+            $status = 1;
 
         if ($request->orden_af) 
         {
@@ -70,31 +73,49 @@ class ArticlesController extends Controller
             $order = 'DESC';
         }
 
-        if ($order == 'limitados') 
-        {
-            $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);
-        } 
-        else 
-        {
-            // ---------- Queries ------------    
-            if (isset($code)) 
-            {
-                $articles = CatalogArticle::where('code', 'LIKE', "%" . $code . "%")->paginate($pagination);
-            } 
-            elseif (isset($name)) 
-            {
-                $articles = CatalogArticle::searchName($name)->orderBy($rowName, $order)->paginate($pagination);
-            } 
-            elseif (isset($category))
-            {
-                $articles = CatalogArticle::where('category_id', $category)->orderBy($rowName, $order)->paginate($pagination);
-            } 
-            else
-            {
-                $articles = CatalogArticle::orderBy($rowName, $order)->paginate($pagination);
-            }
 
+        if($status == 0)
+        {
+            // Inactive Items
+            if (isset($code)) {
+                $articles = CatalogArticle::where('code', 'LIKE', "%" . $code . "%")->inactive()->paginate($pagination);
+            } elseif (isset($name)) {
+                $articles = CatalogArticle::searchName($name)->inactive()->orderBy($rowName, $order)->paginate($pagination);
+            } elseif (isset($category)) {
+                $articles = CatalogArticle::where('category_id', $category)->inactive()->orderBy($rowName, $order)->paginate($pagination);
+            } else {
+                $articles = CatalogArticle::orderBy($rowName, $order)->inactive()->paginate($pagination);
+            }
         }
+        else
+        {
+            if ($order == 'limitados') 
+            {
+                $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);
+            } 
+            else 
+            {
+                // ---------- Queries ------------    
+                if (isset($code)) 
+                {
+                    $articles = CatalogArticle::where('code', 'LIKE', "%" . $code . "%")->active()->paginate($pagination);
+                } 
+                elseif (isset($name)) 
+                {
+                    $articles = CatalogArticle::searchName($name)->orderBy($rowName, $order)->active()->paginate($pagination);
+                } 
+                elseif (isset($category))
+                {
+                    $articles = CatalogArticle::where('category_id', $category)->active()->orderBy($rowName, $order)->paginate($pagination);
+                } 
+                else
+                {
+                    $articles = CatalogArticle::orderBy($rowName, $order)->active()->paginate($pagination);
+                }
+
+            }
+        }
+
         $categories = CatalogCategory::orderBy('id', 'ASC')->pluck('name', 'id');
         
         // ---------- Redirect -------------

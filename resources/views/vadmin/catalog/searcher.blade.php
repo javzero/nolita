@@ -1,3 +1,8 @@
+@php
+    $status = request()->status;
+    if($status == null)
+        $status = 1;
+@endphp
 <div id="SearchFilters" class="search-filters">
     <div class="row">
         {!! Form::open(['id' => 'SearchForm', 'method' => 'GET', 'route' => 'catalogo.index', 'class' => 'col-md-2 col-xs-12 pad0', 'role' => 'search']) !!} 
@@ -5,6 +10,7 @@
                 {!! Form::label('code', 'Buscar por código') !!}
                 <div class="input-group">
                     {!! Form::text('code', null, ['class' => 'form-control', 'aria-describedby' => 'search']) !!}
+                    <input type="hidden" name="status" value ="{{ $status }}">
                     <div class="input-group-append">
                         <button type="submit" id="SearchFiltersBtn" class="btnSm btnMain appendBtn"><i class="icon-search"></i></button>
                     </div>
@@ -16,6 +22,7 @@
                 {!! Form::label('name', 'Buscar por nombre') !!}
                 <div class="input-group">
                     {!! Form::text('name', null, ['class' => 'form-control', 'aria-describedby' => 'search']) !!}
+                    <input type="hidden" name="status" value ="{{ $status }}">
                     <div class="input-group-append">
                         <button type="submit" id="SearchFiltersBtn" class="btnSm btnMain appendBtn"><i class="icon-search"></i></button>
                     </div>
@@ -27,6 +34,7 @@
                 {!! Form::label('category', 'Buscar por categoría') !!}
                 <div class="input-group">
                     {!! Form::select('category', $categories, ['class' => 'form-control', 'aria-describedby' => 'search']) !!}
+                    <input type="hidden" name="status" value ="{{ $status }}">
                     <div class="input-group-append">
                         <button type="submit" id="SearchFiltersBtn" class="btnSm btnMain appendBtn"><i class="icon-search"></i></button>
                     </div>
