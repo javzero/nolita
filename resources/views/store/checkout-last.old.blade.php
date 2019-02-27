@@ -2,15 +2,23 @@
 
 @section('styles')
 	<style>
+		@media (max-width: 768px) {
+			.finish-checkout-btn {  
+				display: none
+			}
+		}
+
 		.floating-bottom-cta {  
 			bottom: 70px
 		}
-				
+   
 	</style>
-@endsection
+@section('styles')
 
-@section('content')
+@section('content')dd
 	<input id="CartId" class="form-control" type="hidden" name="cart_id" value="{{ $activeCart['rawdata']->id }}">
+	{{--------- Checkout Error Messages ----------}}
+	{{-- Missing shipping method Message --}}
 	@if(session('error')=='low-quantity')
 		<div class="alert alert-success alert-dismissible fade show text-center margin-bottom-1x">
 			<span class="alert-close" data-dismiss="alert"></span>
@@ -40,14 +48,14 @@
 			Debe completar todos sus datos para poder realizar pedidoss<br>
 		</div>
 	@endif
-	<div class="container checkout-container padding-bottom-3x mb-2 marg-top-25">
+  	<div class="container checkout-container padding-bottom-3x mb-2 marg-top-25">
 		<div class="back-to-store"><a href="{{ route('store.checkout') }}"><i class="icon-arrow-left"></i> Atrás</a></div>
-		<div class="row">
+   		<div class="row">
 			<div class="col-md-12">
-				<h3>Carro de Compras | Checkout</h3>
+                <h3>Carro de Compras | Checkout</h3>
 			</div>{{-- / col-md-12 --}}
 		</div> {{-- / Row --}}
-			{{-- Data & Sidebar --}}
+		{{-- Data & Sidebar --}}
 		<div class="row ">
 			<div class="col-sm-8">
 				{!! Form::open(['route' => 'store.updatePaymentAndShipping', 'class' => 'row small-form loader-on-submit dont-submit-on-enter', 'method' => 'POST']) !!}
@@ -65,6 +73,12 @@
 							</option>
 							@endforeach
 						</select>
+						{{-- RADIO BTN STYLE --}}
+						{{-- @foreach($payment_methods as $payment)
+							<input type="radio" name="payment_method_id" onclick="submit()" value="{{ $payment->id }}" 
+							@if($payment->id == $activeCart['rawdata']->payment_method_id ) checked @endif>
+							{{ $payment->name }} @if($payment->percent > 0) - (Recargo %{{ $payment->percent }})@endif<br>
+						@endforeach --}}
 					</div>
 					<div class="col-md-6">
 						<div class="sub-title"><i class="fas fa-truck"></i> Forma de envío</div>
@@ -79,9 +93,15 @@
 								</option>
 							@endforeach
 						</select>
+						{{-- RADIO BTN STYLE --}}
+						{{-- @foreach($shippings as $shipping)
+							<input type="radio" name="shipping_id" onclick="submit()" value="{{ $shipping->id }}" 
+							@if($shipping->id == $activeCart['rawdata']->shipping_id ) checked @endif>
+							{{ $shipping->name }} @if($shipping->price > 0) - (Costo ${{ $shipping->price }})@endif<br>
+						@endforeach --}}
 					</div>
 				{!! Form::close() !!} 
-			<br>
+				<br>
 			{{-- Proccess Checkout --}}
 			{!! Form::open(['id' => 'CheckoutForm', 'route' => 'store.processCheckout', 'method' => 'POST', 'class' => 'loader-on-submit']) !!}	
 				<div class="row small-form">
@@ -218,5 +238,26 @@
 @endsection
 
 @section('scripts')
-	@include('store.components.bladejs')
+    @include('store.components.bladejs')
+    <script>
+		// Submit Checkout from mobile
+		function submitCheckoutForm()
+		{
+			$('#CheckoutForm').submit();
+		}
+		
+		// Check for locality
+		$(document).ready(function(){
+			var actualGeoProv = "{{ Auth::guard('customer')->user()->geoprov_id }}";
+			
+			if(actualGeoProv != ''){
+				getGeoLocs(actualGeoProv);
+			}
+			
+			$('.GeoProvSelect').on('change', function(){
+				let prov_id = $(this).val();
+				getGeoLocs(prov_id);
+			});
+		});
+	</script>
 @endsection

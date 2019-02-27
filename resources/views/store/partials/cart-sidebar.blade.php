@@ -49,7 +49,7 @@
                     <div class="input-with-btn quantity">
                         {{-- Send this data to JSON via js with .Item-Data class --}}
                         <input class="Item-Data small-input under-element" name="data" type="number"  
-                        min="1" max="{{ $item->quantity + $item->article->stock }}" value="{{ $item->quantity }}" required="" 
+                        min="1" max="{{ $item->quantity + $item->variant->stock }}" value="{{ $item->quantity }}" required="" 
                         data-price="{{$articlePrice}}" data-id="{{ $item->id }}" data-variant="{{ $item->variant_id }}" data-toggle="tooltip" data-placement="top" title="Stock máximo {{ $item->article->stock }}">
                     </div>
                     <div class="delete-item">
@@ -70,7 +70,8 @@
         </div>
         <div class="text-right">
             {{-- <button type="button" class="SubmitDataBtn main-btn-sm">Continuar <i class="fa fa-arrow-right"></i></button> --}}
-            <a href="{{ route('store.checkout')}}" class="btn-main-sm-hollow">Actualizar <i class="fa fa-sync"></i></a>
+            <a class="UpdateDataBtn btn-main-sm-hollow">Actualizar <i class="fa fa-sync"></i></a>
+            {{-- <a href="{{ route('store.checkout')}}" class="btn-main-sm-hollow">Actualizar <i class="fa fa-sync"></i></a> --}}
             <a href="{{ route('store.checkout')}}" class="btn-main-sm-black">CONTINUAR <i class="fa fa-arrow-right"></i></a>
         </div>
     @else

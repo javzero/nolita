@@ -376,14 +376,15 @@ class StoreController extends Controller
             $cart->save();
             try
             {
+                $customerEmail = auth()->guard('customer')->user()->email;
+                // dd($customerEmail);
+                //$customerEmail = 'javzero1@gmail.com';
+                // Notify Customer
+                Mail::to($customerEmail)->send(new SendMail('Compra recibida !', 'CustomerCheckout', ''));
                 // Notify Bussiness
                 Mail::to(APP_EMAIL_1)->send(new SendMail('Compra Recibida', 'Checkout', $cart));
-                // Notify Customer
-                $customerEmail = auth()->guard('customer')->user()->email;
-                //$customerEmail = 'javzero1@gmail.com';
-                Mail::to($customerEmail)->send(new SendMail('Compra recibida !', 'CustomerCheckout', ''));
             } catch (\Exception $e) {
-                //
+                dd($e->getMessage());
             }
 
         } catch (\Exception $e) {
