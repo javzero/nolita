@@ -160,7 +160,8 @@ class CartsController extends Controller
             {
                 foreach($cart->items as $item)
                 {
-                    $this->updateVariantStock($item->variant->id, $item->quantity);
+			if($item->variant)
+        	            $this->updateVariantStock($item->variant->id, $item->quantity);
                 }
             }
             $cart->delete();
@@ -174,32 +175,33 @@ class CartsController extends Controller
 
 
     public function destroy(Request $request)
-    {   
-        // dd($request->all());
+    {
         $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);
-        try 
+        try
         {
             foreach ($ids as $id) {
                 $cart = Cart::find($id);
+
                 // If order has been canceled dont return stock (Its been returned before)
                 if($cart->status != 'Canceled')
                 {
                     foreach($cart->items as $item){
-                        $this->updateVariantStock($item->variant->id, $item->quantity);
+			if($item->variant)
+				$this->updateVariantStock($item->variant->id, $item->quantity);
                     }
                 }
-                $cart->delete();
+		$cart->delete();
             }
             return response()->json([
                 'success'   => true,
-            ]); 
-        }  
+            ]);
+        }
         catch (\Exception $e)
         {
             return response()->json([
                 'success'   => false,
                 'error'    => 'Error: '.$e->getMessage()
-            ]);    
-        } 
+            ]);
+        }
     }
 }
