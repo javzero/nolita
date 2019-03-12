@@ -8,8 +8,8 @@
 
 @section('content')
 	<div class="header-banner">
-		<div class="desktop"><img src="{{ asset('images/web/home-banner.jpg')}}" alt=""></div>
-		<div class="mobile"><img src="{{ asset('images/web/home-banner-mobile.jpg')}}" alt=""></div>
+		<div class="desktop"><img src="{{ asset('images/web/home-banner.jpg')}}" alt="Home Promo Banner"></div>
+		<div class="mobile"><img src="{{ asset('images/web/home-banner-mobile.jpg')}}" alt="Home Promo Banner"></div>
 	</div>
 	<div class="mobile-filters">
 		@include('store.partials.filters-mobile')
