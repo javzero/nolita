@@ -30,8 +30,13 @@
                     <tbody>
                         @foreach($order->items as $item)
                         <tr class="content">
-                            <td>#{{ $item->article->code }}</td>
-                            <td>{{ $item->article->name }}</td>
+                            @if($item->article)
+                                <td>#{{ $item->article->code }}</td>
+                                <td>{{ $item->article->name }}</td>
+                            @else
+                                <td>Discontinuado</td>
+                                <td>{{ $item->article_name }}</td>
+                            @endif
                             <td>{{ $item->size }}</td>
                             <td>{{ $item->color }}</td>
                             <td>$ {{ $item->final_price }} (x {{ $item->quantity }})</td>

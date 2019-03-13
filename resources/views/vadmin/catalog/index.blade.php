@@ -11,18 +11,18 @@
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('catalogo.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo artículo</a>
-				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
-				{{-- Edit --}}
-				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
-				<input id="EditId" type="hidden">
+				<a href="{{ route('catalogo.create') }}" class="btnSm btnMain"><i class="icon-plus-round"></i>  Nuevo artículo</a>
+				<button id="SearchFiltersBtn" class="btnSm btnMain"><i class="icon-ios-search-strong"></i></button>
 				{{-- Add Similar --}}
-				<button class="CreateFromAnotherBtn btn btnBlue Hidden"><i class="icon-pencil2"></i> Publicar Similar</button>
+				<button class="CreateFromAnotherBtn btnSm btnMain Hidden"><i class="icon-pencil2"></i> Publicar Similar</button>
 				<input id="CreateFromAnotherId" type="hidden">
+				{{-- Edit --}}
+				<button class="EditBtn btnSm btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
+				<input id="EditId" type="hidden">
 				{{-- Delete --}}
 				{{-- THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER --}}
 				<input id="ModelName" type="hidden" value="catalogo">
-				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<button class="DeleteBtn btnSm btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
 				@if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']) || isset($_GET['orden']))

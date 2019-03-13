@@ -160,7 +160,7 @@ class CartsController extends Controller
             {
                 foreach($cart->items as $item)
                 {
-			if($item->variant)
+			        if($item->variant)
         	            $this->updateVariantStock($item->variant->id, $item->quantity);
                 }
             }
@@ -186,8 +186,8 @@ class CartsController extends Controller
                 if($cart->status != 'Canceled')
                 {
                     foreach($cart->items as $item){
-			if($item->variant)
-				$this->updateVariantStock($item->variant->id, $item->quantity);
+            			if($item->variant)
+				            $this->updateVariantStock($item->variant->id, $item->quantity);
                     }
                 }
 		$cart->delete();

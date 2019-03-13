@@ -15,6 +15,7 @@ use App\CatalogImage;
 use App\CatalogSize;
 use App\CatalogColor;
 use App\CatalogVariant;
+use App\Cart;
 use Validator;
 use File;
 use PDF;
@@ -884,7 +885,21 @@ class ArticlesController extends Controller
                     File::Delete(public_path($thumb . $image->name));
                     $image->delete();
                 }
-                $delete = $record->delete();
+                
+                // Check if exits in active carts and delete
+                $activeCarts = Cart::where('status', 'Active')->get();
+                foreach($activeCarts as $cartItem)
+                {
+                    foreach($cartItem->items as $item)
+                    {
+                        if($item->article_id == $id)
+                        {
+                            $item->delete();
+                        }   
+                    }
+                }
+                
+                $record->delete();
             }
             return response()->json([
                 'success' => true,

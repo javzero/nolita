@@ -96,7 +96,13 @@ Vadmin | Pedido #{{ $order['rawdata']->id }}
                             <span class="custom-control-description"></span>
                         </label>
                     </td> --}}
-                    <td><a href="">{{ $item->article->name }} (#{{ $item->article->code }})</a></td>
+                    <td>
+                        @if($item->article)
+                            (#{{ $item->article->code }})
+                        @else 
+                            (Discontinuado) 
+                        @endif
+                        
                     {{-- Sizr | Color | Textile --}}
                     <td>
                         {{ $item->color }} @if($item->color != '') | @endif 
