@@ -3,26 +3,28 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Cart;
-use App\Settings;
 use Carbon\Carbon;
+use App\Cart;
+use App\Traits\CartTrait;
 use Log;
 
-class DeleteInactiveCarts extends Command
+class DeleteOldCarts extends Command
 {
+    use CartTrait;
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'carts:purge';
+    protected $signature = 'delete:oldcarts';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Delete all carts older than 24hs';
+    protected $description = 'Deleting old carts';
 
     /**
      * Create a new command instance.
@@ -41,20 +43,21 @@ class DeleteInactiveCarts extends Command
      */
     public function handle()
     {
-        $settings = Settings::find(1);
-        $time = $settings['cartPurgeTime'];
+        $maxTime = 24;
+        $time = Carbon::now()->subHour($maxTime);
+        $oldCarts = Cart::where('status','ACTIVE')->where('created_at', '<=', $time)->get();
         
-        Log::info('Se ejecutó el comando borrar carros | Fecha: ' . Carbon::now());
-        // $inactiveCarts = Cart::where('created_at', '<', Carbon::now());
+        Log::info("-----------------------------------");
+        Log::info("Manejando carros de compra con más de " . $maxTime . "hs");
+        Log::info("Fecha límite: " . $time);
+        Log::info("-----------------------------------");
         
-        // // $inactiveCarts = Cart::where('status', 'Active')->get();
-        // foreach($inactiveCarts as $cart)
-        // {
-            
-        //     dd($cart->id);
-        //     // $cart->status = 'Finished';
-        //     // $cart->save();
-        // }
-        // Log::info("Test de comando");
+        $ids = [];
+        foreach($oldCarts as $oldCart)
+        {
+            array_push($ids, $oldCart->id);
+        }
+        
+        $this->manageOldCarts($ids, 'cancel');
     }
 }
