@@ -97,6 +97,7 @@ Vadmin | Pedido #{{ $order['rawdata']->id }}
                         </label>
                     </td> --}}
                     <td>
+                        {{ $item->article_name }}
                         @if($item->article)
                             (#{{ $item->article->code }})
                         @else 
