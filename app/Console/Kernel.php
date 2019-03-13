@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('carts:purge')->everyMinute();
-        $schedule->command('delete:oldcarts')->everyMinute();
+        $schedule->command('delete:oldcarts')->daily();
         // $schedule->command('delete:oldcarts')->cron('* * * * *');
     }
 

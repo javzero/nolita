@@ -66,7 +66,7 @@ trait CartTrait {
         $payment_percent = 0;
         $shipping_price = 0;
         $activeCart = null;
-        $minQuantity = $this->settings->reseller_min;
+        $minQuantity = $this->settings->rescanceleller_min;
         $minMoney = $this->settings->reseller_money_min;
 
         if(auth()->guard('customer')->check())
