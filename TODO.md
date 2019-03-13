@@ -1,13 +1,13 @@
 # Errores - Fallas - Bugs - Glitches
 
 # NOLITA
-- Carros activos se deben borrar en 24hs.
-- Arreglar funcion de borrar carros activos
 - Checkear que los datos requeridos al momento del checkout
 - Mensaje de que el carro se va a borrar en 24hs.
+
+# HECHO
 - Error en descarga de PDF clientes
-
-
+- Arreglar funcion de borrar carros activos
+- Carros activos se deben borrar en 24hs.
 
 # Dev Permisos 
 

@@ -172,7 +172,8 @@
 					{{ Menu::activeMenu('catalogo') }}
 					@endif">
 					<a href="{{ route('catalogo.index', ['status' => '0']) }}" class="menu-item">
-					<i class="icon-list"></i> Pausados</a></li>
+					<i class="icon-list"></i> Pausados</a>
+				</li>
 				{{-- Article Stock --}}
 				{{-- <li class="@if(app('request')->input('redirect') == 'stock') active @endif">
 					<a href="{{ route('catalogo.index', ['redirect' => 'stock']) }}" class="menu-item">

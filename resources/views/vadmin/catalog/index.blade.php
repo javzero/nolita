@@ -43,8 +43,13 @@
 		{{-- Search --}}
 		<div class="row inline-links">
 			<b>Órden:</b> 
-			<a href="{{ route('catalogo.index', ['orden_af' => 'ASC']) }}" >A-Z</a>
-			<a href="{{ route('catalogo.index', ['orden_af' => 'DESC']) }}" >Z-A</a>
+			@if(isset($_GET['status']))
+				@php($status = $_GET['status'])
+			@else
+				@php($status = 1)
+			@endif
+			<a href="{{ route('catalogo.index', ['orden_af' => 'ASC', 'status' => $status]) }}" >A-Z</a>
+			<a href="{{ route('catalogo.index', ['orden_af' => 'DESC', 'status' => $status]) }}" >Z-A</a>
 			{{-- <a href="{{ route('catalogo.index', ['orden' => 'ASC']) }}">Stock Bajo</a> 
 			<a href="{{ route('catalogo.index', ['orden' => 'DESC']) }}">Stock Alto</a>
 			<a href="{{ route('catalogo.index', ['orden' => 'limitados']) }}" >Stock Limitado</a> --}}
@@ -151,8 +156,8 @@
 			{{--  Pagination  --}}
 			<div class="inline-links">
 				<b>Resultados por página:</b>
-				<a href="{{ route('catalogo.index', ['orden' => 'ASC', 'results' => '50']) }}">50</a>
-				<a href="{{ route('catalogo.index', ['orden' => 'ASC', 'results' => '100']) }}">100</a>
+				<a href="{{ route('catalogo.index', ['orden' => 'ASC', 'results' => '50', 'status' => $status]) }}">50</a>
+				<a href="{{ route('catalogo.index', ['orden' => 'ASC', 'results' => '100', 'status' => $status]) }}">100</a>
 			</div>
 			{!! $articles->appends(request()->query())->render() !!}
 		</div>
