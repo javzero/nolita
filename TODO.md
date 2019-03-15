@@ -5,8 +5,8 @@
 - Mensaje de que el carro se va a borrar en 24hs.
 
 # HECHO
-- Error en descarga de PDF clientes
 - Arreglar funcion de borrar carros activos
+- Error en descarga de PDF clientes
 - Carros activos se deben borrar en 24hs.
 
 # Dev Permisos 

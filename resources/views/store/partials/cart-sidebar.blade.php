@@ -73,6 +73,11 @@
             <a class="UpdateDataBtn btn-main-sm-hollow">Actualizar <i class="fa fa-sync"></i></a>
             {{-- <a href="{{ route('store.checkout')}}" class="btn-main-sm-hollow">Actualizar <i class="fa fa-sync"></i></a> --}}
             <a href="{{ route('store.checkout')}}" class="btn-main-sm-black">CONTINUAR <i class="fa fa-arrow-right"></i></a>
+            <div class="bottom-info">
+            <hr>
+            <p>Los <b>carros abiertos permanecen por 24 hs</b> y luego se dan de baja.  <br>
+                No demores más de este tiempo para confirmar tu pedido o te quedarás sin stock</p>
+            </div>
         </div>
     @else
         <div class="empty-cart">
