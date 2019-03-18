@@ -34,12 +34,8 @@
                                                 <span><b>Código:</b> #{{ $item->article->code }}</span>
                                                 <span><b>Categoría:</b> {{ $item->article->category->name}}</span>
                                                 <span><b>Tela:</b> {{ $item->article->textile }}</span>
-                                                <span><b>Color:</b> {{ $item->article->color }}</span>
-                                                <span><b>Talle:</b> 
-                                                    @foreach($item->article->atribute1 as $size)
-                                                        {{ $size->name }}
-                                                    @endforeach
-                                                    </span>
+                                                <span><b>Color:</b> {{ $item->color }}</span>
+                                                <span><b>Talle:</b> {{ $item->size }}</span>
                                                 </div>
                                             </div>
                                         </div>
