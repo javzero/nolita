@@ -4,6 +4,16 @@
 //         Numbers, Calcs. & Converts       //
 //////////////////////////////////////////////
 
+function brMe($text, $separator)
+{
+    $brText = explode($separator, $text);
+    $finalText = '';
+    foreach($brText as $item) {
+        $finalText .= $item. '<br>';
+    }
+    return $finalText;
+}
+
 function showPrice($articlePrice, $articleDiscount)
 {
     $price = calcValuePercentNeg($articlePrice, $articleDiscount);

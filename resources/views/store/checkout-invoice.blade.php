@@ -1,7 +1,5 @@
 @extends('store.partials.invoice')
-
 @section('title', 'Comprobante | Pedido N°'.$order->id)
-
 
 @section('content')
     <div class="invoice-ticket">
@@ -15,6 +13,14 @@
                     <b>Dirección: </b> {{ $order->customer->address }} | {{ $order->customer->geoprov->name }} | {{ $order->customer->geoloc->name }} <br>
                     <b>Teléfonos: </b> {{ $order->customer->phone }} @if($order->customer->phone2) | {{ $order->customer->phone2 }} @endif<br>
                     <b>E-mail: </b> {{ $order->customer->email }} <br>
+                </div>
+                <div class="top-text">
+                    <b>Método de pago:</b> <br>
+                     {{ $order->payment->name }} <br>
+                    @if($order->payment->name == 'Efectivo' || $order->payment->name == 'Acordar con Vendedor')
+                    @else
+                        {!! brMe($order->payment->description, '|') !!}
+                    @endif
                 </div>
                 <table class="table">
                     <thead>
