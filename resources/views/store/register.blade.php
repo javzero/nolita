@@ -82,7 +82,7 @@
                 {{-- PHONE --}}
                 <div class="col-sm-6 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                     <label>WhatsApp</label>
-                    <input  type="text" name="phone" class="form-control round" placeholder="Ingrese su teléfono" value="{{ old('phone') }}" required>
+                    <input  type="number" name="phone" class="form-control round" placeholder="Ej.: (+54) 11 1234-5678 " value="{{ old('phone') }}" required>
                     @if ($errors->has('phone'))
                         <span class="help-block">
                             <strong>{{ $errors->first('phone') }}</strong>
