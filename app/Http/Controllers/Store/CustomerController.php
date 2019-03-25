@@ -10,21 +10,27 @@ class CustomerController extends Controller
 {
     public function update(Request $request)
     {
+        // dd($request->all());
         $customer = Customer::findOrFail(auth()->guard('customer')->user()->id);
 
         if($request->cuit != null )
         {
             $this->validate($request,[
-                'cuit' => 'max:11|unique:customers,cuit,'.$customer->id
+                'cuit' => 'digits:11|unique:customers,cuit,'.$customer->id
+                ]);
+            }
+            
+        if($request->dni != null )
+        {
+            $this->validate($request,[
+                'dni' => 'digits:8|unique:customers,dni,'.$customer->id
             ]);
         }
-        
         $this->validate($request,[
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'username' => 'required|string|max:20|unique:customers,username,'.$customer->id,
             'email' => 'required|string|email|max:255|unique:customers,email,'.$customer->id,
-            'cuit' => 'int|digits:11|unique:customers,cuit,'.$customer->id,
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
             'cp' => 'required|max:255',

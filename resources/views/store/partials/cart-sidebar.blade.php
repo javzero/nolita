@@ -75,7 +75,7 @@
             <a href="{{ route('store.checkout')}}" class="btn-main-sm-black">CONTINUAR <i class="fa fa-arrow-right"></i></a>
             <div class="bottom-info">
             <hr>
-            <p>Los <b>carros abiertos permanecen por 24hs</b> y luego se dan de baja.  <br>
+            <p>Los <b>carros abiertos permanecen por 48hs</b> y luego se dan de baja.  <br>
                 No demores más de este tiempo para confirmar tu pedido o te quedarás sin stock</p>
             </div>
         </div>

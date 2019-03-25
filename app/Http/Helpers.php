@@ -4,6 +4,11 @@
 //         Numbers, Calcs. & Converts       //
 //////////////////////////////////////////////
 
+function validateValueLenght($data, $value)
+{
+    //
+}
+
 function brMe($text, $separator)
 {
     $brText = explode($separator, $text);

@@ -36,7 +36,7 @@
         <td>{{ $item->address }}</td>
         <td>{{ $item->geoprov['name'] }}</td>
         <td>{{ $item->geoloc['name'] }}</td>
-        <td>{{$item->cp }}</td>
+        <td>{{ $item->cp }}</td>
         <td>{{ $item->phone }}</td>
         <td>{{ $item->phone2 }}</td>
         <td>@if($item->staticstics('totalCarts') != 0) {{ $item->staticstics('totalCarts') }} @endif</td>

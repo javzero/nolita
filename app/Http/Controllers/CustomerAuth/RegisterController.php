@@ -82,20 +82,32 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        // dd($data);
+
         $status = '1'; // Active
         $group = '2'; // Min 
         if ($data['group'] == '3') {
             $group = '3'; // Reseller
         }
-
+        
         $cuit = NULL;
         $dni = NULL;
         $phone = NULL;
         $geoProvId = NULL;
         $geoLocId = NULL;
-        if(isset($data['cuit']))       { $cuit = $data['cuit']; }
-        if(isset($data['dni']))        { $dni = $data['dni']; }
+
+        if($data['CuitOrDni'] == 'Dni')
+        {
+            if(isset($data['dni']))
+                $dni = $data['dni'];
+            $data['cuit'] = NULL;
+        } 
+        elseif ($data['CuitOrDni'] == 'Cuit') 
+        {
+            if(isset($data['cuit']))
+                $cuit = $data['cuit'];
+            $data['dni'] = NULL;
+        }
+
         if(isset($data['phone']))      { $phone = $data['phone']; }
         if(isset($data['geoprov_id'])) { $geoProvId = $data['geoprov_id']; }
         if(isset($data['geoloc_id']))  { $geoLocId = $data['geoloc_id']; }
@@ -106,12 +118,12 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'business_type' => $data['business_type'],
             'email' => $data['email'],
-            'phone' => $data['phone'],
+            'phone' => $phone,
             'address' => $data['address'],
             'cp' => $data['cp'],
-            'geoprov_id' => $data['geoprov_id'],
-            'geoloc_id' => $data['geoloc_id'],
-            'cuit' => $data['cuit'],
+            'geoprov_id' => $geoProvId,
+            'geoloc_id' => $geoLocId,
+            'cuit' => $cuit,
             'status' => $status,
             'dni' => $dni,
             'password' => bcrypt($data['password']),
@@ -142,22 +154,22 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // Custom Horrible Validations
         if ($request->group != '2' && $request->group != '3')
             return back()->withErrors('No se ha seleccionado un tipo de usuario');
 
-        if ($request->group == '3') 
+        if ($request->CuitOrDni == 'Cuit')
         {
-            if ($request->CuitOrDni == 'Cuit')
-                if (strlen($request->cuit) != 11)
-                    return redirect()->back()->withErrors('El CUIT/CUIL debe tener 11 números');
-
-            if ($request->CuitOrDni == 'Dni')
-                if (strlen($request->dni) != 8)
-                    return redirect()->back()->withErrors('El DNI debe tener 8 números');
+            if (strlen($request->cuit) != 11)
+                return redirect()->back()->withErrors('El CUIT/CUIL debe tener 11 números');
         }
 
-        $this->validator($request->all())->validate();
+        if ($request->CuitOrDni == 'Dni')
+        {
+            if (strlen($request->dni) != 8)
+                return redirect()->back()->withErrors('El DNI debe tener 8 números');
+        }
+
+        // $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
 
