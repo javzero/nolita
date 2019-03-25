@@ -169,7 +169,7 @@ class RegisterController extends Controller
                 return redirect()->back()->withErrors('El DNI debe tener 8 números');
         }
 
-        // $this->validator($request->all())->validate();
+        $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
 
