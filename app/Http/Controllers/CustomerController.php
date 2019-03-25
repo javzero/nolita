@@ -105,17 +105,6 @@ class CustomerController extends Controller
         
     }
 
-    // public function exportXls($params)
-    // {   
-    //     $items = $this->getData($params);
-    //     Excel::create('listado-de-clientes', function($excel) use($items){
-    //         $excel->sheet('Listado', function($sheet) use($items) {   
-    //             $sheet->loadView('vadmin.customers.invoice-excel', 
-    //             compact('items'));
-    //         });
-    //     })->export('xls');         
-    // }
-
     public function exportSheet($params, $format)
     {
         $items = $this->getData($params);
@@ -198,14 +187,30 @@ class CustomerController extends Controller
     {
         $geoprovs = GeoProv::pluck('name','id');
         $customer = Customer::findOrFail($id);
-
+        
         return view('vadmin.customers.edit')
-            ->with('geoprovs',$geoprovs)
-            ->with('customer',$customer);
+        ->with('geoprovs',$geoprovs)
+        ->with('customer',$customer);
     }
-
+    
     public function update(Request $request, $id)
     {
+        // dd($request->all());
+        if($request->dni != NULL)
+        {
+            $this->validate($request,[
+                'dni' => 'digits:8|unique:customers,dni,'.$id
+            ]);
+        }
+        
+        if($request->cuit != null )
+        {
+            $this->validate($request,[
+                'cuit' => 'digits:11|unique:customers,cuit,'.$id
+            ]);
+        }
+            
+        
         $customer = Customer::findOrFail($id);
         $this->validate($request,[
             'name' => 'required|max:255',

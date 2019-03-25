@@ -32,7 +32,11 @@
             </div> --}}
             <div class="form-group">
                 <label>CUIT</label>
-                {!! Form::text('cuit', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el CUIT']) !!}
+                {!! Form::number('cuit', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el CUIT']) !!}
+            </div>
+            <div class="form-group">
+                <label>DNI</label>
+                {!! Form::number('dni', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el DNI']) !!}
             </div>
             <div class="form-group">
                 <label>WhatsApp</label>
@@ -46,16 +50,16 @@
                 <label>Dirección</label>
                 {!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la dirección']) !!}
             </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
             <div class="form-group">
                 <label>Código Postal</label>
                 {!! Form::text('cp', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el código postal']) !!}
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
             <div class="form-group">
                 <label>Provincia</label>
                 @if(isset($customer))
-                    {!! Form::select('geoprov_id', $geoprovs, $customer->geoloc_id,
+                    {!! Form::select('geoprov_id', $geoprovs, $customer->geoprov_id,
                     ['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
                 @else
                     {!! Form::select('geoprov_id', $geoprovs, null,

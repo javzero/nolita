@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {
     public function update(Request $request)
     {
-        // dd($request->all());
+        
         $customer = Customer::findOrFail(auth()->guard('customer')->user()->id);
 
         if($request->cuit != null )
@@ -18,7 +18,7 @@ class CustomerController extends Controller
             $this->validate($request,[
                 'cuit' => 'digits:11|unique:customers,cuit,'.$customer->id
                 ]);
-            }
+        }
             
         if($request->dni != null )
         {
@@ -26,6 +26,7 @@ class CustomerController extends Controller
                 'dni' => 'digits:8|unique:customers,dni,'.$customer->id
             ]);
         }
+        
         $this->validate($request,[
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
