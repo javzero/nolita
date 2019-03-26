@@ -10,14 +10,18 @@ class CustomerController extends Controller
 {
     public function update(Request $request)
     {
-        
+        // dd($request->all());
         $customer = Customer::findOrFail(auth()->guard('customer')->user()->id);
+        if($request->cuit == null && $request->dni == null)
+        {
+            return redirect()->back()->withErrors('Debe ingresar su CUIT');
+        }
 
         if($request->cuit != null )
         {
             $this->validate($request,[
                 'cuit' => 'digits:11|unique:customers,cuit,'.$customer->id
-                ]);
+            ]);
         }
             
         if($request->dni != null )

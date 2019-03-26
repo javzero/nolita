@@ -116,6 +116,16 @@ class CustomerController extends Controller
         })->export($format);
     }
 
+    public function exportForGmail()
+    {
+        $items = Customer::all();
+        Excel::create('listado-de-clientes', function($excel) use($items){
+            $excel->sheet('Listado', function($sheet) use($items) {   
+                $sheet->loadView('vadmin.customers.exportForGmail', 
+                compact('items'));
+            });
+        })->export("CSV");
+    }
 
     public function getData($params)
     {

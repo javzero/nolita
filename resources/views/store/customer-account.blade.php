@@ -96,14 +96,14 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>CUIT/CUIL</label>
-                            <input class="form-control" type="number" size="11" name="cuit" value="{{ Auth::guard('customer')->user()->cuit }}" placeholder="Ingrese su número de CUIT/CUIL"
-                            @if(Auth::guard('customer')->user()->group == '3') required @endif/>
+                            <input class="form-control" type="number" size="11" name="cuit" value="{{ Auth::guard('customer')->user()->cuit }}" placeholder="Ingrese su número de CUIT/CUIL"/>
                         </div>
                     </div>
                     <div class="col-sm-6">
+                        <div class="form-group">
                             <label>DNI</label>
-                            <input class="form-control" type="number" size="8" name="dni" value="{{ Auth::guard('customer')->user()->dni }}" placeholder="Ingrese su número de DNI"
-                            @if(Auth::guard('customer')->user()->group == '3') required @endif/>
+                            <input class="form-control" type="number" size="8" name="dni" value="{{ Auth::guard('customer')->user()->dni }}" placeholder="Ingrese su número de DNI"/>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">

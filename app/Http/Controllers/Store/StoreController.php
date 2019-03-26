@@ -345,11 +345,9 @@ class StoreController extends Controller
     {
         // Check if customer has required data completed
         $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
-        
         if($checkCustomer['response'] == 'error')
-        {
-            return redirect()->route('store.checkout-last')->with('message', $checkCustomer['message']);
-        }
+            return redirect()->back()->withErrors($checkCustomer['message']);
+
         
         $cart = Cart::findOrFail($request->cart_id);  
         // Check if customer choose payment method
@@ -358,7 +356,7 @@ class StoreController extends Controller
         // Check if customer choose payment method and shipping
         if($cart->shipping_id == null)
             return back()->with('error', 'missing-shipping');
-        
+        dd("Ok seguir");
         // Set fixed prices on checkout confirmation
         foreach($cart->items as $item){
             $order = CartItem::find($item->id);
@@ -454,7 +452,6 @@ class StoreController extends Controller
     public function checkAndUpdateCustomerData($customerId, $data)
     {
         // dd($customerId);
-
         $customer = Customer::findOrFail($customerId);
         // $customer = Customer::where('id', $customerId)->first();
         // dd($data->all());
@@ -478,17 +475,30 @@ class StoreController extends Controller
             'cp.required' => 'Debe ingresar su código postal'
         ]);
         $data = $data->all();
-            
         if($customer->group == '3')
         {
-            if($data['cuit'] == '' || $data['cuit'] == null)
-            {    
-                return (['response' => 'error', 'message' => 'Debe ingresar su número de CUIT']);
+            if($data['cuit'] != NULL) 
+            {
+                if(strlen($data['cuit']) != '11')
+                    return (['response' => 'error', 'message' => 'El CUIT debe tener 11 dígitos']);
             }
+            
+            if($data['dni'] != NULL) 
+            {
+                if(strlen($data['dni']) != '8')
+                return (['response' => 'error', 'message' => 'El DNI debe tener 8 dígitos']);
+            }
+            
+            if($data['dni'] == NULL && $data['cuit'] == null)
+            {    
+                return (['response' => 'error', 'message' => 'Debe ingresar su número de CUIT o DNI']);
+            } 
         } 
+
         $customer->fill($data);
         $customer->save();
         $response = (['response' => 'success', 'message' => 'Datos actualizados']);
+        return $response;
            
     }
 
