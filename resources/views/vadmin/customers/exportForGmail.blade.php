@@ -60,7 +60,7 @@
         <td>{{ $item->geoprov['name'] }} - {{ $item->geoloc['name'] }}</td>
         <td>{{ $item->cp }}</td>
         {{-- Directory Server - Mileage	- Occupation - Hobby - Sensitivity - Priority -	Subject - Notes - Language - Photo --}}
-        <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+        <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
         <td>* myContacts</td>
         {{-- EMails  ---}}
         <td></td>
