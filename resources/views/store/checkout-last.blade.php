@@ -171,7 +171,7 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>DNI</label>
-								<input class="form-control dson" type="text" name="dni" value="{{ Auth::guard('customer')->user()->dni }}" placeholder="Ingrese su número de CUIT"/>
+								<input class="form-control dson" type="text" name="dni" value="{{ Auth::guard('customer')->user()->dni }}" placeholder="Ingrese su número de DNI"/>
 							</div>
 						</div>
 					@endif
