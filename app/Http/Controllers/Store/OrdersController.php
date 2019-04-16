@@ -193,7 +193,8 @@ class OrdersController extends Controller
             // $article = CatalogArticle::where('id', $item['id'])->first();
             // $cartItem->article_name = $article->name;
             // dd($cartItem);
-            $cartItem->save();    
+            $cartItem->save();   
+            $this->updateVariantStock($item['variant_id'], -$item['quantity']); 
         }
         
         return redirect()->route('orders.index', ['status' => 'All'])->with('message','Pedido cargado exitosamente');
