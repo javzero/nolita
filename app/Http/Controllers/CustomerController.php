@@ -7,10 +7,10 @@ use App\Customer;
 use App\GeoProv;
 use Auth;
 use Image;
+use Cookie;
+use Excel;
 use File;
 use PDF;
-use Excel;
-use Cookie;
 
 class CustomerController extends Controller
 {

@@ -83,10 +83,13 @@ class CartsController extends Controller
 
         if($oldStatus == 'Canceled')
         {
-            return response()->json([
-                'response' => false,
-                'message' => 'Estás tratando de revivir una órden cancelada. Esta función aún no ha sido diseñada.'
-            ]); 
+            if($request->status != 'Active')
+            {
+                return response()->json([
+                    'response' => false,
+                    'message' => 'Los pedidos Cancelados solo se pueden cambiar a Activos.'
+                ]);
+            }
         }
 
         if($request->status == "Canceled")

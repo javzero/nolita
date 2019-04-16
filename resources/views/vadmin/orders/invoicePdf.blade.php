@@ -66,14 +66,24 @@
                         <tr>
                             <td></td><td></td>
                             <td>Método de envío</td>
-                            <td>{{ $cart['rawdata']->shipping->name }}</td>
-                            <td>$ {{ $cart['shippingCost'] }}</td>
+                            @if($cart['rawdata']->shipping))
+                                <td>{{ $cart['rawdata']->shipping->name }}</td>
+                                <td>$ {{ $cart['shippingCost'] }}</td>
+                            @else
+                                <td>No Seleccionado</td>
+                                <td></td>
+                            @endif
                         </tr>
                         <tr>
                             <td></td><td></td>
+                            @if($cart['rawdata']->shipping))
                             <td>Forma de pago <span class="dont-break" style="white-space: nowrap">(% {{ $cart['paymentPercent'] }})</span></td>
                             <td>{{ $cart['rawdata']->payment->name }}</td>
                             <td>$ {{ calcPercent($cart['subTotal'], $cart['paymentPercent']) }}</td>
+                            @else
+                            <td>Forma de pago</td>
+                            <td>No seleccionada</td><td></td>
+                            @endif
                         </tr>
                         <tr>
                             <td></td><td></td><td></td>
