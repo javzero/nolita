@@ -379,11 +379,11 @@
 						<i class="icon-list"></i> Listado
 					</a>
 				</li>
-				<li class="is-shown {{ Menu::activeMenu('customers') }}">
+				{{-- <li class="is-shown {{ Menu::activeMenu('customers') }}">
 					<a href="{{ route('vadmin.exportForGmail') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
 						<i class="icon-download"></i> Exportar a GMAIL
 					</a>
-				</li>
+				</li> --}}
 				<li><a href="{{ route('customers.index', ['group' => '3', 'status' => '0']) }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
 					Esperando aprobación @if($newResellers > 0) <span class="green">&bull;</span> @endif
 					</a>

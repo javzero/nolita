@@ -56,15 +56,15 @@ class AutocompleteController extends Controller
     {   
         // dd($request->all());
         // Debug URL:  vadmin/searchCatalogArticle (Comment customer check block)
+        // $customerGroup = '3';
         
-        // $customer = Customer::find($request['customer']);
-        // if($customer == null)
-        // {
-        //     echo json_encode("Error");
-        //     die();
-        // }
-        // $customerGroup = $customer->group;
-        $customerGroup = '3';
+        $customer = Customer::find($request['customer']);
+        if($customer == null)
+        {
+            echo json_encode("Error");
+            die();
+        }
+        $customerGroup = $customer->group;
         
         $articles = CatalogArticle::where('name', 'LIKE', "%{$request['request']['term']}%")
             ->orWhere('code', 'LIKE', "%{$request['request']['term']}%")

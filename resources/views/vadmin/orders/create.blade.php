@@ -134,8 +134,8 @@
     } 
 
     // Store Id to prevent duplicated items
-    let saveIds = [];
-    let savedVariants = [];
+    let savedIds = [];
+    let savedVariant = [];
 
     function buildItemRow(id, code, name, variant, variantId, color, size, textile, stock, price)
     {   
@@ -143,12 +143,16 @@
         $('#TableList').removeClass('Hidden');
         $('.Empty-Table').addClass('Hidden');
         $('.Articles-List').removeClass('Hidden');
-        
+        console.log(savedIds);
+        console.log(savedVariant);
         // Prevent duplicated items
-        if ($.inArray(id, saveIds) !== -1 && $.inArray(variant, savedVariants) !== -1)
+        if ($.inArray(id, savedIds) !== -1)
         {
-            alert_error("", "El producto/variante ya está agregado");
-            return;
+            if($.inArray(variant, savedVariant) !== -1)
+            {
+                alert_error("", "La variante ya está agregada");
+                return;
+            }
         }
 
         let name2 = name;
@@ -173,8 +177,8 @@
                 "<td><i onclick='removeRow("+ id +");' class='cursor-pointer fa fa-trash'</td>" +
                 "</tr>";
 
-        saveIds.push(id);
-        savedVariants.push(variant);
+        savedIds.push(id);
+        savedVariant.push(variant);
         $('#Articles-List-Rows').append(row);
     }
 
@@ -184,7 +188,7 @@
         // Remove Row
         $("#OrderItem-"+ id).remove();
         // Remove Item From Array
-        saveIds = $.grep(saveIds, function(value) {
+        savedIds = $.grep(savedIds, function(value) {
             return value != id;
         });
     }
@@ -238,8 +242,6 @@
                 }
             },
             select: function(event, ui) {
-                console.log("En search");
-                console.log(ui.item);
                 // id, code, name, variant, variantId, color, size,  stock, price
                 buildItemRow(ui.item.id, ui.item.code, ui.item.name, ui.item.variant, ui.item.variant_id, ui.item.variant_color, ui.item.variant_size,
                 ui.item.textile, ui.item.stock, ui.item.price);

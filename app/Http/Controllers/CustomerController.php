@@ -9,8 +9,9 @@ use Auth;
 use Image;
 use Cookie;
 use Excel;
-use File;
+// use File;
 use PDF;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -116,9 +117,25 @@ class CustomerController extends Controller
         })->export($format);
     }
 
-    public function exportForGmail()
+    public function exportForGmail(Request $request)
     {
-        $items = Customer::all();
+        if($request->init_date != null && $request->expire_date != null)
+        {
+            $items = Customer::whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
+                ->orderBy('created_at', 'DESC')->get();
+        }
+        else if($request->init_date != '')
+        {
+            $items = Customer::where('created_at', '>=', new Carbon($request->init_date))
+                ->orderBy('created_at', 'DESC')->get();
+        }
+        else
+        {
+            $items = Customer::all();
+        }
+
+        // dd($items);
+        
         Excel::create('listado-de-clientes', function($excel) use($items){
             $excel->sheet('Listado', function($sheet) use($items) {   
                 $sheet->loadView('vadmin.customers.exportForGmail', 

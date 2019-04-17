@@ -12,8 +12,8 @@
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('customers.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Cliente</a>
-				<button id="SearchFiltersBtn" class="btn btnGreen"><i class="icon-ios-search-strong"></i></button>
+				<a href="{{ route('customers.create') }}" class="btn btnMain"><i class="icon-plus-round"></i>  Nuevo Cliente</a>
+				<button id="SearchFiltersBtn" class="btn btnMain"><i class="icon-ios-search-strong"></i></button>
 				@if(Auth::guard('user')->user()->role <= 2)
 				{{-- Edit --}}
 				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
@@ -24,11 +24,7 @@
 				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				@endif
-				{{-- If Search --}}
-				@if(isset($_GET['name']) || isset($_GET['group']))
-					<a href="{{ url('vadmin/customers') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
-					{{--  <div class="results">{{ $items->total() }} resultados de búsqueda: </div>  --}}
-				@endif
+
 			</div>
 		@endslot
 		@slot('searcher')
@@ -55,15 +51,17 @@
 		<div class="row">
 			@component('vadmin.components.list')
 				@slot('actions')
-					<a href="{{ route('vadmin.exportCustomersListSheet', ['params' => 'all', 'format' => 'xls']) }}" data-toggle="tooltip" title="Exportar a XLS"  class="icon-container green">
+					<a href="{{ route('vadmin.exportCustomersListSheet', ['params' => 'all', 'format' => 'xls']) }}" data-toggle="tooltip" title="Exportar a XLS" class="icon-container green">
 						<i class="fas fa-file-excel"></i>
 					</a>
-					<a href="{{ route('vadmin.exportCustomersListSheet', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar a .CSV"  class="icon-container blue">
+					<a href="{{ route('vadmin.exportCustomersListSheet', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar a .CSV" class="icon-container blue">
 						<i class="fas fa-file-excel"></i>
 					</a>
-					<a href="{{ route('vadmin.exportForGmail', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar para Gmail"  class="icon-container blue">
+					<a class="icon-container blue" data-toggle="modal" data-target="#ExportGmailModal" data-toggle="tooltip" title="Exportar para Gmail"><i class="fab fa-google"></i></a> 
+					
+					{{-- <a href="{{ route('vadmin.exportForGmail', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar para Gmail"  class="icon-container blue">
 						<i class="fab fa-google"></i>
-					</a>
+					</a> --}}
 					{{-- <a href="{{ route('vadmin.exportCustomersListPdf', ['params' => 'all', 'action' => 'download']) }}" data-toggle="tooltip" title="Exportar a .PDF" class="icon-container black">
 						<i class="fas fa-file-pdf"></i>
 					</a>
@@ -136,6 +134,22 @@
 		</div>
 		<div id="Error"></div>	
 	</div>
+	@component('vadmin.components.modal')
+		@slot('id', 'ExportGmailModal')
+		@slot('title', 'Exportar contactos para Gmail')
+		@slot('content')
+			<div class="filter-date">
+				<label for="">Elija un período (Si lo deja vacío se exportaran todos)</label> <br>
+				{!! Form::open(['method' => 'GET', 'route' => 'vadmin.exportForGmail', 'class' => 'form-group inner']) !!} 
+					{!! Form::date('init_date', null, ['class' => 'form-control']) !!}
+					{!! Form::date('expire_date', null, ['class' => 'form-control']) !!}
+					<button type="submit" class="btn btnMain btn-sm"> <i class="fab fa-google"></i> EXPORTAR</button>
+				{!! Form::close() !!}	
+			</div>
+		@endslot
+		@slot('button')
+		@endslot
+	@endcomponent
 @endsection
 
 {{-- SCRIPT INCLUDES --}}

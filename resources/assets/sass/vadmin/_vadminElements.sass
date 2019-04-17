@@ -600,6 +600,29 @@ input,select
 	background-color: rgba(249,249,249,.50)
 	margin-bottom: 20px
 
+	
+.filter-date
+	margin-top: 8px
+	.inner
+		button
+			height: 33px
+		input
+			padding: 4px 9px
+			height: 34px
+			border-radius: 0
+			margin-right: 4px
+
+@media (min-width: 768px)
+	.filter-date .inner
+		display: inline-flex
+		white-space: nowrap
+
+@media (max-width: 768px)
+	.filter-date .inner
+		max-width: 250px
+		input
+			margin-bottom: 5px
+
 //////////////////////////////////////
 //                                  //
 //            BUTTONS               //
