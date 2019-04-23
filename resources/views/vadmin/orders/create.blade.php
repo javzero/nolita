@@ -134,8 +134,8 @@
     } 
 
     // Store Id to prevent duplicated items
-    let savedIds = [];
-    let savedVariant = [];
+    // let savedIds = [];
+    let savedVariants = [];
 
     function buildItemRow(id, code, name, variant, variantId, color, size, textile, stock, price)
     {   
@@ -143,17 +143,17 @@
         $('#TableList').removeClass('Hidden');
         $('.Empty-Table').addClass('Hidden');
         $('.Articles-List').removeClass('Hidden');
-        console.log(savedIds);
-        console.log(savedVariant);
+        // console.log(savedIds);
+        console.log(savedVariants);
         // Prevent duplicated items
-        if ($.inArray(id, savedIds) !== -1)
-        {
-            if($.inArray(variant, savedVariant) !== -1)
+        // if ($.inArray(id, savedIds) !== -1)
+        // {
+            if($.inArray(variantId, savedVariants) !== -1)
             {
                 alert_error("", "La variante ya está agregada");
                 return;
             }
-        }
+        // }
 
         let name2 = name;
         let row ="<tr id='OrderItem-"+ id +"'>" +
@@ -174,22 +174,26 @@
                 "<input name=item["+ variantId +"][quantity] value='1' style='padding-left: 10px; max-width: 50px' type='number' />" +
                 "<input name=item["+ variantId +"][id] value='"+ id +"' type='hidden' />" +
                 "</td>" +
-                "<td><i onclick='removeRow("+ id +");' class='cursor-pointer fa fa-trash'</td>" +
+                "<td><i onclick='removeRow("+ id + ',' + variantId +");' class='cursor-pointer fa fa-trash'</td>" +
                 "</tr>";
 
-        savedIds.push(id);
-        savedVariant.push(variant);
+        // savedIds.push(id);
+        savedVariants.push(variantId);
         $('#Articles-List-Rows').append(row);
     }
 
 
-    function removeRow(id)
+    function removeRow(id, variantId)
     {
         // Remove Row
         $("#OrderItem-"+ id).remove();
         // Remove Item From Array
-        savedIds = $.grep(savedIds, function(value) {
-            return value != id;
+        // savedIds = $.grep(savedIds, function(value) {
+        //     return value != id;
+        // });
+
+        savedVariants = $.grep(savedVariants, function(value) {
+            return value != variantId;
         });
     }
 
