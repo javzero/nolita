@@ -18,16 +18,16 @@
 				<input id="CreateFromAnotherId" type="hidden">
 				{{-- Edit --}}
 				<button class="EditBtn btnSm btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
-				<input id="EditId" type="hidden">
+				<input id="EditId" type="hidden">				
 				{{-- Delete --}}
 				{{-- THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER --}}
 				<input id="ModelName" type="hidden" value="catalogo">
 				<button class="DeleteBtn btnSm btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
-				@if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']) || isset($_GET['orden']))
+				{{-- @if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']) || isset($_GET['orden']))
 				<a href="{{ url('vadmin/catalogo') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
-				@endif
+				@endif --}}
 			</div>
 		@endslot
 		@slot('searcher')
@@ -50,42 +50,14 @@
 			@endif
 			<a href="{{ route('catalogo.index', ['orden_af' => 'ASC', 'status' => $status]) }}" >A-Z</a>
 			<a href="{{ route('catalogo.index', ['orden_af' => 'DESC', 'status' => $status]) }}" >Z-A</a>
+			<a href="{{ route('catalogo.index', ['orden_af' => 'DESC', 'status' => $status, 'show' => 'discounted' ]) }}" >Con descuento</a>
 			{{-- <a href="{{ route('catalogo.index', ['orden' => 'ASC']) }}">Stock Bajo</a> 
 			<a href="{{ route('catalogo.index', ['orden' => 'DESC']) }}">Stock Alto</a>
 			<a href="{{ route('catalogo.index', ['orden' => 'limitados']) }}" >Stock Limitado</a> --}}
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('actions')
-					{{-- @if(isset($_GET['name']) || isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']) || isset($_GET['orden']))
-						<a href="{{ route('vadmin.exportCatalogListSheet', ['params' => http_build_query($_GET), 'format' => 'xls']) }}" data-toggle="tooltip" title="Exportar a .XLS"  class="icon-container green">
-							<i class="fas fa-file-excel"></i>
-						</a>
-						<a href="{{ route('vadmin.exportCatalogListSheet', ['params' => http_build_query($_GET), 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar a .CSV"  class="icon-container blue">
-							<i class="fas fa-file-excel"></i>
-						</a>
-						<a href="{{ route('vadmin.exportCatalogListPdf', ['params' => http_build_query($_GET), 'action' => 'download']) }}" data-toggle="tooltip" title="Exportar a .PDF" class="icon-container red">
-							<i class="fas fa-file-pdf"></i>
-						</a>
-						<a href="{{ route('vadmin.exportCatalogListPdf', ['params' => http_build_query($_GET), 'action' => 'stream']) }}" data-toggle="tooltip" title="Exportar a .PDF" class="icon-container red">
-							<i class="fas fa-eye"></i>
-						</a>
-					@else
-						<a href="{{ route('vadmin.exportCatalogListSheet', ['params' => 'all', 'format' => 'xls']) }}" data-toggle="tooltip" title="Exportar a XLS"  class="icon-container green">
-							<i class="fas fa-file-excel"></i>
-						</a>
-						<a href="{{ route('vadmin.exportCatalogListSheet', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar a .CSV"  class="icon-container blue">
-							<i class="fas fa-file-excel"></i>
-						</a>
-						<a href="{{ route('vadmin.exportCatalogListPdf', ['params' => 'all', 'action' => 'download']) }}" data-toggle="tooltip" title="Exportar a .PDF" class="icon-container black">
-							<i class="fas fa-file-pdf"></i>
-						</a>
-						<a href="{{ route('vadmin.exportCatalogListPdf', ['params' => 'all', 'action' => 'stream']) }}" data-toggle="tooltip" title="Exportar a .PDF" class="icon-container black">
-							<i class="fas fa-eye"></i>
-						</a>
-					@endif --}}
-				@endslot
-
+				@slot('actions', '')
 				@slot('title', 'Listado de artículos de la tienda')
 				@slot('tableTitles')
 					@if(!$articles->count() == '0')
@@ -94,6 +66,8 @@
 						<th>Cód.</th>
 						<th>Título</th>
 						<th>Variantes (Color / Talle - Stock)</th>
+						<th>Precio</th>
+						<th>Descuento</th>
 						<th>Estado</th>
 					@endslot
 					@slot('tableContent')
@@ -130,6 +104,12 @@
 										</div>
 									@endforeach
 								</td>
+								@if($item->reseller_discount > 0)
+									<td>$ {{ showPrice($item->reseller_price, $item->reseller_discount) . ' ( $ '. $item->reseller_price.' )'}}</td>
+								@else
+									<td>$ {{ $item->reseller_price }}</td>
+								@endif
+									<td>% {{ $item->reseller_discount }}</td>
 								{{-- STATUS --}}
 								<td class="w-50 pad0 centered">
 									<label class="switch">

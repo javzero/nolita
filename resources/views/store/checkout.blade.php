@@ -29,25 +29,33 @@
 				{{-- <p>Pedido N: #{{ $activeCart['rawdata']->id }}</p> --}}
 				@if(Auth::guard('customer')->user()->group == '3')
 				<div class="warning">
-						@if($settings->reseller_min > 0 || $settings->reseller_money_min > 0)
-							<span>Compra mínima:
-							
-							{{-- Minimum quantity --}}
-							@if($settings->reseller_min > 0)
-							<b>{{ $settings->reseller_min }} unidades</b>
-							@endif
-							
-							@if($settings->reseller_min > 0 && $settings->reseller_money_min > 0)
-							o
-							@endif
-
-							@if($settings->reseller_money_min > 0)
-							{{-- Minimum money GIVE ME DA MANAAAY --}}
-							<b>$ {{ $settings->reseller_money_min }}</b>
-							@endif
-							
-							</span>
+					@if($settings->reseller_min > 0 || $settings->reseller_money_min > 0)
+						<span>Compra mínima:
+						{{-- Minimum quantity --}}
+						@if($settings->reseller_min > 0)
+							<b>
+								<span id="MinQuantityText">
+									@if($activeCart['orderMinQuantity'] > 0 )
+										{{ $activeCart['orderMinQuantity'] }} 
+									@else
+										{{ $settings->reseller_min }} 
+									@endif
+								</span>
+								unidades
+							</b>
 						@endif
+						
+						@if($settings->reseller_min > 0 && $settings->reseller_money_min > 0)
+						o
+						@endif
+
+						@if($settings->reseller_money_min > 0)
+						{{-- Minimum money GIVE ME DA MANAAAY --}}
+						<b>$ {{ $settings->reseller_money_min }}</b>
+						@endif
+						
+						</span>
+					@endif
 				</div>
 					{{-- @if($settings->reseller_money_min > 0)
 						<div class="warning"></div>
@@ -128,10 +136,52 @@
 						</tbody>
 					</table>
 				</div>
-					<div class="text-right hide-768">
-						<button type="button" class="UpdateDataBtn btn btn-main">Actualizar <i class="fas fa-sync-alt"></i></button>
-						<button type="button" class="SubmitDataBtn btn btn-main">Continuar <i class="fa fa-arrow-right"></i></button>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group small-form">
+							@if($activeCart['orderDiscount'] > 0 )
+								{{-- If order has claimed coupon --}}
+								<div class="coupon-message">
+									<div class="inner">
+										<span class="small">Esta compra cuenta con un</span>
+										<span class="big">%{{ $activeCart['rawdata']->order_discount }} </span>
+										<span class="small">de descuento ! </span>
+									</div>
+								</div>
+								<br>
+							@endif							
+						</div>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group small-form">
+							<label class="sub-title">¿ Tenés un cupón ?</label>
+							<div id="CouponDiv">
+								<label>Ingresá el código aquí</label>
+								<div class="coupon-container">
+									<input id="CuponCodeInput" class="form-control mw-200" type="text" name="coupon_id" value="">
+									<div class="button-and-loader">
+										<button id="CheckCoupon" type="button" class="btn btn-primary">Ingresar</button>
+										<div class="CouponLoader Hidden"><img src="{{ asset('images/gral/loader-sm.svg') }}" alt=""> Validando...</div>
+									</div>
+									<div class="coupon-message-validation" id="CouponValidationMessage"></div>
+								</div>
+							</div>
+							<div id="SettedCoupon" class="coupon-message Hidden">
+								<div class="inner">
+									<span class="big">Cupón válido !</span>
+								</div>
+							</div>	
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="text-right hide-768">
+							<button type="button" class="UpdateDataBtn btn btn-main">Actualizar <i class="fas fa-sync-alt"></i></button>
+							<button type="button" class="SubmitDataBtn btn btn-main">Continuar <i class="fa fa-arrow-right"></i></button>
+						</div>
+					</div>
+				</div>
 				<div class="back-to-store"><a href="{{ url('tienda') }}"><i class="icon-arrow-left"></i> Volver a la tienda</a></div>
 			</div>{{-- / col-md-12 --}}
 		</div> {{-- / Row --}}

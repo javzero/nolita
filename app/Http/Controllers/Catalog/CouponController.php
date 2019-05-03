@@ -72,10 +72,13 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         if(strtotime($request->expire_date) < time()){
-            return back()->with('message','La fecha de expiración es anterior a la fecha actual');
+            return back()->withInput()->with('error','La fecha de expiración es igual o anterior a la fecha actual');
         } else if(strtotime($request->expire_date) < strtotime($request->init_date)) {
-            return back()->with('message','La fecha de expiración es anterior a la fecha de inicio');
+            return back()->withInput()->with('error','La fecha de expiración es anterior a la fecha de inicio');
         }
+        
+        if($request->minQuantity == null && $request->percent == null)
+            return back()->withInput()->with('error','Debe ingresar una cantidad mínima o un porcentaje de descuento');
         
         $this->validate($request,[
             'code'                 => 'required|min:4|max:10|unique:catalog_coupons',
@@ -91,12 +94,20 @@ class CouponController extends Controller
         // Check if coupon exists
         $couponExists = $this->checkCatalogCoupon($request->code);
         if($couponExists == true)
-            return back()->with('message', 'El código de cupón ya existe');
+            return back()->withInputs()->with('error', 'El código de cupón ya existe');
 
         $item = new CatalogCoupon($request->all());
-        $item->save();
         
-        return redirect()->route('coupons.index')->with('message','Cupón creado !');
+        try
+        {
+            $item->save();
+
+            return redirect()->route('coupons.index')->with('message','Cupón creado !');
+        }  catch (\Exception $e) {
+            return back()->withInputs()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('coupons.index')->with('message','Ha ocurrido un error, por favor contactanos y comentanos en que parte del proceso ocurrió el mismo');
         
     }
         

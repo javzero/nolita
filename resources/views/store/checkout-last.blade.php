@@ -176,12 +176,11 @@
 						</div>
 					@endif
 				</div><br>
-				<div class="row">
+				{{-- <div class="row">
 					<div class="col-md-12">
 						<div class="sub-title">¿ Tenés un cupón de descuento ?</div>
 						<div class="form-group small-form">
 							@if($activeCart['orderDiscount'] > 0)
-								{{-- If order has claimed coupon --}}
 								<div class="coupon-message">
 									<div class="inner">
 										<span class="small">Esta compra cuenta con un</span><br>
@@ -206,7 +205,7 @@
 							@endif
 						</div>
 					</div>
-				</div>
+				</div> --}}
 			</div>{{-- / col-sm-8 --}}
 			{{-- Checkout Sidebar --}}
 			<div class="col-sm-4">

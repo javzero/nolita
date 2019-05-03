@@ -9,7 +9,8 @@ class Cart extends Model
 {
     protected $table = "carts";
 
-    protected $fillable = ['customer_id', 'status', 'shipping_id', 'shipping_price', 'payment_method_id', 'payment_percent', 'payment_token', 'order_date', 'arrived_date'];
+    protected $fillable = ['customer_id', 'status', 'shipping_id', 'shipping_price', 'payment_method_id', 'payment_percent', 'payment_token', 
+    'order_discount', 'order_min_quantity', 'order_date', 'arrived_date'];
 
     public function items(){
     	return $this->hasMany('App\CartItem');

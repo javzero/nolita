@@ -10,7 +10,7 @@ class CatalogCoupon extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['code', 'init_date', 'expire_date', 'status', 'reseller', 'percent'];
+    protected $fillable = ['code', 'init_date', 'expire_date', 'status', 'reseller', 'percent', 'minQuantity'];
 
     public function scopeSearchcode($query, $code)
     {

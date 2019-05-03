@@ -35,6 +35,7 @@ class ArticlesController extends Controller
     {
         $code = $request->get('code');
         $name = $request->get('name');
+        $show = $request->get('show');
         $category = $request->get('category');
         $order = $request->get('orden');
         $rowName = 'stock';
@@ -78,7 +79,10 @@ class ArticlesController extends Controller
         if($status == 0)
         {
             // Inactive Items
-            if (isset($code)) {
+            if(isset($show) && $show == 'discounted')
+            {
+                $articles = CatalogArticle::where('reseller_discount', '>', 0)->inactive()->paginate($pagination);
+            } elseif (isset($code)) {
                 $articles = CatalogArticle::where('code', 'LIKE', "%" . $code . "%")->inactive()->paginate($pagination);
             } elseif (isset($name)) {
                 $articles = CatalogArticle::searchName($name)->inactive()->orderBy($rowName, $order)->paginate($pagination);
@@ -97,7 +101,11 @@ class ArticlesController extends Controller
             else 
             {
                 // ---------- Queries ------------    
-                if (isset($code)) 
+                if(isset($show) && $show == 'discounted')
+                {
+                    $articles = CatalogArticle::where('reseller_discount', '>', 0)->active()->paginate($pagination);
+                }
+                elseif (isset($code)) 
                 {
                     $articles = CatalogArticle::where('code', 'LIKE', "%" . $code . "%")->active()->paginate($pagination);
                 } 
@@ -435,13 +443,16 @@ class ArticlesController extends Controller
             $article->images;
         });
 
+        $previousUrl = getPreviousUrl(); // Store previous URL
+        
         return view('vadmin.catalog.edit')
             ->with('categories', $categories)
             ->with('article', $article)
             ->with('tags', $tags)
             ->with('sizes', $sizes)
             ->with('colors', $colors)
-            ->with('brands', $brands);
+            ->with('brands', $brands)
+            ->with('previousUrl', $previousUrl);
     }
 
     
@@ -487,145 +498,9 @@ class ArticlesController extends Controller
         
     }
 
-    // public function update(Request $request, $id)
-    // {   
-        	
-    //     // initialize the FileUploader
-    //     $FileUploader = new FileUploader('files', array(
-    //         // Options will go here
-    //     ));
-        
-    //     // call to upload the files
-    //     $upload = $FileUploader->upload();
-        
-    //     if($upload['isSuccess']) {
-    //         // get the uploaded files
-    //         $files = $upload['files'];
-    //     } else {
-    //         // get the warnings
-    //         $warnings = $upload['warnings'];
-    //     }
-    //     dd($files);
-
-   
-
-    //     $article = CatalogArticle::find($request->article_id);
-    //     $article->fill($request->all());
-
-    //     if ($request->slug) {
-    //         $checkSlug = $this->checkSlug($request->slug);
-    //     }
-        
-    //     $images = $request->file('images');
-    //     $thumbnail = $request->file('thumbnail');
-    //     $imgPath = public_path("webimages/catalogo/");
-    //     $thumbPath = public_path("webimages/catalogo/thumbs/");
-    //     $extension = '.jpg';
-
-    //     $thumbWidth = 240; $thumbHeight = 360; $imgWidth = 500; $imgHeight = 700;
-
-    //     if ($article->save()) 
-    //     {
-    //         // SAVE VARIANTS (Combinations)
-    //         try 
-    //         {   
-    //             foreach ($request->variants as $newVariant => $data)
-    //             {
-    //                 $existingVariant = CatalogVariant::where('article_id', $article->id)->where('combination', $newVariant)->first();
-                    
-    //                 if($existingVariant)
-    //                 {
-    //                     $existingVariant->stock = $data['stock'];
-    //                     $existingVariant->save();   
-    //                 }
-    //                 else
-    //                 {
-    //                     $item = new CatalogVariant();
-    //                     $item->article_id = $article->id;
-    //                     $item->combination = $newVariant;
-    //                     $item->color_id = $data['color'];
-    //                     $item->size_id = $data['size'];
-    //                     $item->stock = $data['stock'];
-    //                     $item->save();   
-    //                 }    
-    //             }
-    //         } 
-    //         catch (\Exception $e) 
-    //         {
-    //             return redirect()->route('catalogo.index')->with('message', 'Error al crear la variante: ' . $e->getMessage());
-    //         }
-
-    //         // Sync Relations
-    //         $article->size()->sync($request->size);
-    //         $article->tags()->sync($request->tags);
-
-    //         if (!$article->images->isEmpty()) 
-    //         {
-    //             $number = $article->images->last()->name;
-    //             $number = explode('-', $number);
-    //             $number = explode('.', $number[1]);
-    //             $number = ($number[0] + '1');
-    //         } 
-    //         else 
-    //         {
-    //             $number = '0';
-    //         }
-
-    //         // Save Images
-    //         if ($images) 
-    //         {
-    //             try 
-    //             {
-    //                 // initialize the FileUploader
-    //                 $FileUploader = new FileUploader('images', array(
-    //                     // Options will go here
-    //                 ));
-                    
-    //                 // call to upload the files
-    //                 $upload = $FileUploader->upload();
-                    
-    //                 if($upload['isSuccess']) {
-    //                     // get the uploaded files
-    //                     $files = $upload['images'];
-    //                 } else {
-    //                     // get the warnings
-    //                     $warnings = $upload['warnings'];
-    //                 }
-
-    //                 dd($files);
-
-    //                 foreach ($files as $phisic_image) 
-    //                 {
-    //                     $filename = $article->id . '-' . $number;    
-
-    //                     $image = new CatalogImage();
-    //                     if ($number == '0') {
-    //                         $image->featured = 1;
-    //                     }
-    //                     $image->name = $filename . $extension;
-    //                     $image->article()->associate($article);
-
-    //                     //$thumb = \Image::make($phisic_image);
-    //                     //$thumb->encode('jpg', 80)->fit($thumbWidth, $thumbHeight)->save($thumbPath . $filename . $extension);
-    //                     //$article->thumb = $article->id.'-thumb'.$extension;
-    //                     $image->thumb = $filename . $extension;
-    //                     $image->save();
-    //                     $number++;
-    //                 }
-    //             } 
-    //             catch (\Exception $e) 
-    //             {
-    //                 // $article->delete();
-    //                 return redirect()->route('catalogo.index')->with('message', 'Error al crear la imágen: ' . $e->getMessage());
-    //             }
-    //         }
-    //     }
-    //     return redirect()->route('catalogo.index')->with('message', 'Se ha editado el item con éxito');
-    // }
-
-
     public function update(Request $request, $id)
     {
+        // dd($request->all());
 
         $article = CatalogArticle::find($request->article_id);
 
@@ -746,7 +621,11 @@ class ArticlesController extends Controller
                 }
             }
         }
-        return redirect()->route('catalogo.index')->with('message', 'Se ha editado el item con éxito');
+        if($request->previousUrl != null)
+            return redirect()->route('catalogo.index', [$request->previousUrl])->with('message', 'Se ha editado el item con éxito');
+        else
+            dd("Redirect normal");
+            // return redirect()->route('catalogo.index')->with('message', 'Se ha editado el item con éxito');
     }
 
     public function updateFields(Request $request)

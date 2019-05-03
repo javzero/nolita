@@ -353,9 +353,9 @@ window.submitCartToCheckout = function (route, target, data, action) {
             // $('#Error').html(data.responseText);
         },
         error: function (data) {
-            // $('#Error').html(data.responseText);
+            $('#Error').html(data.responseText);
             console.log("Error en submitForm()");
-            location.reload();
+            // location.reload();
             console.log(data);
             // location.reload();
         }
@@ -367,7 +367,7 @@ window.submitCartToCheckout = function (route, target, data, action) {
 window.validateAndSetCoupon = function (route, code, cartid) {
     let couponDiv = $('#CouponDiv');
     let couponSet = $('#SettedCoupon');
-    console.log(code, cartid);
+    
     $.ajax({
         url: route,
         method: 'POST',
@@ -387,6 +387,7 @@ window.validateAndSetCoupon = function (route, code, cartid) {
             } else if (data.response == null) {
                 $('#CouponValidationMessage').html(data.message);
             }
+            console.log(data);
         },
         error: function (data) {
             $('#CouponValidationMessage').html(data.responseText);

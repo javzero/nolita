@@ -57,7 +57,13 @@
 					<a href="{{ route('vadmin.exportCustomersListSheet', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar a .CSV" class="icon-container blue">
 						<i class="fas fa-file-excel"></i>
 					</a>
-					<a class="icon-container blue" data-toggle="modal" data-target="#ExportGmailModal" data-toggle="tooltip" title="Exportar para Gmail"><i class="fab fa-google"></i></a> 
+					<a class="icon-container blue" data-toggle="modal" data-target="#ExportGmailModal" data-toggle="tooltip" title="Exportar para Gmail">
+						<i class="fab fa-google"></i>
+					</a> 
+					{{-- <a class="icon-container blue" data-toggle="modal" data-target="#ExportSleepCustomersModal" data-toggle="tooltip" title="Exportar clientes sin compras">
+						<i class="fas fa-bed"></i>
+					</a>  --}}
+
 					
 					{{-- <a href="{{ route('vadmin.exportForGmail', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar para Gmail"  class="icon-container blue">
 						<i class="fab fa-google"></i>
@@ -77,9 +83,11 @@
 						@endif
 						<th>Nombre (Usuario)</th>
 						<th>Email</th>
+						<th>Compras Cerradas</th>
+						<th>Total</th>
 						<th>Registro</th>
 						{{-- <th style="min-width: 150px">Tipo</th> --}}
-						<th>Estado</th>
+						{{-- <th>Estado</th> --}}
 						<th>Activo</th>
 					@else
 						<th></th>
@@ -101,10 +109,12 @@
 								@endif
 								<td class="show-link"><a href="{{ url('vadmin/customers/'.$item->id) }}"> {{ $item->name }} {{ $item->surname}} ({{ $item->username }})</a></td>
 								<td>{{ $item->email }}</td>
+								<td>{{ $item->staticstics('totalCarts') }} </td>
+								<td>${{ $item->staticstics('totalSpent') }} </td>
 								<td>{{ transDateT($item->created_at) }}</td>
-								<td>
+								{{-- <td>
 									{!! Form::select('group', [1 => 'Esperando aprobación', 3 => 'Aprobado'], $item->group, ['class' => 'form-control', 'onChange' => 'updateCustomerGroup(this, this.dataset.id)', 'data-id' => $item->id]) !!}
-								</td>
+								</td> --}}
 								{{-- {{ clientGroupTrd($item->group) }}</td> --}}
 								<td class="w-50 pad0 centered">
 									<label class="switch">
@@ -134,6 +144,7 @@
 		</div>
 		<div id="Error"></div>	
 	</div>
+	{{-- Export customers for Gmail --}}
 	@component('vadmin.components.modal')
 		@slot('id', 'ExportGmailModal')
 		@slot('title', 'Exportar contactos para Gmail')
@@ -150,10 +161,31 @@
 		@slot('button')
 		@endslot
 	@endcomponent
+
+	{{-- Export customers with no closed orders --}}
+	@component('vadmin.components.modal')
+	@slot('id', 'ExportSleepCustomersModal')
+	@slot('title', 'Exportar clientes que no han realizado compras')
+	@slot('content')
+		<div class="filter-date">
+			<label for="">Elija un período (Si lo deja vacío se exportaran todos)</label> <br>
+			{!! Form::open(['method' => 'GET', 'route' => 'vadmin.exportSleepCustomers', 'class' => 'form-group inner']) !!} 
+				{!! Form::date('init_date', null, ['class' => 'form-control']) !!}
+				{!! Form::date('expire_date', null, ['class' => 'form-control']) !!}
+				<button type="submit" class="btn btnMain btn-sm"> <i class="fas fa-bed"></i> EXPORTAR</button>
+			{!! Form::close() !!}	
+		</div>
+	@endslot
+	@slot('button')
+	@endslot
+@endcomponent
 @endsection
 
 {{-- SCRIPT INCLUDES --}}
 @section('scripts')
 	@include('vadmin.components.bladejs')
+	<script>
+		allowEnterOnForms = true;
+	</script>
 @endsection
 

@@ -67,6 +67,12 @@
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
 						</div> 
 					@endif
+					@if(Session::has('error'))
+						<div class="alert alert-error"> 
+							{{ Session::get('error') }}
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+						</div> 
+					@endif
 					{{-- Content --}}
 					@yield('content')
 				</div>	

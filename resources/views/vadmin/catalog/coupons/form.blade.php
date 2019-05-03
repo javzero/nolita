@@ -27,15 +27,33 @@
 </div>
 <div class="row">
     <div class="col-md-6 col-xs-12">
-        {!! Form::label('percent', 'Porcentaje') !!}
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">%</span>
+            <div id="CouponQuantityOption">
+                {!! Form::label('minQuantity', 'Cantidad Mínima') !!}
+                {!! Form::number('minQuantity', null, ['class' => 'form-control', 'min' => '0']) !!}
             </div>
-            {!! Form::number('percent', null, ['class' => 'form-control', 'min' => '0', 'max' => '100', 'required' => '']) !!}
-        </div>
+            <div id="CouponPercentOption" class="Hidden">
+                {!! Form::label('percent', 'Porcentaje') !!}
+                {!! Form::number('percent', null, ['class' => 'form-control', 'min' => '0', 'max' => '100']) !!}
+            </div>
     </div>  
     <div class="col-md-6 col-xs-12">
+        <div class="form-group">
+            {!! Form::label('coupon_type', 'Seleccione una opción') !!}
+            <div class="input-group" style="padding-top: 8px">
+                <label class="display-inline-block custom-control custom-radio">
+                    {!! Form::radio('coupon_type', 0, true, ['class' => 'custom-control-input', 'onclick' => "couponSetOption('quantity')"]) !!}
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description ml-0">Cantidad Mínima</span>
+                </label>
+                <label class="display-inline-block custom-control custom-radio">
+                    {!! Form::radio('coupon_type', 1, false, ['class' => 'custom-control-input', 'onclick' => "couponSetOption('percent')"]) !!}
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description ml-0">Porcentaje</span>
+                </label>
+            </div>
+        </div>
+    </div>  
+    {{-- <div class="col-md-6 col-xs-12">
         <div class="form-group">
             {!! Form::label('reseller', 'Válido mayorístas') !!}
             <div class="input-group" style="padding-top: 8px">
@@ -51,6 +69,8 @@
                 </label>
             </div>
         </div>
-    </div>  
+    </div>   --}}
 </div>
-<input type="hidden" name="status" value="Active">
+<input type="hidden" name="status" value="1">
+{{-- Reseller is default in this vadmin--}}
+<input type="hidden" name="reseller" value="1">

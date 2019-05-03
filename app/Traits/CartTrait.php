@@ -7,6 +7,7 @@ use App\CatalogVariant;
 use App\CatalogFav;
 use App\Settings;
 use Log;
+use App\CatalogCoupon;
 
 trait CartTrait {
     
@@ -76,19 +77,32 @@ trait CartTrait {
             {
                 $cartSubTotal = $this->calcSubtotal($cart->items, auth()->guard('customer')->user()->group);
                 $orderDiscount = calcPercent($cartSubTotal, $cart->order_discount);
+                $orderMinQuantity = $this->settings->reseller_min;
+                
                 $cartTotal = $cartSubTotal + calcPercent($cartSubTotal, $cart->payment_percent) + $cart->shipping_price - $orderDiscount;
                 $totalItems = '0';
+
                 foreach($cart->items as $item)
                 {
                     $totalItems += $item->quantity;
                 }
                 
-                $minQuantityNeeded = false;
-                $minMoneyNeeded = false;
+                $minQuantityNeeded = false; $minMoneyNeeded = false;
 
                 
-                if($this->settings->reseller_min > 0 && $totalItems < $this->settings->reseller_min)
-                    $minQuantityNeeded = true;
+                // Check if cart has min quantity changed by coupon
+                if($cart->order_min_quantity != null && $cart->order_min_quantity > 0 )
+                {
+                    $orderMinQuantity = $cart->order_min_quantity;
+                    if($totalItems < $cart->order_min_quantity)
+                        $minQuantityNeeded = true;
+                }
+                else
+                {                    
+                    if($minQuantity > 0 && $totalItems < $minQuantity)
+                        $minQuantityNeeded = true;
+                }
+                
                 if($this->settings->reseller_money_min > 0 && $cartTotal < $this->settings->reseller_money_min)
                     $minMoneyNeeded = true;
 
@@ -96,19 +110,20 @@ trait CartTrait {
 
                 $activeCart = array
                     (
-                        "rawdata" => $cart,
-                        "totalItems" => $cart->items->count(),
-                        "paymentPercent" => $cart->payment_percent,
-                        "paymentId" =>$cart->payment_method_id,
-                        "shippingPrice" => $cart->shipping_price,
-                        "shippingId" => $cart->shipping_id,
-                        "orderDiscount" => $cart->order_discount,
-                        "orderDiscountValue" => $orderDiscount,
-                        "cartSubTotal" => $cartSubTotal,
-                        "cartTotal" => $cartTotal,
+                        'rawdata' => $cart,
+                        'totalItems' => $cart->items->count(),
+                        'paymentPercent' => $cart->payment_percent,
+                        'paymentId' => $cart->payment_method_id,
+                        'shippingPrice' => $cart->shipping_price,
+                        'shippingId' => $cart->shipping_id,
+                        'orderDiscount' => $cart->order_discount,
+                        'orderDiscountValue' => $orderDiscount,
+                        'cartSubTotal' => $cartSubTotal,
+                        'cartTotal' => $cartTotal,
                         'totalItems' => $totalItems,
                         'goalQuantity' => $goalQuantity,
                         'minQuantityNeeded' => $minQuantityNeeded,
+                        'orderMinQuantity' => $orderMinQuantity,
                         'minMoneyNeeded' => $minMoneyNeeded
                     );
             }

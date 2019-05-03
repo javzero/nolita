@@ -1,16 +1,16 @@
 @extends('store.partials.main')
 
 @section('content')
-{{--@if(Auth::guard('customer')->check())
- <div class="CheckoutCart checkout-cart checkout-cart-floating">
-    @include('store.partials.checkout-cart')
-</div> 
-@endif--}}
-
+{{-- Store current page allowing return here after edit --}}
+<input type="hidden" value="@if(isset($previousUrl)) {{ $previousUrl }}  @endif" name="previousUrl">
 <div class="container padding-bottom-3x mb-1 marg-top-25">
 	<div class="row product-show">
 		<div class="col-md-12 top-actions">
-			<a href="{{ url('tienda') }}">
+			@if(isset($previousUrl))
+				<a href="{{ route('store', [$previousUrl]) }}">
+			@else
+				<a href="{{ url('tienda') }}">
+			@endif
 				<button  class="btn btn-main mb-1">
 					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
 				</button>
@@ -108,15 +108,15 @@
 								<div class="btn-group-toggle form-selector" data-toggle="buttons">
 									<span>Colores:</span>
 									@foreach($colors as $id => $name)
-										<label class="ColorsSelector btn btn-main-sm-hollow">
+										<label class="ColorsSelector btn button-radio-hidden btn-main-sm-hollow">
 											<input onclick="checkVariantStock()" name="color_id" value="{{ $id }}" type="radio" autocomplete="off"> {{ $name }}
 										</label>
 									@endforeach
 								</div>
+								<span>Talles:</span>
 								<div class="btn-group-toggle form-selector" data-toggle="buttons">
-									<span>Talles:</span>
 									@foreach($sizes as $id => $name)
-										<label class="SizesSelector btn btn-main-sm-hollow">
+										<label class="SizesSelector btn button-radio-hidden btn-main-sm-hollow">
 											<input onclick="checkVariantStock()" name="size_id" value="{{ $id }}" type="radio" autocomplete="off"> {{ $name }}
 										</label>
 									@endforeach

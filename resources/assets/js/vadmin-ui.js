@@ -72,3 +72,27 @@ $(document).ready(function() {
         console.log("Enter Key on Forms Enabled");
     }
 });
+
+// Coupon select option
+
+window.couponSetOption = function(option)
+{
+    const quantityContainer = $('#CouponQuantityOption');
+    const percentContainer = $('#CouponPercentOption');
+
+    if(option == 'percent')
+    {
+        percentContainer.removeClass("Hidden");
+        quantityContainer.addClass("Hidden");
+        quantityContainer.children('input').val('');
+        return;
+    }
+
+    if(option == 'quantity')
+    {
+        percentContainer.addClass("Hidden");
+        quantityContainer.removeClass("Hidden");
+        percentContainer.children('input').val('');
+        return;
+    }
+}

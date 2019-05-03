@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\CartDetail;
+// use App\CartDetail;
 
 class CatalogArticle extends Model
 {

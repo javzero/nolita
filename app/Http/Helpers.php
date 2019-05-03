@@ -150,6 +150,21 @@ function groupTrd($group)
     }
 }
 
+function transStatusCoupon($status)
+{
+    switch ($status) 
+    {
+        case 'Active':
+            echo 'Activo';
+            break;
+        case 'Expired':
+            echo 'Expirado';
+            break;
+        default:
+            echo '';
+            break;
+    }
+}
 
 function clientGroupTrd($group)
 {   
@@ -299,11 +314,17 @@ function getMonthName($month)
     }
 }
 
-
-
 //////////////////////////////////////////////
 //             Misc. Functions              //
 //////////////////////////////////////////////
+
+function getPreviousUrl()
+{
+    $rawPreviousUrl = url()->previous();
+    $previousUrl = explode( '?', $rawPreviousUrl);
+    $previousUrl = end($previousUrl);
+    return $previousUrl;
+}
 
 function getUrl()
 {

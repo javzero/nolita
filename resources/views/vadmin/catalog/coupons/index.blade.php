@@ -47,16 +47,17 @@
 				@slot('title', 'Cupones')
 					@if($items->count() == '0')
 						@slot('tableTitles', '')
-						@slot('tableContent')
-
+						@slot('tableContent', '')
 					@else
 					@slot('tableTitles')
 						<th></th>
 						<th>Código</th>
 						<th>Porcentaje</th>
+						<th>Cant. Mínima</th>
 						<th>Creado el </th>
 						<th>Vencimiento</th>
-						<th>Aplica Mayorísta</th>
+						<th>Estado</th>
+						{{-- <th>Aplica Mayorísta</th> --}}
 					@endslot
 					@slot('tableContent')
 						@foreach($items as $item)
@@ -69,11 +70,21 @@
 									</label>
 								</td>
 								<td class="show-link max-text"><a href="{{ url('vadmin/payments/'.$item->id) }}">{{ $item->code }}</a></td>
-								<td class="max-text"><a href="#">% {{ $item->percent }}</a></td>
+								<td class="max-text"><a href="#">@if($item->percent > 0) % {{ $item->percent }} @else - @endif</a></td>
+								<td class="max-text"><a href="#">@if($item->minQuantity) {{ $item->minQuantity }} @else - @endif</td>
 								<td class="max-text"><a href="#">{{ transDateT($item->init_date) }}</a></td>
 								<td class="max-text"><a href="#">{{ transDateT($item->expire_date) }}</a></td>
-								<td class="w-200">
-								@if($item->reseller == true) Sí @else No @endif</td>
+								<td class="w-50 pad0 centered">
+									<label class="switch">
+										<input class="UpdateStatus switch-checkbox" type="checkbox" 
+										data-model="CatalogCoupon" data-id="{{ $item->id }}"
+										@if($item->status == '1') checked @endif>
+										<span class="slider round"></span>
+									</label>
+								</td>
+								{{-- <td class="w-200"> --}}
+								{{-- @if($item->reseller == true) Sí @else No @endif --}}
+								{{-- </td> --}}
 							</tr>						
 						@endforeach
 					@endif

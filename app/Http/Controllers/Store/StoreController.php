@@ -12,12 +12,13 @@ use App\CatalogVariant;
 use App\CatalogSize;
 use App\CatalogCategory;
 use App\CatalogColor;
+use App\Shipping;
+use App\CustomerCoupon;
 use App\CatalogCoupon;
+use App\Customer;
 use App\CatalogImage;
 use App\CatalogTag;
 use App\CatalogFav;
-use App\Customer;
-use App\Shipping;
 use App\Payment;
 use App\GeoProv;
 use App\Traits\CartTrait;
@@ -216,7 +217,7 @@ class StoreController extends Controller
     */
 
     public function show(Request $request)
-    {
+    {   
         $article = CatalogArticle::findOrFail($request->id);
         
         // Get only used colors and sizes
@@ -246,12 +247,15 @@ class StoreController extends Controller
             $isFav = false;
         }
 
+        $previousUrl = getPreviousUrl(); // Store previous URL
+        
         return view('store.show')
             ->with('article', $article)
             ->with('sizes', $atribute1)
             ->with('colors', $colors)
             ->with('isFav', $isFav)
-            ->with('user', $user);
+            ->with('user', $user)
+            ->with('previousUrl', $previousUrl);
     }
 
     public function checkVariantStock(Request $request)
@@ -315,9 +319,8 @@ class StoreController extends Controller
         }
         // Check minimun quantity - reseller
         if(auth()->guard('customer')->user()->group == '3' && $request->action == 'continue') {
-
             if($activeCart['minQuantityNeeded'])
-                return response()->json(['response' => 'error', 'message' => 'Debe incluír al menos '. $this->settings->reseller_min.' prendas']);
+                return response()->json(['response' => 'error', 'message' => 'Debe incluír al menos '. $activeCart['orderMinQuantity'].' prendas']);
             if($activeCart['minMoneyNeeded'])
                 return response()->json(['response' => 'error', 'message' => 'El mínimo de compra es $'. $this->settings->reseller_money_min. '.']);
             // return redirect()->back()->with('error', 'low-quantity');
@@ -505,41 +508,60 @@ class StoreController extends Controller
     // Validate Coupon
     public function validateAndSetCoupon(Request $request)
     {
+        // dd($request->all());
         $coupon = CatalogCoupon::where('code', $request->code)->first();
+        
         // Not existing coupon
         if($coupon == null)
-        {
             return response()->json(['response' => null, 'message' => "El cupón no existe"]);
-        }
+        
+        // Checki if coupon was used
+        if(CustomerCoupon::where('customer_id', auth()->guard('customer')->user()->id)->where('coupon_id', $coupon->id)->first())
+            return response()->json(['response' => null, 'message' => 'Ya usaste este cupón.']);   
+
+        
         // Expired Coupon
         $coupon_expire = $coupon->expire_date;
         $coupon_expire = Carbon::parse($coupon_expire, 'America/Araguaina');
         $actual_date = Carbon::now()->format('Y-m-d');
         $actual_date = Carbon::parse($actual_date, 'America/Araguaina');
+        
         if($coupon_expire->lt($actual_date))
-        {
             return response()->json(['response' => null, 'message' => "El cupón ingresado ha expirado :("]);
-        } 
         
-        // Group User Not Included in promo
+            // Group User Not Included in promo
         if($coupon->reseller == '0')
-        {
             if(auth()->guard('customer')->user()->group != '2')
-            {
-                return response()->json(['response' => null, 'message' => "El cupón ingresado es válido solo para clientes minorístas"]);
-            }
-        }
-        
+                return response()->json(['response' => null, 'message' => "El cupón ingresado es válido solo para clientes minorístas"]);            
+            
         $cart = Cart::find($request->cartid);
+        
         // Cart Not exist
         if($cart == null)
-        {
             return response()->json(['response' => null, 'message' => "Error. El carro de compras no existe"]);
-        }
+           
+        // Check if coupon is for discount and wasn't applied to cart
+        if($coupon->percent != null && $cart->order_discount > 0)
+            return response()->json(['response' => null, 'message' => "Esta compra ya cuenta con un descuento."]);
+
+        if($coupon->minQuantity != null && $cart->order_min_quantity > 0) 
+            return response()->json(['response' => null, 'message' => "Esta compra ya cuenta con un descuento de cantidad mínima."]);
         
+
+
         try {
-            $cart->order_discount = $coupon->percent;
+            if($coupon->percent)
+                $cart->order_discount = $coupon->percent;
+            if($coupon->minQuantity)
+                $cart->order_min_quantity = $coupon->minQuantity;
+
             $cart->save();
+
+            $customerCoupon = new CustomerCoupon();
+            $customerCoupon->customer_id = auth()->guard('customer')->user()->id;
+            $customerCoupon->coupon_id = $coupon->id;
+            $customerCoupon->save();
+
             return response()->json(['response' => true, 'message' => $coupon->percent]);
         } catch (\Exception $e) {
             return response()->json(['response' => false, 'message' => $e->getMessage()]);

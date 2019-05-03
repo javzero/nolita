@@ -144,6 +144,37 @@ class CustomerController extends Controller
         })->export("CSV");
     }
 
+    public function exportSleepCustomers(Request $request)
+    {
+        // $items = Customer::withNoOrders()->get();
+        if($request->init_date != null && $request->expire_date != null)
+        {
+            $items = Customer::whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
+                ->withNoOrders()
+                ->orderBy('created_at', 'DESC')->get();
+        }
+        else if($request->init_date != '')
+        {
+            $items = Customer::where('created_at', '>=', new Carbon($request->init_date))
+                ->orderBy('created_at', 'DESC')->get();
+        }
+        else
+        {
+            $items = Customer::orderBy('created_at', 'DESC')->withNoOrders()->get();
+        }
+
+        // dd($items);
+        return view('vadmin.customers.sandbox')->with('items', $items);
+
+
+        Excel::create('listado-de-clientes', function($excel) use($items){
+            $excel->sheet('Listado', function($sheet) use($items) {   
+                $sheet->loadView('vadmin.customers.exportSleepCustomers', 
+                compact('items'));
+            });
+        })->export("CSV");
+    }
+
     public function getData($params)
     {
         if($params == 'all'){

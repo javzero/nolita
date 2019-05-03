@@ -85,7 +85,11 @@ class Customer extends Authenticatable
         $query->where('group', $group)->where('status', $status);
     }   
 
-
+    public function scopeWithNoOrders()
+    {
+        return $this->carts();
+        // ->carts()->where('status','Active');
+    }
     /*
     |--------------------------------------------------------------------------
     | STATISTICS
@@ -102,10 +106,10 @@ class Customer extends Authenticatable
                 $return = $this->totalItems();
                 break;
             case "totalSpent":
-            $return = $this->totalSpent();
+                $return = $this->totalSpent();
                 break;
             default:
-            $return = null;
+                $return = null;
                 break;
         }
         return $return;    

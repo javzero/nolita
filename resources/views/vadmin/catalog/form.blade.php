@@ -1,5 +1,7 @@
-
 <div class="row">
+    {{-- Store current page allowing return here after edit --}}
+    <input type="hidden" value="{{ $previousUrl }}" name="previousUrl">
+    {{-- Form Data --}}
     <div class="col-xs-12 col-md-12 col-lg-6">
         {{--  Name  --}}
         <div class="col-xs-12 col-md-6 form-group">
