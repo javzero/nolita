@@ -305,6 +305,7 @@ class StoreController extends Controller
 
     public function checkoutSetItems(Request $request)
     {
+        
         $updateQuantities = $this->updateItemsQuantities($request->all());
         $activeCart = $this->activeCart();
         
@@ -346,6 +347,7 @@ class StoreController extends Controller
 
     public function processCheckout(Request $request)
     {
+        
         // Check if customer has required data completed
         $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
         if($checkCustomer['response'] == 'error')
@@ -519,7 +521,6 @@ class StoreController extends Controller
         if(CustomerCoupon::where('customer_id', auth()->guard('customer')->user()->id)->where('coupon_id', $coupon->id)->first())
             return response()->json(['response' => null, 'message' => 'Ya usaste este cupón.']);   
 
-        
         // Expired Coupon
         $coupon_expire = $coupon->expire_date;
         $coupon_expire = Carbon::parse($coupon_expire, 'America/Araguaina');
@@ -547,8 +548,6 @@ class StoreController extends Controller
         if($coupon->minQuantity != null && $cart->order_min_quantity > 0) 
             return response()->json(['response' => null, 'message' => "Esta compra ya cuenta con un descuento de cantidad mínima."]);
         
-
-
         try {
             if($coupon->percent)
                 $cart->order_discount = $coupon->percent;
@@ -566,7 +565,6 @@ class StoreController extends Controller
         } catch (\Exception $e) {
             return response()->json(['response' => false, 'message' => $e->getMessage()]);
         }
-
     }
 
     /*
@@ -580,7 +578,7 @@ class StoreController extends Controller
         $cartid = $request->cartId;
         $cart = Cart::where('id', $cartid)->first();
         $cartTotal = $request->cartTotal;
-        // Al pedo el quilombo mandar solo el detalle general de la compra
+        
         $preferenceData = [
             'items' => [
                 [

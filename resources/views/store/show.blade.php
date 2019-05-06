@@ -11,7 +11,7 @@
 			@else
 				<a href="{{ url('tienda') }}">
 			@endif
-				<button  class="btn btn-main mb-1">
+				<button class="btn btn-main mb-1">
 					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
 				</button>
 			</a>
@@ -94,7 +94,7 @@
 			@endif
 			{{-- Article Description --}}
 			<p class="description">{{ strip_tags($article->description) }}</p>
-			<h4>Tela:&nbsp; <a class="color-white" href="#"><b>{{ $article->textile }}</b></a></h4>
+			<h4>Tela:&nbsp; <span class="color-white" href="#">{{ $article->textile }}</span></h4>
 			{{-- <h4>Talle:&nbsp; <a class="color-white" href="#"><b>Único</b></a></h4> --}}
 			@if(Auth::guard('customer')->check())
 			<div class="row">
@@ -113,8 +113,8 @@
 										</label>
 									@endforeach
 								</div>
-								<span>Talles:</span>
 								<div class="btn-group-toggle form-selector" data-toggle="buttons">
+									<span>Talles:</span>
 									@foreach($sizes as $id => $name)
 										<label class="SizesSelector btn button-radio-hidden btn-main-sm-hollow">
 											<input onclick="checkVariantStock()" name="size_id" value="{{ $id }}" type="radio" autocomplete="off"> {{ $name }}

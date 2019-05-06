@@ -88,44 +88,42 @@ trait CartTrait {
                 }
                 
                 $minQuantityNeeded = false; $minMoneyNeeded = false;
-
                 
+                if($orderMinQuantity > 0 && $totalItems < $orderMinQuantity)
+                    $minQuantityNeeded = true;
+
                 // Check if cart has min quantity changed by coupon
                 if($cart->order_min_quantity != null && $cart->order_min_quantity > 0 )
                 {
                     $orderMinQuantity = $cart->order_min_quantity;
                     if($totalItems < $cart->order_min_quantity)
                         $minQuantityNeeded = true;
+                    else
+                        $minQuantityNeeded = false;
                 }
-                else
-                {                    
-                    if($minQuantity > 0 && $totalItems < $minQuantity)
-                        $minQuantityNeeded = true;
-                }
-                
+                    
                 if($this->settings->reseller_money_min > 0 && $cartTotal < $this->settings->reseller_money_min)
                     $minMoneyNeeded = true;
-
+                    
                 $goalQuantity = $minQuantity - $totalItems;
-
                 $activeCart = array
-                    (
-                        'rawdata' => $cart,
-                        'totalItems' => $cart->items->count(),
-                        'paymentPercent' => $cart->payment_percent,
-                        'paymentId' => $cart->payment_method_id,
-                        'shippingPrice' => $cart->shipping_price,
-                        'shippingId' => $cart->shipping_id,
-                        'orderDiscount' => $cart->order_discount,
-                        'orderDiscountValue' => $orderDiscount,
-                        'cartSubTotal' => $cartSubTotal,
-                        'cartTotal' => $cartTotal,
-                        'totalItems' => $totalItems,
-                        'goalQuantity' => $goalQuantity,
-                        'minQuantityNeeded' => $minQuantityNeeded,
-                        'orderMinQuantity' => $orderMinQuantity,
-                        'minMoneyNeeded' => $minMoneyNeeded
-                    );
+                (
+                    'rawdata' => $cart,
+                    'totalItems' => $cart->items->count(),
+                    'paymentPercent' => $cart->payment_percent,
+                    'paymentId' => $cart->payment_method_id,
+                    'shippingPrice' => $cart->shipping_price,
+                    'shippingId' => $cart->shipping_id,
+                    'orderDiscount' => $cart->order_discount,
+                    'orderDiscountValue' => $orderDiscount,
+                    'cartSubTotal' => $cartSubTotal,
+                    'cartTotal' => $cartTotal,
+                    'totalItems' => $totalItems,
+                    'goalQuantity' => $goalQuantity,
+                    'minQuantityNeeded' => $minQuantityNeeded,
+                    'orderMinQuantity' => $orderMinQuantity,
+                    'minMoneyNeeded' => $minMoneyNeeded
+                );
             }
         } 
         return $activeCart;
