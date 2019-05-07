@@ -17,7 +17,7 @@
         <tr>
             <td>{{ $item->name }} {{ $item->surname }} ({{ $item->username }})</td>
             <td>{{ $item->email }}</td>
-            <td>{{ $item->created_at }}</td>
+            <td>{{ transDateT($item->created_at) }}</td>
 			<td>{{ $item->totalCarts() }}</td>
 			<td>$ {{ $item->totalSpent() }}</td>
 			<td>{{ $item->lastOrderDate() }}</td>

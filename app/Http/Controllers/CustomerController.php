@@ -184,8 +184,6 @@ class CustomerController extends Controller
               })
               ->whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
               ->orderBy('created_at', 'DESC')->get();
-
-
             // $items = Customer::has('carts', '==', '0')->whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
             //     ->orderBy('created_at', 'DESC')->get();
         }
