@@ -60,9 +60,12 @@
 					<a class="icon-container blue" data-toggle="modal" data-target="#ExportGmailModal" data-toggle="tooltip" title="Exportar para Gmail">
 						<i class="fab fa-google"></i>
 					</a> 
-					{{-- <a class="icon-container blue" data-toggle="modal" data-target="#ExportSleepCustomersModal" data-toggle="tooltip" title="Exportar clientes sin compras">
+					<a class="icon-container blue" data-toggle="modal" data-target="#ExportCustomersOrdersModal" data-toggle="tooltip" title="Exportar Compras">
+						<i class="fas fa-shopping-cart"></i>
+					</a> 
+					<a class="icon-container blue" data-toggle="modal" data-target="#ExportSleepCustomersModal" data-toggle="tooltip" title="Exportar clientes sin compras">
 						<i class="fas fa-bed"></i>
-					</a>  --}}
+					</a> 
 
 					
 					{{-- <a href="{{ route('vadmin.exportForGmail', ['params' => 'all', 'format' => 'csv']) }}" data-toggle="tooltip" title="Exportar para Gmail"  class="icon-container blue">
@@ -79,7 +82,13 @@
 				@slot('tableTitles')
 					@if(!$items->isEmpty())
 						@if(Auth::guard('user')->user()->role <= 2)
-						<th class="w-50"></th>
+						<th class="w-50">
+							<label class="custom-control custom-checkbox list-checkbox">
+								<input type="checkbox" class="Select-All-To-Delete custom-control-input row-checkbox">
+								<span class="custom-control-indicator"></span>
+								<span class="custom-control-description"></span>
+							</label>
+						</th>
 						@endif
 						<th>Nombre (Usuario)</th>
 						<th>Email</th>
@@ -134,12 +143,12 @@
 				@endslot
 			@endcomponent
 			{{--  Pagination  --}}
-			<div class="inline-links">
+			{{-- <div class="inline-links">
 				<b>Resultados por página:</b>
 				<a href="{{ route('customers.index', ['orden' => 'ASC', 'redirect' => 'stock', 'results' => '5']) }}">5</a>
 				<a href="{{ route('customers.index', ['orden' => 'ASC', 'redirect' => 'stock', 'results' => '50']) }}">50</a>
 				<a href="{{ route('customers.index', ['orden' => 'ASC', 'redirect' => 'stock', 'results' => '100']) }}">100</a>
-			</div>
+			</div> --}}
 			{!! $items->appends(request()->query())->render()!!}
 		</div>
 		<div id="Error"></div>	
@@ -162,24 +171,47 @@
 		@endslot
 	@endcomponent
 
+
 	{{-- Export customers with no closed orders --}}
 	@component('vadmin.components.modal')
-	@slot('id', 'ExportSleepCustomersModal')
-	@slot('title', 'Exportar clientes que no han realizado compras')
-	@slot('content')
-		<div class="filter-date">
-			<label for="">Elija un período (Si lo deja vacío se exportaran todos)</label> <br>
-			{!! Form::open(['method' => 'GET', 'route' => 'vadmin.exportSleepCustomers', 'class' => 'form-group inner']) !!} 
-				{!! Form::date('init_date', null, ['class' => 'form-control']) !!}
-				{!! Form::date('expire_date', null, ['class' => 'form-control']) !!}
-				<button type="submit" class="btn btnMain btn-sm"> <i class="fas fa-bed"></i> EXPORTAR</button>
-			{!! Form::close() !!}	
-		</div>
-	@endslot
-	@slot('button')
-	@endslot
-@endcomponent
+		@slot('id', 'ExportCustomersOrdersModal')
+		@slot('title', 'Exportar clientes que no han realizado compras')
+		@slot('content')
+			<div class="filter-date">
+				<label for="">Elija un período (Si lo deja vacío se exportaran todos)</label> <br>
+				{!! Form::open(['method' => 'GET', 'route' => 'vadmin.exportCustomersOrders', 'class' => 'form-group inner']) !!} 
+					{!! Form::date('init_date', null, ['class' => 'form-control']) !!}
+					{!! Form::date('expire_date', null, ['class' => 'form-control']) !!}
+					<button type="submit" class="btn btnMain btn-sm"> <i class="fas fa-bed"></i> EXPORTAR</button>
+				{!! Form::close() !!}	
+			</div>
+		@endslot
+		@slot('button')
+		@endslot
+	@endcomponent
+
+
+	{{-- Export customers with no closed orders --}}
+	@component('vadmin.components.modal')
+		@slot('id', 'ExportSleepCustomersModal')
+		@slot('title', 'Exportar clientes que no han realizado compras')
+		@slot('content')
+			<div class="filter-date">
+				<label for="">Elija un período (Si lo deja vacío se exportaran todos)</label> <br>
+				{!! Form::open(['method' => 'GET', 'route' => 'vadmin.exportSleepCustomers', 'class' => 'form-group inner']) !!} 
+					{!! Form::date('init_date', null, ['class' => 'form-control']) !!}
+					{!! Form::date('expire_date', null, ['class' => 'form-control']) !!}
+					<button type="submit" class="btn btnMain btn-sm"> <i class="fas fa-bed"></i> EXPORTAR</button>
+				{!! Form::close() !!}	
+			</div>
+		@endslot
+		@slot('button')
+		@endslot
+	@endcomponent
 @endsection
+
+
+
 
 {{-- SCRIPT INCLUDES --}}
 @section('scripts')

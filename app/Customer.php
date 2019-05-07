@@ -85,11 +85,6 @@ class Customer extends Authenticatable
         $query->where('group', $group)->where('status', $status);
     }   
 
-    public function scopeWithNoOrders()
-    {
-        return $this->carts();
-        // ->carts()->where('status','Active');
-    }
     /*
     |--------------------------------------------------------------------------
     | STATISTICS
@@ -118,7 +113,7 @@ class Customer extends Authenticatable
 
     function totalItems()
     {
-        $carts = $this->carts;
+        $carts = $this->carts->where('status', '!=', 'Canceled')->where('status', '!=', 'Active');
         $totalItems = 0;
         foreach($carts as $cart)
         {
@@ -135,8 +130,9 @@ class Customer extends Authenticatable
 
     function totalSpent()
     {
-        $carts = $this->carts;
+        $carts = $this->carts->where('status', '!=', 'Canceled')->where('status', '!=', 'Active');
         $totalSpent = 0;
+
         foreach($carts as $cart)
         {
             foreach($cart->items as $item)
@@ -149,7 +145,7 @@ class Customer extends Authenticatable
 
     function totalCarts()
     {
-        $carts = $this->carts;
+        $carts = $this->carts->where('status', '!=', 'Canceled')->where('status', '!=', 'Active');
         $totalCarts = 0;
         
         foreach($carts as $cart)
@@ -160,6 +156,21 @@ class Customer extends Authenticatable
             } 
         }
         return $totalCarts;
-    }    
+    }
+    function lastOrderDate()
+    {
+        $date = $this->carts->where('status', '!=', 'Canceled')->where('status', '!=', 'Active')->sortByDesc('created_at')->first();
+        if($date)
+        {
+            $date = $date->created_at;   
+            $date = transDateT($date->todatestring());
+        }
+        else
+        {
+            $date = '';
+        }
+        
+        return $date;
+    }
 
 }

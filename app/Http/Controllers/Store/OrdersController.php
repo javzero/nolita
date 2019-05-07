@@ -35,12 +35,12 @@ class OrdersController extends Controller
         {
             if($request->status == 'All')
             {
-                $items = Cart::orderBy('created_at', 'DESC')->where('status', '!=','Active')->get();
+                $items = Cart::orderBy('created_at', 'DESC')->where('status', '!=','Active')->paginate(15);
             } else {
-                $items = Cart::searchStatus($request->status)->orderBy('created_at', 'DESC')->get();
+                $items = Cart::searchStatus($request->status)->orderBy('created_at', 'DESC')->paginate(15);
             }
         } else {
-            $items = Cart::orderBy('created_at', 'DESC')->where('status', '=','Process')->get();
+            $items = Cart::orderBy('created_at', 'DESC')->where('status', '=','Process')->paginate(15);
         }
 
         return view('vadmin.orders.index')->with('items', $items);    

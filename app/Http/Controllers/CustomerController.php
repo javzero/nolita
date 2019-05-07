@@ -144,36 +144,80 @@ class CustomerController extends Controller
         })->export("CSV");
     }
 
+    // Export only customers with no orders
     public function exportSleepCustomers(Request $request)
     {
-        // $items = Customer::withNoOrders()->get();
+        // $customers = $this->getSleepCustomers();
+
         if($request->init_date != null && $request->expire_date != null)
         {
-            $items = Customer::whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
-                ->withNoOrders()
+            $items = Customer::has('carts', '==', '0')->whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
                 ->orderBy('created_at', 'DESC')->get();
         }
         else if($request->init_date != '')
         {
-            $items = Customer::where('created_at', '>=', new Carbon($request->init_date))
+            $items = Customer::has('carts', '==', '0')->where('created_at', '>=', new Carbon($request->init_date))
                 ->orderBy('created_at', 'DESC')->get();
         }
         else
         {
-            $items = Customer::orderBy('created_at', 'DESC')->withNoOrders()->get();
+            $items = Customer::has('carts', '==', '0')->orderBy('created_at', 'DESC')->get();
         }
 
-        // dd($items);
-        return view('vadmin.customers.sandbox')->with('items', $items);
-
+        // return view('vadmin.customers.sandbox')->with('items', $items);
 
         Excel::create('listado-de-clientes', function($excel) use($items){
             $excel->sheet('Listado', function($sheet) use($items) {   
-                $sheet->loadView('vadmin.customers.exportSleepCustomers', 
+                $sheet->loadView('vadmin.customers.exportCustomerOrders', 
                 compact('items'));
             });
         })->export("CSV");
     }
+
+    // Exports All customer orders
+    public function exportCustomersOrders(Request $request)
+    {
+        if($request->init_date != null && $request->expire_date != null)
+        {
+            $items = Customer::whereHas('carts', function($subQuery) {
+                $subQuery->where('status', '!=', 'Active')->where('status', '!=', 'Canceled');
+              })
+              ->whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
+              ->orderBy('created_at', 'DESC')->get();
+
+
+            // $items = Customer::has('carts', '==', '0')->whereBetween('created_at', [new Carbon($request->init_date), new Carbon($request->expire_date)])
+            //     ->orderBy('created_at', 'DESC')->get();
+        }
+        else if($request->init_date != '')
+        {
+            $items = Customer::whereHas('carts', function($subQuery) {
+                $subQuery->where('status', '!=', 'Active')->where('status', '!=', 'Canceled');
+              })
+                ->where('created_at', '>=', new Carbon($request->init_date))
+                ->orderBy('created_at', 'DESC')->get();
+
+            // $items = Customer::whereHas('carts', '==', '0')->where('created_at', '>=', new Carbon($request->init_date))
+            //     ->orderBy('created_at', 'DESC')->get();
+        }
+        else
+        {
+            $items = Customer::whereHas('carts', function($subQuery) {
+                $subQuery->where('status', '!=', 'Active')->where('status', '!=', 'Canceled');
+              })->get();
+        }
+
+        // return view('vadmin.customers.sandbox')->with('items', $items);
+
+
+        Excel::create('listado-de-clientes', function($excel) use($items){
+            $excel->sheet('Listado', function($sheet) use($items) {   
+                $sheet->loadView('vadmin.customers.exportCustomerOrders', 
+                compact('items'));
+            });
+        })->export("CSV");
+    }
+
 
     public function getData($params)
     {

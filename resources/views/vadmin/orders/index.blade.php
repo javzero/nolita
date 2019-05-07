@@ -52,13 +52,13 @@
 						@slot('tableContent', '')
 					@else
 					@slot('tableTitles')
-					<th>
-						<label class="custom-control custom-checkbox list-checkbox">
-							<input type="checkbox" class="Select-All-To-Delete custom-control-input row-checkbox">
-							<span class="custom-control-indicator"></span>
-							<span class="custom-control-description"></span>
-						</label>
-					</th>
+						<th>
+							<label class="custom-control custom-checkbox list-checkbox">
+								<input type="checkbox" class="Select-All-To-Delete custom-control-input row-checkbox">
+								<span class="custom-control-indicator"></span>
+								<span class="custom-control-description"></span>
+							</label>
+						</th>
 						<th>N°</th>
 						<th>Cliente</th>
 						<th>Estado</th>
@@ -84,30 +84,7 @@
 									</a>
 								</td>
 								<td class="w-200">
-									<div class="input-group"> 
-										{{-- <span class="input-group-btn">
-											<span class="btn btnSquare grey-back">
-												@switch($item->status)
-													@case('Active')
-														<i class="icon-download"></i>
-														@break
-													@case('Process')
-														<i class="icon-cog"></i>
-														@break
-													@case('Approved')
-														<i class="icon-forward2"></i>
-														@break
-													@case('Canceled')
-														<i class="icon-cancel-circle"></i>
-														@break
-													@case('Finished')
-														<i class="icon-checkmark2"></i>
-														@break
-													@default
-														<i class="icon-close"></i>
-												@endswitch
-											</span>
-										</span> --}}
+									<div class="input-group">
 										{!! Form::select('group', 
 										[ 'Active' => 'Activo', 'Process' => 'Esperando Acción', 'Approved' => 'Aprobado', 'Canceled' => 'Cancelado', 'Finished' => 'Finalizado'], 
 										$item->status, ['class' => 'form-control custom-select minWidth150', 'onChange' => 'updateCartStatus(this, this.dataset.id)', 'data-id' => $item->id]) !!}
@@ -144,7 +121,7 @@
 				@endcomponent
 			</div>
 			{{--  Pagination  --}}
-		{{-- {!! $items->render() !!} --}}
+		{!! $items->appends(request()->query())->render()!!}
 		<div id="Error"></div>	
 	</div>
 @endsection
