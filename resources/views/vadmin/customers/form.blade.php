@@ -100,3 +100,4 @@
         </div>
     </div>
 </div>
+<input type="hidden" value="3" name="group">

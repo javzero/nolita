@@ -67,36 +67,6 @@ function CheckToDeletion(type, row)
 	}
 }
 
-// Set List Action Buttons
-// $(document).on("click", ".List-Checkbox", function(e){
-//     e.stopPropagation();
-// 	var selectedRows = [];
-//     $(".List-Checkbox:checked").each(function() {          
-//         selectedRows.push($(this).attr('data-id'));
-// 		$('#RowsToDeletion').val(selectedRows);
-//     });
-       
-//     if(selectedRows.length == 1){
-// 		$('#EditId, #CreateFromAnotherId').val(selectedRows);
-//     } else if(selectedRows.length < 1){
-// 		$('#EditId, #CreateFromAnotherId').val('');
-//     } else if(selectedRows.length > 1){
-//         $('#EditId, #CreateFromAnotherId').val('');
-//     } else {
-//         $('#EditId, #CreateFromAnotherId').val('');
-//     }
-
-//     showButtons(this);
-
-// 	var checkbox = $(this).prop('checked');
-// 	if(checkbox){
-// 		$(this).parent().parent().parent().addClass('row-selected');
-// 	} else {
-// 		$(this).parent().parent().parent().removeClass('row-selected');
-// 	}
-// });
-
-
 function showButtons(trigger) {
 	
 	var countSelected = $('.List-Checkbox:checkbox:checked').length;
@@ -236,7 +206,6 @@ deleteAndReload = function(id, route, bigtext, smalltext) {
 			}
 		});
 	});
-
 }
 
 /*

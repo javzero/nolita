@@ -313,6 +313,7 @@ Route::prefix('vadmin')->middleware('admin')->group(function () {
     Route::post('destroy_shippings', 'Catalog\ShippingsController@destroy');
     Route::post('destroy_payments', 'Catalog\PaymentsController@destroy');
     Route::post('destroy_carts', 'Store\CartsController@destroy');
+    Route::post('destroy_orders', 'Store\CartsController@destroy');
     Route::post('destroy_cartitem', 'Store\CartsController@destroy');
 });
 

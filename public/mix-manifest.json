@@ -6,6 +6,7 @@
     "/css/vadmin.css": "/css/vadmin.css",
     "/js/web.js": "/js/web.js",
     "/js/vadmin-ui.js": "/js/vadmin-ui.js",
+    "/js/vadmin-orders.js": "/js/vadmin-orders.js",
     "/js/vadmin-functions.js": "/js/vadmin-functions.js",
     "/js/vadmin-forms.js": "/js/vadmin-forms.js",
     "/js/vadmin-dynamic-forms.js": "/js/vadmin-dynamic-forms.js",
