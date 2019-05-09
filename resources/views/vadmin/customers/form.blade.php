@@ -69,9 +69,15 @@
             <div class="form-group">
                 <label>Localidad</label>
                 @if(isset($customer))
+                    
                     <select id='GeoLocsSelect' name="geoloc_id" 
-                        data-actualloc="{{ $customer->geoloc->name }}" 
-                        data-actuallocid="{{ $customer->geoloc->id }}" 
+                        @if($customer->geoloc)
+                            data-actualloc=" {{ $customer->geoloc->name }}" 
+                            data-actuallocid="{{ $customer->geoloc->id }}"
+                        @else
+                            data-actualloc="" 
+                            data-actuallocid=""     
+                        @endif 
                         class="form-control GeoLocsSelect" required>
                     </select>
                 @else

@@ -1,6 +1,6 @@
 <div class="row">
     {{-- Store current page allowing return here after edit --}}
-    <input type="hidden" value="{{ $previousUrl }}" name="previousUrl">
+    <input type="hidden" value="@if(isset($previousUrl)) {{ $previousUrl }} @endif" name="previousUrl">
     {{-- Form Data --}}
     <div class="col-xs-12 col-md-12 col-lg-6">
         {{--  Name  --}}

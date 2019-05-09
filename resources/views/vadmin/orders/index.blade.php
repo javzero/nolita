@@ -93,10 +93,10 @@
 										$item->status, ['class' => 'form-control custom-select minWidth150', 'onChange' => 'updateCartStatus(this, this.dataset.id)', 'data-id' => $item->id]) !!}
 									</div>
 								</td>
-								@php
-									$count = '0';
-									foreach($item->items as $sum)
-									$count += $sum->quantity;
+									@php
+										$count = '0';
+										foreach($item->items as $sum)
+											$count += $sum->quantity;
 									@endphp
 								<td>{{ $count }}</td>
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
