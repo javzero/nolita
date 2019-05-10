@@ -27,6 +27,23 @@
 		<!-- Modernizr-->
 		<script src="{{ asset('store-ui/js/modernizr.min.js') }}"></script>
 		{!! $google_analytics !!}
+		<!-- Facebook Pixel Code -->
+
+		<script>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', '1002215936641276');
+			fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1002215936641276&ev=PageView&noscript=1"/></noscript>
+		<!-- End Facebook Pixel Code -->
+		
 	</head>
 	<!-- Body-->
 	<body>
@@ -50,41 +67,41 @@
 			{{-- Site Content --}}
 			<div class="content"> @yield('content') </div>
 		</div>	
-			<!-- Site Footer-->
-			<footer class="site-footer">
-				<div class="container">
-					<p class="footer-copyright">
-						© {{ date('Y') }} - Desarrollado por <a href="https://vimana.studio/es" target="_blank">&nbsp; Vimana Studio </a>
-					</p>
-				</div>
-			</footer>
-
-			{{-- Whats App Cta --}}
-			<div class="floating-bottom-cta">
-				<div class="inner">
-					<a href="https://wa.me/5491124906000" target="_blank"><i class="fab fa-whatsapp"></i></a>
-				</div>
+		<!-- Site Footer-->
+		<footer class="site-footer">
+			<div class="container">
+				<p class="footer-copyright">
+					© {{ date('Y') }} - Desarrollado por <a href="https://vimana.studio/es" target="_blank">&nbsp; Vimana Studio </a>
+				</p>
 			</div>
-		
-			{{-- Back To Top Button --}}
-			<a class="scroll-to-top-btn" href="#"> <i class="icon-arrow-up"></i> </a>
+		</footer>
 
-			{{-- Backdrop --}}
-			<div class="site-backdrop"></div>
+		{{-- Whats App Cta --}}
+		<div class="floating-bottom-cta">
+			<div class="inner">
+				<a href="https://wa.me/5491124906000" target="_blank"><i class="fab fa-whatsapp"></i></a>
+			</div>
+		</div>
+	
+		{{-- Back To Top Button --}}
+		<a class="scroll-to-top-btn" href="#"> <i class="icon-arrow-up"></i> </a>
 
-			{{-- JavaScript (jQuery) libraries, vendor and custom scripts --}}
-			<script src="{{ asset('store-ui/js/vendor.min.js') }}"></script>
-			<script src="{{ asset('store-ui/js/iziToast.min.js') }}"></script>
-			<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
-			<script src="{{ asset('plugins/jquery/jquery-3.3.1.min.js') }}"></script>
-			<script src="{{ asset('js/scripts.js') }}"></script>
-			@include('store.partials.scripts')
-			@yield('scripts')
-			@if(isset($_GET['checkout-on']))
-				<script>
-					checkoutSidebar('show');
-				</script>
-			@endif
+		{{-- Backdrop --}}
+		<div class="site-backdrop"></div>
+
+		{{-- JavaScript (jQuery) libraries, vendor and custom scripts --}}
+		<script src="{{ asset('store-ui/js/vendor.min.js') }}"></script>
+		<script src="{{ asset('store-ui/js/iziToast.min.js') }}"></script>
+		<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
+		<script src="{{ asset('plugins/jquery/jquery-3.3.1.min.js') }}"></script>
+		<script src="{{ asset('js/scripts.js') }}"></script>
+		@include('store.partials.scripts')
+		@yield('scripts')
+		@if(isset($_GET['checkout-on']))
+			<script>
+				checkoutSidebar('show');
+			</script>
+		@endif
 		
 	</body>
 </html>
