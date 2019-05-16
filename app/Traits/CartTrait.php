@@ -278,12 +278,15 @@ trait CartTrait {
                 $cart = Cart::find($id);
                 if($action == 'delete')
                 {
+                    Log::info("Carro n° ".$id." eliminado | Stock devuelto: ");
                     foreach($cart->items as $item){
                         if($item->variant)
+                        {
                             $this->updateVariantStock($item->variant->id, $item->quantity);
+                            Log::info("Variante #".$item->variant->id.": Stock devuelto: " . $item->quantity);
+                        }
                     }
                     $cart->delete();
-                    Log::info("Carro n°".$id." eliminado");
                     $count++;
                 }
                 else if($action == 'cancel')

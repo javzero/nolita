@@ -159,7 +159,7 @@ Vadmin | Pedido #{{ $order['rawdata']->id }}
                     @endif
                     <tr>
                         <td></td><td></td><td></td>
-                        @if($order['rawdata']->shipping_id != null)
+                        @if($order['rawdata']->shipping_id != null && $order['rawdata']->shipping)
                         <td><b>Envío:</b> {{ $order['rawdata']->shipping->name }}</td>
                         <td>$ {{ $order['shippingCost'] }}</td>
                         @else
@@ -168,7 +168,7 @@ Vadmin | Pedido #{{ $order['rawdata']->id }}
                         @endif
                     </tr>
                         <td></td><td></td><td></td>
-                        @if($order['rawdata']->payment_method_id != null)
+                        @if($order['rawdata']->payment_method_id != null && $order['rawdata']->payment)
                         <td><b>Forma de Pago:</b> {{ $order['rawdata']->payment->name }} (%{{$order['rawdata']->payment_percent}})</td>
                         <td>$ {{ $order['paymentCost'] }}</td>
                         @else

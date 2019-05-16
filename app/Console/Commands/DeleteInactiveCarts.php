@@ -58,6 +58,6 @@ class DeleteOldCarts extends Command
             array_push($ids, $oldCart->id);
         }
         
-        $this->manageOldCarts($ids, 'cancel');
+        $this->manageOldCarts($ids, 'delete');
     }
 }
