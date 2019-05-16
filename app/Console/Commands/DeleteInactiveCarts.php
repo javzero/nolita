@@ -8,7 +8,7 @@ use App\Cart;
 use App\Traits\CartTrait;
 use Log;
 
-class DeleteOldCarts extends Command
+class DeleteInactiveCarts extends Command
 {
     use CartTrait;
 
