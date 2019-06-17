@@ -17,6 +17,7 @@
 	{{-- <div class="filter-container">
 		
 	</div> --}}
+	
 	<div id="main" class="main-container container-fluid padding-bottom-3x mb-1">
 		<div class="row">
 			{{-- col-xs-12 col-lg-9 col-sm-8 col-md-8 --}}
@@ -41,7 +42,13 @@
 					@endif
 				@endif --}}
 				<!-- Products Grid -->
-				<div class="row articles-container">
+				<div class="row SkeletonsArticles skeleton-articles">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 skeleton-article"><img src="{{ asset('images/gen/catalog-gen.jpg') }}" alt=""></div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 skeleton-article"><img src="{{ asset('images/gen/catalog-gen.jpg') }}" alt=""></div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 skeleton-article"><img src="{{ asset('images/gen/catalog-gen.jpg') }}" alt=""></div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 skeleton-article"><img src="{{ asset('images/gen/catalog-gen.jpg') }}" alt=""></div>
+				</div>
+				<div class="row ArticlesContainer articles-container Hidden">
 					@if($articles->count() == '0')
 					<div class="no-articles">
 						<h3>No se han encontrado artículos</h3>
@@ -152,6 +159,12 @@
 
 @section('scripts')
 	@include('store.components.bladejs')
+	<script>
+		$(document).ready(function() {
+			$('.SkeletonsArticles').fadeOut(100);
+			$('.ArticlesContainer').removeClass('Hidden');
+		});
+	</script>
 @endsection
 
 

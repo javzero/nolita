@@ -519,16 +519,16 @@ class ArticlesController extends Controller
         $extension = '.jpg';
 
         // Creates directory if no exist
-        if (!file_exists($imgPath)) {
-            $oldmask = umask(0);
-            mkdir($imgPath, 0777);
-            umask($oldmask);
-        }
-        if (!file_exists($thumbPath)) {
-            $oldmask = umask(0);
-            mkdir($thumbPath, 0777);
-            umask($oldmask);
-        }
+        // if (!file_exists($imgPath)) {
+        //     $oldmask = umask(0);
+        //     mkdir($imgPath, 0777);
+        //     umask($oldmask);
+        // }
+        // if (!file_exists($thumbPath)) {
+        //     $oldmask = umask(0);
+        //     mkdir($thumbPath, 0777);
+        //     umask($oldmask);
+        // }
 
         $thumbWidth = 240;
         $thumbHeight = 360;

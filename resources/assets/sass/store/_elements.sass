@@ -1150,6 +1150,12 @@ ul.pagination
 //                                  //
 //////////////////////////////////////
 
+.skeleton-articles
+    .skeleton-article
+        padding: 10px
+        // background: url("../images/gen/catalog-gen.jpg");
+        
+
 .error-page
     @include flex-center
     text-align: center
@@ -1165,6 +1171,24 @@ ul.pagination
     max-height: 100%
     background-color: #ccc
 
+.store-footer
+    background-color: $main-color
+    padding: 30px 10px
+    a, span
+        color: #fff
+    ul 
+        text-align: center
+        margin: 0
+        li 
+            display: inline
+            margin: 20px 10px
+
+@media (max-width: 768px)
+    .store-footer   
+        ul 
+            li 
+                display: block
+                margin: 5px 10px
 
 .site-footer
     padding: 15px 5px
