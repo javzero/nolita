@@ -88,13 +88,32 @@
 .topbar
 	.topbar-column
 		white-space: nowrap
-		span
+		.topbar-column-items
 			color: #fff
-	
+			margin: 0
+			li
+				display: inline
+	.topbar-column-left
+		width: 80%
+	.topbar-column-right
+		width: 20%
+	.br-divisor
+		display: none
+
+@media (max-width: 500px)
+	.topbar .topbar-column .br-divisor
+		display: block
+
 @media (max-width: 768px)
-	.topbar .topbar-column
-		.data-top-desktop
-			display: none !important
+	.topbar 
+		margin-bottom: 5px 
+		padding: 5px
+		.topbar-column
+			.data-hide-mobile
+				display: none !important
+			.topbar-column-items
+				li 
+					display: block
 
 .left-nav-items
 	position: absolute
