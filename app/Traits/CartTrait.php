@@ -6,8 +6,9 @@ use App\CatalogArticle;
 use App\CatalogVariant;
 use App\CatalogFav;
 use App\Settings;
-use Log;
 use App\CatalogCoupon;
+use App\Mail\SendMail;
+use Log;
 
 trait CartTrait {
     

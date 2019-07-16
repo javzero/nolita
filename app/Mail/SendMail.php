@@ -22,7 +22,7 @@ class SendMail extends Mailable implements ShouldQueue
      */
     public function __construct($subject, $view, $data)
     {
-        $this->data = $data;
+        $this->data    = $data;
         $this->subject = $subject;
         $this->view    = $view;
     }
