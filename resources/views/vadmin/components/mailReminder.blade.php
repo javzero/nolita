@@ -7,8 +7,7 @@
     @endslot
 
     ###<center>Tu carro de compras está activo, te recordamos que aún estás a tiempo de terminar tu compra.</center>
-    <br>
-    ###<center>En 24hs el carro se cerrará automáticamente.</center>
+    ##<center>En 24hs el carro se cerrará automáticamente.</center>
 
 
     @slot('subcopy')
