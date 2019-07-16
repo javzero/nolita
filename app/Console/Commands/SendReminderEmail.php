@@ -44,10 +44,6 @@ class SendReminderEmail extends Command
         $maxTime = 24;
         $time = Carbon::now()->subHour($maxTime);
         $carts = Cart::where('status','ACTIVE')->where('created_at', '<=', $time)->get();
-
-        Log::info("-----------------------------------");
-        Log::info("Sending Active cart Reminders");
-        Log::info("-----------------------------------");
         
         $emails = [];
         foreach($carts as $cart)
@@ -55,7 +51,15 @@ class SendReminderEmail extends Command
             array_push($emails, $cart->customer->email);
         }
 
-        \Mail::to($emails)->send(new SendMail('Recordatorio', 'Reminder', ''));
-    
+        Log::info("-----------------------------------");
+        Log::info("Sending Active cart Reminders");
+        Log::info("Customers:");
+        foreach($emails as $email)
+        {
+            Log::info($email);
+        }
+        Log::info("-----------------------------------");
+
+        // \Mail::to($emails)->send(new SendMail('Recordatorio', 'Reminder', ''));
     }
 }
