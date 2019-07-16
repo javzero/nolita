@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('carts:purge')->everyMinute();
         $schedule->command('delete:oldcarts')->daily();
-        $schedule->command('send:reminder')->everyMinute();
+        $schedule->command('send:reminder')->daily();
         // $schedule->command('delete:oldcarts')->cron('* * * * *');
     }
 
