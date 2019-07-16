@@ -22,7 +22,7 @@
 			<fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }} position-relative has-icon-left mb-0">
 				<div class="form-group input-group">
 					<span class="input-group-addon"><i class="icon-lock"></i></span>
-					<input id="email" type="text" name="email" class="form-control round" placeholder="Ingrese su Email" value="{{ old('email') }}" required>
+					<input id="email" type="text" name="email" class="form-control round" placeholder="Ingrese su Nombre de Usuario o Email" value="{{ old('email') }}" required>
 					@if ($errors->has('email'))
 						<span class="help-block">
 							<strong>{{ $errors->first('email') }}</strong>

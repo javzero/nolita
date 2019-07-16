@@ -79,9 +79,8 @@ class CartsController extends Controller
     public function updateStatus(Request $request)
     {
         $cart = Cart::findOrFail($request->id);
-        $oldStatus = $cart->status;
 
-        if($oldStatus == 'Canceled')
+        if($cart->status == 'Canceled')
         {
             if($request->status != 'Active')
             {
@@ -89,8 +88,21 @@ class CartsController extends Controller
                     'response' => false,
                     'message' => 'Los pedidos Cancelados solo se pueden cambiar a Activos.'
                 ]);
+            } 
+        }
+
+        if($request->status == "Active")
+        {
+            $existingActiveCart = Cart::where('customer_id', $cart->customer_id)->where('status', 'Active')->first();
+            if($existingActiveCart)
+            {
+                return response()->json([
+                    'response' => false,
+                    'message' => "El cliente ya tiene un carro de compras abierto"
+                ]); 
             }
         }
+        
 
         if($request->status == "Canceled")
         {

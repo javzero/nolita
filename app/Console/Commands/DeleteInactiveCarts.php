@@ -58,6 +58,6 @@ class DeleteInactiveCarts extends Command
             array_push($ids, $oldCart->id);
         }
         
-        $this->manageOldCarts($ids, 'delete');
+        $this->manageOldCarts($ids, 'cancel');
     }
 }
