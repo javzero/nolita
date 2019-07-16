@@ -60,6 +60,6 @@ class SendReminderEmail extends Command
         }
         Log::info("-----------------------------------");
 
-        // \Mail::to($emails)->send(new SendMail('Recordatorio', 'Reminder', ''));
+        \Mail::to($emails)->send(new SendMail('Recordatorio', 'Reminder', ''));
     }
 }
