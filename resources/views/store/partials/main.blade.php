@@ -114,8 +114,7 @@
 				checkoutSidebar('show');
 			</script>
 		@endif
-		<script type="text/javascript">var subscribersSiteId='7d6e1b8a-5c74-498bb968-a733183b514e';</script>
-		<script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>
+<script type="text/javascript">var subscribersSiteId='7d6e1b8a-5c74-498bb968-a733183b514e';</script><script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>
 		
 	</body>
 </html>
