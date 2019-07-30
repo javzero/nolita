@@ -24,4 +24,9 @@ class CatalogCategory extends Model
     {
         return $query->where('name','LIKE', "%$name%");
     }
+
+    public function activeArticles()
+    {
+        return $this->hasMany('App\CatalogArticle', 'category_id')->where('status', '1');
+    }
 }

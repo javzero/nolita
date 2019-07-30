@@ -27,13 +27,14 @@
         </div>
     </div>
 
-
     {{-- Categories --}}
     <div class="column">
         <select class="form-control item" name="categories" onchange="location = this.value;">
             <option value="Categories" selected disabled>TIPOS DE PRENDA</option>
             @foreach($categories as $category)
-                <option value="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }} </option>
+                @if($category->activeArticles->count() > 0)
+                    <option value="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }} </option>
+                @endif
             @endforeach
         </select>
     </div>

@@ -48,34 +48,17 @@ class StoreController extends Controller
 
     public function index(Request $request)
     {   
-        
         $pagination = $this->getSetPaginationCookie($request->get('results'));
         $order = 'DESC';
-        $orderBy = 'id';
-        $order2 = 'ASC';
-        $orderBy2 = 'discount';
+        $orderBy = 'created_at';
         
         if($request->precio)
         {
-            $orderBy = 'price';
+            $orderBy = 'reseller_price';
             if($request->precio == 'menor')
-            {
                 $order = 'ASC';
-                $order2 = 'ASC';
-            }
-            
-            // IF RESELLER
-            // if(auth()->guard('customer')->check())
-            // {
-            //     if(auth()->guard('customer')->user()->group == '3')
-            //     {
-            //         $orderBy = 'reseller_price';
-            //         $orderBy2 = 'reseller_discount';
-            //     }
-            // }
         }
 
-        
         if(isset($request->buscar))
         {   
             $tags = CatalogTag::with(['articles' => function($query) { $query->where('status', '=', '1'); }])->get();
@@ -86,11 +69,11 @@ class StoreController extends Controller
         {
             if($request->filtrar == 'populares')
             {  
-                $articles = CatalogArticle::has('hasFavs')->paginate($pagination);
+                $articles = CatalogArticle::has('hasFavs')->active()->orderBy($orderBy, $order)->paginate($pagination);
             } 
             else if($request->filtrar == 'descuentos')
             {
-                $articles = CatalogArticle::orderBy('discount', 'DESC')->active()->paginate($pagination);
+                $articles = CatalogArticle::where('reseller_discount', '>', '0')->active()->orderBy($orderBy, $order)->paginate($pagination);
             }
             else if($request->filtrar == 'ultimos')
             {
@@ -99,8 +82,10 @@ class StoreController extends Controller
             else if($request->filtrar == 'last-chance')
             {
                 $articles = CatalogArticle::orderBy('stock', 'ASC')->lowStock(15)->paginate($pagination);
-                // $articles = CatalogArticle::whereRaw('catalog_articles.stock < catalog_articles.stockmin')->paginate($pagination);
-                // $articles = CatalogArticle::orderBy('discount', 'DESC')->active()->paginate($pagination);
+            }
+            else 
+            {
+                $articles = CatalogArticle::orderBy($orderBy, $order)->active()->paginate($pagination);
             }
         }
         else if(isset($request->categoria))

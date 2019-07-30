@@ -27,7 +27,6 @@ class CatalogTag extends Model
 	public function scopeSearchname($query, $name)
     {
         return $query->where('name','LIKE', "%$name%");
-    }
-
+	}
 
 }	

@@ -28,7 +28,9 @@
         <div class="sub-title">TIPOS DE PRENDA</div>
         <ul>
             @foreach($categories as $category)
-                <li><a onchange="location = this.value;" href="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }} </a></li>
+                @if($category->activeArticles->count() > 0)
+                    <li><a onchange="location = this.value;" href="{{ route('store', 'categoria=').$category->id }}"> {{ $category->name }}</a></li>
+                @endif
             @endforeach
         </ul>
     </div>
