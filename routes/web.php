@@ -335,9 +335,20 @@ Route::get('500', ['as' => '500', 'uses' => 'ErrorController@fatal']);
 |--------------------------------------------------------------------------
 */
 
-Route::get('/vadmin/clients', function(){
-    return view('vadmin.dev.clients');
-});
+
+/*
+|--------------------------------------------------------------------------
+| Test
+|--------------------------------------------------------------------------
+*/
+
+// Route::get('checkout-success-test', function(){
+//     return view('store.checkout-success');
+// });
+
+// Route::get('/vadmin/clients', function(){
+//     return view('vadmin.dev.clients');
+// });
 //->middleware('auth');
 
 // Render Mails Test
