@@ -138,10 +138,13 @@ trait CartTrait {
         if($group == '3')
         {
             foreach($items as $item) {
-                if($item->article->reseller_discount > '0'){
-                    $result += calcValuePercentNeg($item->article->reseller_price, $item->article->reseller_discount) * $item->quantity;
-                } else {
-                    $result += $item->article->reseller_price * $item->quantity;
+                if($item->article)
+                {
+                    if($item->article->reseller_discount > '0'){
+                        $result += calcValuePercentNeg($item->article->reseller_price, $item->article->reseller_discount) * $item->quantity;
+                    } else {
+                        $result += $item->article->reseller_price * $item->quantity;
+                    }
                 }
             }
         } 

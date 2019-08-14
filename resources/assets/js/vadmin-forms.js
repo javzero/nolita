@@ -368,7 +368,7 @@ $('#Multi_Images').fileuploader({
         placeholder: null,
         scrollContainer: window,
         onSort: function(list, listEl, parentEl, newInputEl, inputEl) {
-            // onSort callback
+            $('#FeaturedImageName').val(list[0]['name']);
         }
     },
     thumbnails: {
@@ -386,20 +386,13 @@ $('#Multi_Images').fileuploader({
                        '<div class="thumbnail-holder">${image}</div>' +
                        '<div class="actions-holder">' +
                               '<a class="fileuploader-action fileuploader-action-remove" title="${captions.remove}">X</a> ' +
+                              '<a class="fileuploader-action fileuploader-action-sort" title="Sort">></a> ' +
                            '<span class="fileuploader-action-popup"></span>' +
                        '</div>' +
                           '<div class="progress-holder">${progressBar}</div>' +
                    '</div>' +
                '</li>',
-        item2: '<li class="fileuploader-item">' +
-                   '<div class="fileuploader-item-inner">' +
-                       '<div class="thumbnail-holder">${image}</div>' +
-                       '<div class="actions-holder">' +
-                           '<a class="fileuploader-action fileuploader-action-remove" title="${captions.remove}"><i class="remove"></i></a>' +
-                           '<span class="fileuploader-action-popup"></span>' +
-                       '</div>' +
-                   '</div>' +
-               '</li>',
+
         startImageRenderer: true,
         canvasImage: false,
         _selectors: {
@@ -478,6 +471,11 @@ $('#Multi_Images').fileuploader({
     */
 });
 
+function setImageOrderInputs() 
+{
+    console.log("Agregando Inputs");
+    $('#OrderInputs').html("<input value='order' name='Test'> Orden");
+}
 
 
 $('.Display-Input-Modificable').click(function(){

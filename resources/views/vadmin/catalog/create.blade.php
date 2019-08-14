@@ -8,7 +8,7 @@
 	{!! Html::style('plugins/jqueryFileUploader/jquery.fileuploader-thumbnailtheme.css') !!}
 	{!! Html::style('plugins/jqueryfiler/themes/jquery.filer-dragdropbox-theme.css') !!}
 	{!! Html::style('plugins/chosen/chosen.min.css') !!}
-	{!! Html::style('plugins/colorpicker/spectrum.css') !!}
+	{{-- {!! Html::style('plugins/colorpicker/spectrum.css') !!} --}}
 @endsection
 
 @section('header')
@@ -67,7 +67,15 @@
 		// Init text editor
 		$.trumbowyg.svgPath = '{{ asset('plugins/texteditor/icons.svg') }}';
 		$('.Textarea-Editor').trumbowyg();
-		
+
+		// $( function() {
+		// 	$( "#Sortable-List" ).sortable();
+		// 	$( "#Sortable-List" ).disableSelection();
+		// } );
+
+
+
+
 		$('#StoreArticleBtn').click(function(){
 			let formData = $('#StoreArticleForm').serialize();
 

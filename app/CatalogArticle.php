@@ -60,18 +60,34 @@ class CatalogArticle extends Model
     	return $this->belongsTo('App\CatalogBrand');
     }
 
+    
     public function featuredImageName(){
-        
         $featuredImage = $this->images()->where('featured', true)->first();
-        if(!$featuredImage){
-            $featuredImage = $this->images()->first();
-        }
-        
-        if($featuredImage){
+
+        if($featuredImage != null)
             return 'webimages/catalogo/'.$featuredImage->name;
-        }   
-        return 'images/gen/catalog-gen.jpg';
+        elseif($this->images())
+            $featuredImage = 'webimages/catalogo/'.$this->images()->first()->name;
+        else
+            $featuredImage = 'images/gen/catalog-gen.jpg';
+        
+        return $featuredImage;
     }
+
+
+    // OLD
+    // public function featuredImageName(){
+        
+    //     $featuredImage = $this->images()->where('featured', true)->first();
+    //     if(!$featuredImage){
+    //         $featuredImage = $this->images()->first();
+    //     }
+        
+    //     if($featuredImage){
+    //         return 'webimages/catalogo/'.$featuredImage->name;
+    //     }   
+    //     return 'images/gen/catalog-gen.jpg';
+    // }
 
     public function scopeActive($query){
         return $query->where('status', '1');

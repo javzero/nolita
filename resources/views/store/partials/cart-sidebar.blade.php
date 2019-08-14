@@ -18,43 +18,51 @@
                 </div> --}}
             </div>
             @foreach($activeCart['rawdata']->items as $item)
+
                 <div id="Item{{ $item->id }}" class="row item">
-                    <img src="{{ asset($item->article->featuredImageName()) }}" alt="Product">
-                    <div class="details-1">
-                        <a href="{{ url('tienda/articulo/'.$item->article->id) }}">
-                        @if(strlen($item->article->name) > 50)
-                            {{ substr($item->article->name, 0, 50) }}...
-                        @else
-                            {{ $item->article->name }}
-                        @endif
-                        </a>
-                    </div>
-                    <div class="col-xs-12">
-                        {{ $item->color }} / {{ $item->size }} 
-                    </div>
-                    <div class="details-2">
-                        <div class="column-1 price">
-                            {{-- PRICE --}}
-                            @php($articlePrice = '0')
-                            <td class="text-lg dont-break"> $
-                                @if(Auth::guard('customer')->user()->group == '3')
-                                    {{ $articlePrice = showPrice($item->article->reseller_price, $item->article->reseller_discount) }}
-                                @else
-                                    {{ $articlePrice = showPrice($item->article->price, $item->article->discount) }}
-                                @endif
-                            </td>
+                    @if($item->article)
+                        <img src="{{ asset($item->article->featuredImageName()) }}" alt="Product">
+                        <div class="details-1">
+                            <a href="{{ url('tienda/articulo/'.$item->article->id) }}">
+                            @if(strlen($item->article->name) > 50)
+                                {{ substr($item->article->name, 0, 50) }}...
+                            @else
+                                {{ $item->article->name }}
+                            @endif
+                            </a>
                         </div>
-                        {{-- <div class=""> Stock: {{ $item->article->stock }} </div> --}}
-                    </div>
-                    <div class="input-with-btn quantity">
-                        {{-- Send this data to JSON via js with .Item-Data class --}}
-                        <input class="Item-Data small-input under-element" name="data" type="number"  
-                        min="1" max="{{ $item->quantity + $item->variant->stock }}" value="{{ $item->quantity }}" required="" 
-                        data-price="{{$articlePrice}}" data-id="{{ $item->id }}" data-variant="{{ $item->variant_id }}" data-toggle="tooltip" data-placement="top" title="Stock máximo {{ $item->article->stock }}">
-                    </div>
-                    <div class="delete-item">
-                        <a onclick="removeFromCart('{{ route('store.removeFromCart') }}', {{$item->id}}, {{ $item->variant_id }}, {{ $item->quantity }}, '#Item'+{{ $item->id }}, 'reload');"><i class="far fa-trash-alt"></i></a>
-                    </div>
+                        <div class="col-xs-12">
+                            {{ $item->color }} / {{ $item->size }} 
+                        </div>
+                        <div class="details-2">
+                            <div class="column-1 price">
+                                {{-- PRICE --}}
+                                @php($articlePrice = '0')
+                                <td class="text-lg dont-break"> $
+                                    @if(Auth::guard('customer')->user()->group == '3')
+                                        {{ $articlePrice = showPrice($item->article->reseller_price, $item->article->reseller_discount) }}
+                                    @else
+                                        {{ $articlePrice = showPrice($item->article->price, $item->article->discount) }}
+                                    @endif
+                                </td>
+                            </div>
+                            {{-- <div class=""> Stock: {{ $item->article->stock }} </div> --}}
+                        </div>
+                        <div class="input-with-btn quantity">
+                            {{-- Send this data to JSON via js with .Item-Data class --}}
+                            <input class="Item-Data small-input under-element" name="data" type="number"  
+                            min="1" max="{{ $item->quantity + $item->variant->stock }}" value="{{ $item->quantity }}" required="" 
+                            data-price="{{$articlePrice}}" data-id="{{ $item->id }}" data-variant="{{ $item->variant_id }}" data-toggle="tooltip" data-placement="top" title="Stock máximo {{ $item->article->stock }}">
+                        </div>
+                        <div class="delete-item">
+                            <a onclick="removeFromCart('{{ route('store.removeFromCart') }}', {{$item->id}}, {{ $item->variant_id }}, {{ $item->quantity }}, '#Item'+{{ $item->id }}, 'reload');"><i class="far fa-trash-alt"></i></a>
+                        </div>
+                    @else
+                        <div>Discontinuado</div>
+                        <div class="delete-item">
+                            <a onclick="removeFromCart('{{ route('store.removeFromCart') }}', {{$item->id}}, {{ $item->variant_id }}, {{ $item->quantity }}, '#Item'+{{ $item->id }}, 'reload');"><i class="far fa-trash-alt"></i></a>
+                        </div>
+                    @endif
                 </div>{{-- / .item --}}
             @endforeach
         {{-- <div class="update-btn">

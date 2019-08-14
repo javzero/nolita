@@ -289,7 +289,6 @@ class ArticlesController extends Controller
 
     public function storeValidation(Request $request)
     {
-        // dd($request->all());
         
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:4|max:250',
@@ -328,20 +327,22 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->discount == null) {
+        // dd($request['fileuploader-list-images']);
+        // dd($request->all());
+        if ($request->discount == null)
             $request->discount = '0';
-        }
 
-        if ($request->slug) {
+        if ($request->slug) 
             $checkSlug = $this->checkSlug($request->slug);
-        }
 
         $article = new CatalogArticle($request->all());
         $article->slug = $checkSlug;
         $article->user_id = \Auth::guard('user')->user()->id;
 
         $images = $request->file('images');
-        $thumbnail = $request->file('thumbnail');
+        $featuredImage = $request->featuredImage;
+        // dd($featuredImage);
+        // $thumbnail = $request->file('thumbnail');
         $imgPath = public_path("webimages/catalogo/");
         $thumbPath = public_path("webimages/catalogo/thumbs/");
 
@@ -394,19 +395,21 @@ class ArticlesController extends Controller
             if ($images) {
                 try {
                     $number = '0';
-                    foreach ($images as $phisic_image) {
+                    foreach ($images as $physic_image) {
+                        // dd($featuredImage. ' ' .$physic_image->getClientOriginalName());
                         $filename = $article->id . '-' . $number;
-                        $img = \Image::make($phisic_image);
+                        $img = \Image::make($physic_image);
                         $img->encode('jpg', 80)->fit($imgWidth, $imgHeight)->save($imgPath . $filename . $extension);
-
+                        // dd($physic_image->getClientOriginalName());
                         $image = new CatalogImage();
-                        if ($number == '0') {
+
+                        if($featuredImage == $physic_image->getClientOriginalName())
                             $image->featured = 1;
-                        }
+                        
                         $image->name = $filename . $extension;
                         $image->article()->associate($article);
 
-                        $thumb = \Image::make($phisic_image);
+                        $thumb = \Image::make($physic_image);
                         $thumb->encode('jpg', 80)->fit($thumbWidth, $thumbHeight)->save($thumbPath . $filename . $extension);
                         //$article->thumb = $article->id.'-thumb'.$extension;
                         $image->thumb = $filename . $extension;
@@ -420,7 +423,7 @@ class ArticlesController extends Controller
             }
         }
 
-        return redirect()->route('catalogo.index')->with('message', 'Artículo agregado al catálogo');
+        return redirect()->route('catalogo.index')->with('message', 'Artículo agregado al catálogo.');
     }
 
     /*
@@ -505,30 +508,18 @@ class ArticlesController extends Controller
         $article = CatalogArticle::find($request->article_id);
 
         $article->fill($request->all());
-
-        if ($request->slug) {
+        
+        if ($request->slug)
             $checkSlug = $this->checkSlug($request->slug);
-        }
-
+        
         $article->slug = $checkSlug;
-
+        
         $images = $request->file('images');
-        $thumbnail = $request->file('thumbnail');
+        $featuredImage = $request->featuredImage;
+        // $thumbnail = $request->file('thumbnail');
         $imgPath = public_path("webimages/catalogo/");
         $thumbPath = public_path("webimages/catalogo/thumbs/");
         $extension = '.jpg';
-
-        // Creates directory if no exist
-        // if (!file_exists($imgPath)) {
-        //     $oldmask = umask(0);
-        //     mkdir($imgPath, 0777);
-        //     umask($oldmask);
-        // }
-        // if (!file_exists($thumbPath)) {
-        //     $oldmask = umask(0);
-        //     mkdir($thumbPath, 0777);
-        //     umask($oldmask);
-        // }
 
         $thumbWidth = 240;
         $thumbHeight = 360;
@@ -593,20 +584,21 @@ class ArticlesController extends Controller
                 // dd($images);
                 try 
                 {
-                    foreach ($images as $phisic_image) 
+                    foreach ($images as $physic_image) 
                     {
                         $filename = $article->id . '-' . $number;
-                        $img = \Image::make($phisic_image);
+                        $img = \Image::make($physic_image);
                         $img->encode('jpg', 80)->fit($imgWidth, $imgHeight)->save($imgPath . $filename . $extension);
 
                         $image = new CatalogImage();
-                        if ($number == '0') {
+                        
+                        if($featuredImage == $physic_image->getClientOriginalName())
                             $image->featured = 1;
-                        }
+
                         $image->name = $filename . $extension;
                         $image->article()->associate($article);
 
-                        $thumb = \Image::make($phisic_image);
+                        $thumb = \Image::make($physic_image);
                         $thumb->encode('jpg', 80)->fit($thumbWidth, $thumbHeight)->save($thumbPath . $filename . $extension);
                         //$article->thumb = $article->id.'-thumb'.$extension;
                         $image->thumb = $filename . $extension;

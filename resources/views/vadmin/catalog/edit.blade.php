@@ -1,13 +1,18 @@
 @extends('vadmin.partials.main')
-@section('title', 'VADmin | Editar Item')
+@section('title', 'VADmin | Editar Artículo')
 
 @section('styles')
 	{!! Html::style('plugins/texteditor/trumbowyg.min.css') !!}
-	{!! Html::style('plugins/fileuploader/css/jquery.fileuploader.css') !!}
-	{!! Html::style('plugins/fileuploader/css/jquery.fileuploader-theme-dragdrop.css') !!}
+	{!! Html::style('plugins/jqueryFileUploader/fileuploader.css') !!}
+	{!! Html::style('plugins/jqueryFileUploader/jquery.fileuploader.css') !!}
+	{!! Html::style('plugins/jqueryFileUploader/jquery.fileuploader-thumbnailtheme.css') !!}
+	{!! Html::style('plugins/jqueryfiler/themes/jquery.filer-dragdropbox-theme.css') !!}
+	{!! Html::style('plugins/chosen/chosen.min.css') !!}
+	{{-- {!! Html::style('plugins/fileuploader/css/jquery.fileuploader-theme-dragdrop.css') !!}
 	{!! Html::style('plugins/fileuploader/css/jquery.fileuploader-theme-dropin.css') !!}
 	{!! Html::style('plugins/fileuploader/css/jquery.fileuploader-theme-onebutton.css') !!}
-	{!! Html::style('plugins/fileuploader/css/jquery.fileuploader-theme-thumbnails.css') !!}
+	{!! Html::style('plugins/fileuploader/css/jquery.fileuploader-theme-thumbnails.css') !!} --}}
+	
 
 	
 
@@ -64,7 +69,7 @@
 	<script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
-	<script type="text/javascript" src="{{ asset('plugins/fileuploader/js/jquery.fileuploader.js')}} "></script>
+	<script type="text/javascript" src="{{ asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
 	@include('vadmin.components.bladejs')
 	<script>
