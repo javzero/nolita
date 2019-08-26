@@ -385,9 +385,9 @@ $('#Multi_Images').fileuploader({
                    '<div class="fileuploader-item-inner">' +
                        '<div class="thumbnail-holder">${image}</div>' +
                        '<div class="actions-holder">' +
-                              '<a class="fileuploader-action fileuploader-action-remove" title="${captions.remove}">X</a> ' +
-                              '<a class="fileuploader-action fileuploader-action-sort" title="Sort">></a> ' +
-                           '<span class="fileuploader-action-popup"></span>' +
+                            '<a class="fileuploader-custom-action fileuploader-action-sort" title="Ordenar"><i class="fas fa-arrows-alt"></i></a> ' +
+                            '<a class="fileuploader-custom-action fileuploader-action-remove" title="Eliminar">X</a> ' +
+                            '<span class="fileuploader-action-popup"></span>' +
                        '</div>' +
                           '<div class="progress-holder">${progressBar}</div>' +
                    '</div>' +
