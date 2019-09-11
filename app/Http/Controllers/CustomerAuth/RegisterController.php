@@ -82,6 +82,7 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
+        $fullRegister = false;
 
         $status = '1'; // Active
         $group = '2'; // Min 
@@ -89,46 +90,64 @@ class RegisterController extends Controller
             $group = '3'; // Reseller
         }
         
-        $cuit = NULL;
-        $dni = NULL;
-        $phone = NULL;
-        $geoProvId = NULL;
-        $geoLocId = NULL;
+        if($fullRegister)
+        {
+            $cuit = NULL;
+            $dni = NULL;
+            $phone = NULL;
+            $geoProvId = NULL;
+            $geoLocId = NULL;
+            
+            if($data['CuitOrDni'] == 'Dni')
+            {
+                if(isset($data['dni']))
+                    $dni = $data['dni'];
+                $data['cuit'] = NULL;
+            } 
+            elseif ($data['CuitOrDni'] == 'Cuit') 
+            {
+                if(isset($data['cuit']))
+                    $cuit = $data['cuit'];
+                $data['dni'] = NULL;
+            }
+    
+            if(isset($data['phone']))      { $phone = $data['phone']; }
+            if(isset($data['geoprov_id'])) { $geoProvId = $data['geoprov_id']; }
+            if(isset($data['geoloc_id']))  { $geoLocId = $data['geoloc_id']; }
+       
+            return Customer::create([
+                'name' => $data['name'],
+                'surname' => $data['surname'],
+                'username' => $data['username'],
+                'business_type' => $data['business_type'],
+                'email' => $data['email'],
+                'phone' => $phone,
+                'address' => $data['address'],
+                'cp' => $data['cp'],
+                'geoprov_id' => $geoProvId,
+                'geoloc_id' => $geoLocId,
+                'cuit' => $cuit,
+                'status' => $status,
+                'dni' => $dni,
+                'password' => bcrypt($data['password']),
+                'group' => $group
+            ]);
 
-        if($data['CuitOrDni'] == 'Dni')
+        }
+        else
         {
-            if(isset($data['dni']))
-                $dni = $data['dni'];
-            $data['cuit'] = NULL;
-        } 
-        elseif ($data['CuitOrDni'] == 'Cuit') 
-        {
-            if(isset($data['cuit']))
-                $cuit = $data['cuit'];
-            $data['dni'] = NULL;
+            return Customer::create([
+                'name' => $data['name'],
+                'surname' => $data['surname'],
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'status' => $status,
+                'password' => bcrypt($data['password']),
+                'group' => $group
+            ]);
         }
 
-        if(isset($data['phone']))      { $phone = $data['phone']; }
-        if(isset($data['geoprov_id'])) { $geoProvId = $data['geoprov_id']; }
-        if(isset($data['geoloc_id']))  { $geoLocId = $data['geoloc_id']; }
-        
-        return Customer::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'username' => $data['username'],
-            'business_type' => $data['business_type'],
-            'email' => $data['email'],
-            'phone' => $phone,
-            'address' => $data['address'],
-            'cp' => $data['cp'],
-            'geoprov_id' => $geoProvId,
-            'geoloc_id' => $geoLocId,
-            'cuit' => $cuit,
-            'status' => $status,
-            'dni' => $dni,
-            'password' => bcrypt($data['password']),
-            'group' => $group
-        ]);
+
     }
 
     protected function guard()

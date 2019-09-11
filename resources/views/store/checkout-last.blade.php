@@ -162,13 +162,20 @@
 						</div>
 					</div>
 					@if(Auth::guard('customer')->user()->group == '3') 
-						<div class="col-sm-6">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label>Tipo de Negocio</label>
+								{!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], null,
+								['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required' => '']) !!}
+							</div>
+						</div>
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label>CUIT</label>
 								<input class="form-control dson" type="text" name="cuit" value="{{ Auth::guard('customer')->user()->cuit }}" placeholder="Ingrese su número de CUIT"/>
 							</div>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label>DNI</label>
 								<input class="form-control dson" type="text" name="dni" value="{{ Auth::guard('customer')->user()->dni }}" placeholder="Ingrese su número de DNI"/>

@@ -70,7 +70,7 @@
                     @endif
                 </div> 
             </div>
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Tipo de Negocio</label>
@@ -79,6 +79,7 @@
                     </div>
                 </div>
 
+                {{-- PHONE --}}
                 <div class="col-sm-6 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                     <label>WhatsApp</label>
                     <input  type="number" name="phone" class="form-control round" placeholder="Ej.: (+54) 11 1234-5678 " value="{{ old('phone') }}" required>
@@ -91,7 +92,7 @@
             </div>
             
             <div class="row">
-                
+                {{-- ADDRESS --}}
                 <div class="col-sm-6 form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                     <label for="reg-fn">Dirección</label>
                     <input type="text" name="address" class="form-control round" placeholder="Ingrese su dirección" value="{{ old('address') }}" required>
@@ -101,7 +102,7 @@
                         </span>
                     @endif
                 </div>
-                
+                {{-- C.P. --}}
                 <div class="col-sm-6 form-group{{ $errors->has('cp') ? ' has-error' : '' }}">
                     <label for="reg-fn">Código Postal</label>
                     <input type="text" name="cp" class="form-control round" placeholder="Ingrese su código postal" value="{{ old('cp') }}" required>
@@ -130,8 +131,8 @@
                         </select>
                     </div>
                 </div>
-            </div> --}}
-            {{-- <div class="row">
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <label>Ingrese CUIT/CUIL o DNI</label>
                     <div id="UseCuitContainer" class="">
@@ -148,7 +149,7 @@
                         <div id="CuitDniValidation" class="col-md-9"></div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <div class="row">
                 {{-- Password --}}
                 <div class="col-sm-6 form-group{{ $errors->has('password') ? ' has-error' : '' }} position-relative has-icon-left">
@@ -174,17 +175,74 @@
             {{-- Group 3 is reseller --}}
             <input type="hidden" value="3" name="group">
             {{-- Submit --}}
-            {{-- <button id="SubmitFormBtn" type="button" class="btn btn-primary btn-block cursor-pointer"><i class="icon-unlock"></i> Registrarse</button> --}}
-            <button id="SubmitForm" type="submit" class="btn btn-primary btn-block cursor-pointer"> Registrarse</button>
+            <button id="SubmitFormBtn" type="button" class="btn btn-primary btn-block cursor-pointer"><i class="icon-unlock"></i> Registrarse</button>
+            <button id="SubmitForm" type="submit" class="Hidden"> Registrarse</button>
             <div class="bottom-text">Ya tiene cuenta? | <a href="{{ route('customer.login') }}">Ingresar</a></div>
         </form>
     </div>
 </div>
 @if(isset($selectedLoc))
-    {{-- dd($selectedLoc) --}}
+    dd($selectedLoc)
 @endif
 @endsection
 
 @section('scripts')
     @include('store.components.bladejs')
+    <script>
+        $(document).ready(function(){
+
+            $('.GeoProvSelect').on('change', function(){
+                let prov_id = $(this).val();
+
+                getGeoLocs(prov_id);
+            });
+
+            $(".GeoProvSelect").mouseup(function() {
+                let prov_id = $(this).val();
+                getGeoLocs(prov_id);
+            });
+
+
+            $('#UseCuit').click(function(){
+                $('#UseCuitContainer').removeClass('Hidden');
+                $('#UseDniContainer').addClass('Hidden');
+                // $('#UseCuit').prop('checked', true);
+                // $('#UseDni').prop('checked', false);
+            });
+
+            $('#UseDni').click(function(){
+                $('#UseCuitContainer').addClass('Hidden');
+                $('#UseDniContainer').removeClass('Hidden');
+                // $('#UseCuit').prop('checked', false);
+                // $('#UseDni').prop('checked', true);
+            });
+
+            $('#SubmitFormBtn').on('click', function(){
+                let cuit = $('#CuitInput').val();
+                let dni = $('#DniInput').val();
+                
+                if($('#UseCuit').prop('checked'))
+                    if(cuit.length != 11)
+                        $('#CuitDniValidation').html("El CUIT debe tener 11 números");   
+                    else
+                    {
+                        $('#CuitDniValidation').html(" ");
+                        $('#SubmitForm').click();
+                    }
+                
+                if($('#UseDni').prop('checked'))
+                    if(dni.length != 8)
+                        $('#CuitDniValidation').html("El DNI debe tener 8 números");
+                    else
+                    {
+                        $('#CuitDniValidation').html(" ");
+                        $('#SubmitForm').click();
+                    }
+            });
+
+
+            
+           
+        });
+        </script>
 @endsection
