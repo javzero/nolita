@@ -66,7 +66,7 @@ class CatalogArticle extends Model
 
         if($featuredImage != null)
             return 'webimages/catalogo/'.$featuredImage->name;
-        elseif($this->images())
+        elseif($this->images() && $this->images()->first() != null)
             $featuredImage = 'webimages/catalogo/'.$this->images()->first()->name;
         else
             $featuredImage = 'images/gen/catalog-gen.jpg';
