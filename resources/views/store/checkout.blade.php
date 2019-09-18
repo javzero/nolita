@@ -153,23 +153,6 @@
 					</table>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group small-form">
-							@if($activeCart['orderDiscount'] > 0 )
-								{{-- If order has claimed coupon --}}
-								<div class="coupon-message">
-									<div class="inner">
-										<span class="small">Esta compra cuenta con un</span>
-										<span class="big">%{{ $activeCart['rawdata']->order_discount }} </span>
-										<span class="small">de descuento ! </span>
-									</div>
-								</div>
-								<br>
-							@endif							
-						</div>
-					</div>
-				</div>
-				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group small-form">
 							<label class="sub-title">¿ Tenés un cupón ?</label>
@@ -191,6 +174,26 @@
 							</div>	
 						</div>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group small-form">
+							@if($activeCart['orderDiscount'] > 0 )
+								{{-- If order has claimed coupon --}}
+								<div class="coupon-message">
+									<div class="inner">
+										<span class="small">Esta compra cuenta con un</span>
+										<span class="big">%{{ $activeCart['rawdata']->order_discount }} </span>
+										<span class="small">de descuento ! </span>
+									</div>
+								</div>
+								<br>
+							@endif							
+						</div>
+					</div>
+				</div>
+				
+				
 					<div class="col-md-6">
 						<div class="text-right hide-768">
 							<button type="button" class="UpdateDataBtn btn btn-main">Actualizar <i class="fas fa-sync-alt"></i></button>

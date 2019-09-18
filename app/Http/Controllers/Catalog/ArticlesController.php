@@ -327,8 +327,6 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request['fileuploader-list-images']);
-        // dd($request->all());
         if ($request->discount == null)
             $request->discount = '0';
 
@@ -341,12 +339,10 @@ class ArticlesController extends Controller
 
         $images = $request->file('images');
         $featuredImage = $request->featuredImage;
-        // dd($featuredImage);
-        // $thumbnail = $request->file('thumbnail');
+
         $imgPath = public_path("webimages/catalogo/");
         $thumbPath = public_path("webimages/catalogo/thumbs/");
 
-        // Creates directory if no exist
         if (!file_exists($imgPath)) {
             echo "Falta crear el directorio webimages/catalogo";
             die();
@@ -368,7 +364,6 @@ class ArticlesController extends Controller
         {
             try 
             {
-                // dd($request->variants);
                 foreach ($request->variants as $index => $data)
                 {
                     $item = new CatalogVariant();
@@ -387,11 +382,11 @@ class ArticlesController extends Controller
             }
         
 
-        //  Sync Relations
+            //  Sync Relations
             $article->size()->sync($request->size);
             $article->tags()->sync($request->tags);
             $article->brands()->sync($request->brands);
-        //  Save Images
+            //  Save Images
             if ($images) {
                 try {
                     $number = '0';
@@ -400,7 +395,7 @@ class ArticlesController extends Controller
                         $filename = $article->id . '-' . $number;
                         $img = \Image::make($physic_image);
                         $img->encode('jpg', 80)->fit($imgWidth, $imgHeight)->save($imgPath . $filename . $extension);
-                        // dd($physic_image->getClientOriginalName());
+                        
                         $image = new CatalogImage();
 
                         if($featuredImage == $physic_image->getClientOriginalName())
