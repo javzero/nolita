@@ -19,7 +19,13 @@
                     @if($order->customer->dni != null)
                     <b>Dni:</b> {{ $order->customer->dni }} <br>
                     @endif
-                    <b>Dirección: </b> {{ $order->customer->address }} | {{ $order->customer->geoprov->name }} | {{ $order->customer->geoloc->name }} <br>
+                    <b>Dirección: </b> {{ $order->customer->address }} | 
+                    @if($order->customer->geoprov)
+                        {{ $order->customer->geoprov->name }} | 
+                    @endif
+                    @if($order->customer->geoloc)
+                        {{ $order->customer->geoloc->name }} <br>
+                    @endif
                     <b>Teléfonos: </b> {{ $order->customer->phone }} @if($order->customer->phone2) | {{ $order->customer->phone2 }} @endif<br>
                     <b>E-mail: </b> {{ $order->customer->email }} <br>
                 </div>
