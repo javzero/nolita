@@ -2,7 +2,6 @@
 
 @section('title', 'Comprobante | Pedido N°'.$order->id)
 
-
 @section('content')
     <div class="invoice-ticket">
         <div class="header">
