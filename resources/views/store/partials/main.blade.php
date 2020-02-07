@@ -84,7 +84,8 @@
 					<ul>								
 						<li><a class="data-top-desktop" href="mailto:venta@augustamoi.com"><i class="icon-mail"></i>&nbsp; info@nolita.com.ar</a></li>
 						<li><a class="data-top-desktop" href="https://wa.me/5491124906000" target="_blank"><i class="fab fa-whatsapp"></i>&nbsp; 11-2490-6000 </a></li>
-						<li><span class="data-top-desktop"> <i class="fa fa-home"></i> Showroom: Allende 3464. Villa Devoto. Cita previa por WhatsApp</span></li>
+						<li><a href="#">Solo venta Online</a></li>
+						{{-- <li><span class="data-top-desktop"> <i class="fa fa-home"></i> Showroom: Allende 3464. Villa Devoto. Cita previa por WhatsApp</span></li> --}}
 					</ul>
 				</div>
 			</div>

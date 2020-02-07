@@ -92,6 +92,11 @@
 												<div class="text">NUEVO</div>
 											</div>
 											@break
+										@elseif($tag->name == 'niñas')
+											<div class="ribbon-square bottom-left-absolute">
+												<div class="text">MINI NOLITA</div>
+											</div>
+											@break
 										@endif
 									@endforeach
 									
