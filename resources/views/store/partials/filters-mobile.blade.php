@@ -18,6 +18,7 @@
             <option value="{{ route('store.search.tag', 'Edición Limitada') }}">Edición Limitada</option>
             <option value="{{ route('store.search.tag', 'nuevo') }}">Nuevos Ingresos</option>
             <option value="{{ route('store', ['filtrar' => 'descuentos']) }}">Con Descuento</option>
+            <option value="{{ route('store.search.tag', 'niña') }}">Mini Nolita</option>
             {{-- <option value="{{ route('store', ['precio' => 'menor']) }}">Menor precio</option>
             <option value="{{ route('store', ['precio' => 'mayor']) }}">Mayor precio</option> --}}
             {{-- <option value="{{ route('store', ['filtrar' => 'populares']) }}">Populares</option> --}}
