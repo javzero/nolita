@@ -29,12 +29,12 @@
 				<div class="col-xs-12 col-sm-3 col-md-3 pad0">
 					<ul class="product-thumbnails">
 					@foreach($article->images as $image)
-					<li>
+						<li>
 						<a href="#{{ $image->id }}">
 								<img src="{{ asset('webimages/catalogo/'. $image->name) }}" class="CheckCatalogImg" alt="Producto">
 							</a>
 						</li>
-						@endforeach
+					@endforeach
 					</ul>
 				</div>
 				<div class="col-xs-12 col-sm-9 col-md-9 images-container pad0">
@@ -163,6 +163,15 @@
 		</div>
 	</div>
 </div>
+
+{{-- Videos --}}
+@if($article->video != null)
+	<div class="container product-video-container">
+		<div class="row">
+			{!! $article->video !!}
+		</div>
+	</div>
+@endif
 	
 <!-- Photoswipe container // This Shows Big Image Preview -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

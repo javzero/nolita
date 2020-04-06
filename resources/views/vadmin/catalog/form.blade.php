@@ -147,6 +147,13 @@
 
     <div class="col-xs-12 col-md-12 col-lg-6">
         <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('video', 'Video') !!}
+                <span style="font-size: 14px; color: #9d9d9d">(Pegá acá el texto que proporciona youtube)</span>
+                {!! Form::textarea('video', null, ['class' => 'form-control']) !!}
+            </div>  
+        </div>  
+        <div class="col-md-12">
             <div class="row form-group">
                 <div class="col-md-12">
                     {{--  Images Input  --}}
