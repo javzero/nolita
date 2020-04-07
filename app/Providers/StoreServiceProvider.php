@@ -36,7 +36,9 @@ class StoreServiceProvider extends ServiceProvider
             'store.how-to-buy',
             'store.reseller-policy',
             'store.cartdetail',
-            'store.wishlist'
+            'store.wishlist',
+            'store.section1',
+            'store.section2'
         ], 'App\Http\ViewComposers\StoreComposer');
     }
 }
