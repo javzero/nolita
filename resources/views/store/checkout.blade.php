@@ -107,10 +107,14 @@
 								<td>
 									<div class="input-with-btn input-with-btn-mobile">
 										{{-- Send this data to JSON via js with .Item-Data class --}}
+										@if($item->variant)
 										<input class="Item-Data small-input under-element" name="data" type="number" 
 										min="1"  max="{{ $item->quantity + $item->variant->id }}" value="{{ $item->quantity }}" placeholder="1" required="" 
 										data-price="{{$articlePrice}}" data-variant="{{ $item->variant_id }}" data-id="{{ $item->id }}">
 										<div class="under-input"> Stock: {{ $item->variant->stock }} </div>
+										@else
+											Sin Stock
+										@endif
 									</div>
 								</td>
 								<td>$ <span class="{{ $item->id }}-TotalItemPrice TotalItemPrice">{{ ($articlePrice * $item->quantity) }}</span></td>
