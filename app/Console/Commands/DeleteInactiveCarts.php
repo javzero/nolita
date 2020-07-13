@@ -17,14 +17,14 @@ class DeleteInactiveCarts extends Command
      *
      * @var string
      */
-    protected $signature = 'delete:oldcarts';
+    protected $signature = 'delete:inactiveCarts';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Deleting old carts';
+    protected $description = 'Deleting inactive carts';
 
     /**
      * Create a new command instance.
@@ -43,10 +43,10 @@ class DeleteInactiveCarts extends Command
      */
     public function handle()
     {
-        $maxTime = 48;
+        $maxTime = 24;
         $time = Carbon::now()->subHour($maxTime);
         $oldCarts = Cart::where('status','ACTIVE')->where('created_at', '<=', $time)->get();
-        
+
         Log::info("-----------------------------------");
         Log::info("Manejando carros de compra con más de " . $maxTime . "hs");
         Log::info("Fecha límite: " . $time);
@@ -58,6 +58,6 @@ class DeleteInactiveCarts extends Command
             array_push($ids, $oldCart->id);
         }
         
-        $this->manageOldCarts($ids, 'cancel');
+        $this->manageOldCarts($ids, 'delete');
     }
 }

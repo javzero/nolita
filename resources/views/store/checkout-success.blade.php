@@ -11,20 +11,23 @@
                     <h4 class="card-text">Tu pedido ya está en proceso.</h4>
                     <h2 class="card-title">Esta compra va a ser un éxito!!</h2>
                     <div class="short-divisor"><div class="inner"></div></div>
-                    No te olvides de agendar el número: <b>#
-                        {{ $cart->id }}
-                    </b></p>
+                    {{-- {{dd($cart)}} --}}
+                    <p>No te olvides de agendar el número: 
+                        <b>#{{ $cart['rawdata']['id'] }}</b>
+                    </p>
                     <p class="card-text">Podés revisar el estado del mismo en la <b><a href="{{ route('store.customer-orders') }}">"Lista de Pedidos"</a></b> desde tu perfil.<br>
+                    <p><b>Monto total: </b> $ {{ $cart['total'] }}</p>
                     
                     <div class="padding-top-1x padding-bottom-1x">
-                        <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart->id, 'stream']) }}" target="_blank"><i class="icon-eye"></i> Ver Comprobante</a>
-                        <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart->id, 'download']) }}" target="_blank"><i class="icon-download"></i> Descargar Comprobante</a>
+                        <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart['rawdata']['id'], 'stream']) }}" target="_blank"><i class="icon-eye"></i> Ver Comprobante</a>
+                        <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart['rawdata'], 'download']) }}" target="_blank"><i class="icon-download"></i> Descargar Comprobante</a>
                     </div>
                 </div>
             </div>
         </div>
 	</div>
 </div>
+
 <div id="Error"></div>
 @endsection
 

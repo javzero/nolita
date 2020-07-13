@@ -372,7 +372,7 @@ class StoreController extends Controller
                 // Notify Bussiness
                 Mail::to(APP_EMAIL_1)->send(new SendMail('Compra Recibida', 'Checkout', $cart));
             } catch (\Exception $e) {
-                dd($e->getMessage());
+                // dd($e->getMessage());
             }
 
         } catch (\Exception $e) {
@@ -381,8 +381,9 @@ class StoreController extends Controller
         }    
     
         // return back()->with('message','Su compra se ha registrado. Muchas gracias !.');
+        $order = $this->calcCartData($cart);
         return view('store.checkout-success')
-            ->with('cart', $cart);
+            ->with('cart', $order);
     }
     
     public function updateItemsQuantities($data)
