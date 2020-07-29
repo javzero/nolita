@@ -47,7 +47,7 @@ class DeleteInactiveCarts extends Command
         $maxTime = 24;
         $time = Carbon::now()->subHour($maxTime);
         $oldCarts = Cart::where('status','ACTIVE')->where('created_at', '<=', $time)->get();
-        
+     	//dd($oldCarts);   
         Log::info("-----------------------------------");
         Log::info("Eliminando carros de compra con más de " . $maxTime . "hs");
         Log::info("Fecha límite: " . $time);
@@ -63,9 +63,9 @@ class DeleteInactiveCarts extends Command
             try {
                 VLog::saveLog('Eliminando carro activo con más de ' . $maxTime . ' de hs.', $details, $oldCart->created_at->format('d/m/Y'));
             } catch (\Exception $e) {
-                // dd($e->getMessage());
+                dd($e->getMessage());
             }
         }
-        $this->manageOldCarts($ids, 'delete');
+	$this->manageOldCarts($ids, 'delete');
     }
 }
