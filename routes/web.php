@@ -279,6 +279,9 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['active-user', 'admin']], f
     
     Route::get('searchCatalogArticle', ['as' => 'vadmin.searchCatalogArticle', 'uses' => 'AutocompleteController@searchCatalogArticle']);
     Route::get('searchCustomer', ['as' => 'vadmin.searchCustomer', 'uses' => 'AutocompleteController@searchCustomer']);
+
+    Route::get('jobs_logs', 'JobsController@index'); 
+
 });
 
 /*
@@ -338,10 +341,12 @@ Route::get('500', ['as' => '500', 'uses' => 'ErrorController@fatal']);
 
 /*
 |--------------------------------------------------------------------------
-| Test
+| DEV
 |--------------------------------------------------------------------------
 */
 
+Route::get('/vadmin/dev', 'VadminTestsController@devZone');
+Route::get('/vadmin/deleted-cart-log', 'VadminTestsController@deletedCartsLog');
 // Route::get('checkout-success-test', function(){
 //     return view('store.checkout-success');
 // });

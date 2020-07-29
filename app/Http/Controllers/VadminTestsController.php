@@ -28,6 +28,11 @@ class VadminTestsController extends Controller
         return view('vadmin.tools.tests')->with('carts', $carts);
     }
 
+    public function devZone()
+    {
+        return view('vadmin.dev.dev');
+    }
+
     public function testMailSending(Request $request)
     {
         $class = $request->mailclass;
@@ -66,5 +71,11 @@ class VadminTestsController extends Controller
 
     }
     
+    public function deletedCartsLog()
+    {
+        $logs = \App\VLog::paginate(100);
+        return view('vadmin.dev.deleted-carts-log', compact('logs'));
+
+    }
 
 }
