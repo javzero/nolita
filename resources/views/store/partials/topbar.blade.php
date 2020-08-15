@@ -1,8 +1,11 @@
 <!-- Topbar-->
-<div id="PreTopbar" class="pre-topbar">
-	<b>Solo Venta Mayorista</b> - Minimo $5.000.-
-	<div onclick="$('#PreTopbar').hide(200)" class="close-pre-top-bar">X</div>
+<div id="PreTopbar" class="pre-topbar ">
+	<div class="inner marquee">
+		<b>Solo Venta Mayorista</b> - Minimo $5.000.-
+	</div>
+	{{-- <div onclick="$('#PreTopbar').hide(200)" class="close-pre-top-bar">X</div> --}}
 </div>
+
 <div class="topbar">
 	<div class="topbar-column topbar-column-left">
 		{{-- <a class="">&nbsp;<b> Whatsapp: 11-6059-5900</b></a> --}}

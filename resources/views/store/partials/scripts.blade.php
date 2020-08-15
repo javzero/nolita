@@ -93,4 +93,23 @@
     //     var defaultImg = "{{ asset('images/users/default.jpg') }}"
     //     $(this).attr('src', defaultImg);
     // });		
+
+
+    $(document).ready(function() {
+        if(window.innerWidth < 768) {
+            var marquee = $('#PreTopbar');
+            console.log(marquee);
+            marquee.each(function() {
+                var mar = $(this),indent = mar.width();
+                mar.marquee = function() {
+                    indent--;
+                    mar.css('text-indent',indent);
+                    if (indent < -1 * mar.children('#PreTopbar').width()) {
+                        indent = mar.width();
+                    }
+                };
+                mar.data('interval',setInterval(mar.marquee,1000/60));
+            });
+        }
+    });
 </script>

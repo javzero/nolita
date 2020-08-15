@@ -86,11 +86,13 @@
 
 // ------- Pre Top Bar ---------
 .pre-topbar
-	background-color: $third-color
+	background-color: $main-color
 	color: #000
 	padding: 5px 10px
 	text-align: center
 	position: relative
+	.inner
+		white-space: nowrap
 	.close-pre-top-bar
 		position: absolute
 		right: 10px
@@ -98,6 +100,15 @@
 		&:hover
 			cursor: pointer
 
+
+div.marquee
+	white-space:no-wrap
+	overflow:hidden
+
+div.marquee > div.marquee-text
+	white-space: nowrap
+	display: inline
+	width: auto
 
 
 // ------- Top Bar ---------
