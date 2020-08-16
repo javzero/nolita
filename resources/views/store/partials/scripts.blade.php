@@ -95,10 +95,10 @@
     // });		
 
     // Pre Top Bar Marquee 
-    
+
     $(function () {
         $('.marquee').marquee({
-            duration: 12000,
+            duration: 30000,
             duplicated: true,
             gap: window.innerWidth, 
             direction: 'left',
