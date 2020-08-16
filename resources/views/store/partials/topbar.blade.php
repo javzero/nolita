@@ -1,7 +1,7 @@
 <!-- Topbar-->
 <div id="PreTopbar" class="pre-topbar">
 	<div class="marquee">
-		<b>Solo Venta Mayorista</b> - Minimo $5.000.-
+		<b>Solo Venta Mayorísta</b> - Mínimo $5.000.-
 	</div>
 </div>
 <div class="topbar">
