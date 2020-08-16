@@ -162,6 +162,7 @@
 @endsection
 
 @section('scripts')
+	
 	@include('store.components.bladejs')
 	<script>
 		$(document).ready(function() {

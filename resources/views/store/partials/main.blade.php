@@ -117,6 +117,7 @@
 		<script src="{{ asset('store-ui/js/iziToast.min.js') }}"></script>
 		<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
 		<script src="{{ asset('plugins/jquery/jquery-3.3.1.min.js') }}"></script>
+		<script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
 		<script src="{{ asset('js/scripts.js') }}"></script>
 		@include('store.partials.scripts')
 		@yield('scripts')
