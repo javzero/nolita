@@ -13,29 +13,49 @@
             <hr class="softhr">
             <div class="row">
                 <div class="container-fluid">
-                    <div class="col-md-3">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-block">
                                 {!! Form::open(['route' => 'updateSettings', 'method' => 'POST']) !!}	
                                     {{ csrf_field() }}
-                                    <div class="form-group">
-                                        <label>Cantidad de prendas</label>
-                                        <input class="form-control" type="text" name="reseller_min" value="{{ $settings->reseller_min }}" placeholder="Ingrese mínimo">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Cantidad de prendas</label>
+                                                <input class="form-control" type="text" name="reseller_min" value="{{ $settings->reseller_min }}" placeholder="Ingrese mínimo">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Monto mínimo ($)</label>
+                                                <input class="form-control" type="text" name="reseller_money_min" value="{{ $settings->reseller_money_min }}" placeholder="Ingrese mínimo">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="">E-mail primario</label>
+                                                <input class="form-control" type="text" name="email" value="{{ $settings->email }}">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Monto mínimo ($)</label>
-                                        <input class="form-control" type="text" name="reseller_money_min" value="{{ $settings->reseller_money_min }}" placeholder="Ingrese mínimo">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">E-mail primario</label>
-                                        <input class="form-control" type="text" name="email" value="{{ $settings->email }}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                 <a data-toggle="modal" data-target="#PreTopbarHelpModall">
+                                                    <i class="far fa-question-circle"></i>
+                                                </a>
+                                                Texto rotativo en barra superior</label>
+                                                <input class="form-control" type="text" name="pre_topbar_text" value="{{ $settings->pre_topbar_text }}">
+                                            </div>
+                                        </div>
                                     </div>
                                     <input class="btnSm btnBlue" type="submit" value="Actualizar">
                                 {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-block">
                                 {!! Form::open(['route' => 'updateSettings', 'method' => 'POST', 'class' => '']) !!}	
@@ -80,6 +100,27 @@
         </div>
     <div id="Error"></div>
     
+    
+    {{-- Analytics Help Modal --}}
+    <div class="modal fade" id="PreTopbarHelpModall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-body">
+                <p>Para incluír texto en negrita tenés que rodear el texto deseado con las etiquetas  <br>
+                &lt;b&gt; &lt;/b&gt;   <br> <br>
+                <b>Por ejemplo:</b> <br>  <b>&lt;b&gt;Este es el texto en negrita &lt;/b&gt;</b><br>Este es un texto normal
+                <br> <br>
+                <b>Otro ejemplo:</b> <br>
+                &lt;b&gt;Solo Venta Mayorísta&lt;/b&gt; - Mínimo $5.000.-
+                </p>
+            </div>
+            <div class="modal-footer" style="border-top: 0">
+                <button type="button" data-dismiss="modal" class="btn btnMain">Entendido!</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Analytics Help Modal --}}
     <div class="modal fade" id="GaHelpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

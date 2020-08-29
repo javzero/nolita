@@ -10,5 +10,6 @@ class Settings extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['user_id', 'email', 'notifications', 'reseller_money_min', 'reseller_min', 'google_analytics'];
+    protected $fillable = ['user_id', 'email', 'notifications', 'reseller_money_min', 
+                            'reseller_min', 'google_analytics', 'pre_topbar_text'];
 }

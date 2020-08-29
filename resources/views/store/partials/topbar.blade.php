@@ -1,9 +1,11 @@
 <!-- Topbar-->
-<div id="PreTopbar" class="pre-topbar">
-	<div class="marquee">
-		<b>Solo Venta Mayorísta</b> - Mínimo $5.000.-
+@if( $settings->pre_topbar_text != '' )
+	<div id="PreTopbar" class="pre-topbar">
+		<div class="marquee">
+			{!! $settings->pre_topbar_text !!}
+		</div>
 	</div>
-</div>
+@endif
 <div class="topbar">
 	<div class="topbar-column topbar-column-left">
 		{{-- <a class="">&nbsp;<b> Whatsapp: 11-6059-5900</b></a> --}}
