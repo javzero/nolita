@@ -22,6 +22,17 @@
                         <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart['rawdata']['id'], 'stream']) }}" target="_blank"><i class="icon-eye"></i> Ver Comprobante</a>
                         <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart['rawdata'], 'download']) }}" target="_blank"><i class="icon-download"></i> Descargar Comprobante</a>
                     </div>
+
+                    <p>
+                        En las próximas 48hs. estaremos respondiendo la recepción del pedido y luego en 72hs. lo estaremos 
+                        preparando (<b>en días hábiles</b>).<br>El envío se realizará por el medio elegido y el cobro  del envío
+                        correrá por cuenta de cada cliente. <br>
+                        Nosotros les <b>facilitamos</b> la llegada de la compra al transporte elegido. <br>
+                        La demora de los envíos una vez despachados dependerá exclusivamente del transporte o correo.<br><br>
+                        Agradecemos mucho la paciencia en estos tiempos. <br>
+                        Estamos poniendo toda nuestra voluntad para cumplir con todos.
+                    </p>
+
                 </div>
             </div>
         </div>
