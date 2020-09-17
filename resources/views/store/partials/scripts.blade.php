@@ -98,7 +98,7 @@
 
     $(function () {
         $('.marquee').marquee({
-            duration: 30000,
+            duration: 15000,
             duplicated: true,
             gap: window.innerWidth, 
             direction: 'left',

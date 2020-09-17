@@ -124,19 +124,24 @@
 								{{-- <input type="hidden" name="size_id" value="{{ $article->size->first()->id }}"> --}}
 							</div>
 						</div>
-						<div class="row">
-							{{-- Display Remaining Stock --}}
-							<span class="AvailableStock action-info-container"></span>
-						</div>
-						@if($article->status == 1)
-						<div class="input-with-btn">
-							<input id="MaxQuantity" class="form-control input-field short-input" name="quantity" type="number" min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
-							<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>
-						</div>
+						@if(env('BUY_ENABLED'))
+							<div class="row">
+								{{-- Display Remaining Stock --}}
+								<span class="AvailableStock action-info-container"></span>
+							</div>
+							@if($article->status == 1)
+							<div class="input-with-btn">
+								<input id="MaxQuantity" class="form-control input-field short-input" name="quantity" type="number" min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
+								<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>
+							</div>
+							@else
+								Artículo no disponible al momento
+							@endif
+							<input type="hidden" value="{{ $article->id }}" name="articleId">
 						@else
-							Artículo no disponible al momento
+							<button class="btn main-btn" disabled>Venta Suspendida</button>
+							
 						@endif
-						<input type="hidden" value="{{ $article->id }}" name="articleId">
 					{!! Form::close() !!}
 				</div>
 			</div>
