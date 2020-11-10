@@ -266,20 +266,29 @@ class ArticlesController extends Controller
             ->with('brands', $brands);
     }
 
-
-
-    public function checkSlug($slug)
+    public function checkSlug($slug, $articleId = null)
     {
-        $checkSlug = CatalogArticle::where('slug', $slug)->first();
-        if ($checkSlug != null) {
-            $checkSlug = $checkSlug->slug . rand(1000, 10000) . date('d') . date('s');
-            return $checkSlug;
+        // dd($slug);
+        if($articleId) {
+            $article = CatalogArticle::where('slug', $slug)->where('id', '!=', $articleId)->first();
         } else {
-            return $slug;
+            $article = CatalogArticle::where('slug', $slug)->first();
+        }
+
+        if ($article != null) {
+            $newSlug = $this->createSlug($slug .'-'. date('is'));
+            return $newSlug;
+        } else {
+            return $this->createSlug($slug);
         }
     }
 
+    public function createSlug($str, $delimiter = '-'){
 
+        $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), $delimiter));
+        return $slug;
+    
+    } 
     
     /*
     |--------------------------------------------------------------------------
@@ -327,14 +336,15 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->discount == null)
+        if($request->discount == null)
             $request->discount = '0';
 
-        if ($request->slug) 
-            $checkSlug = $this->checkSlug($request->slug);
-
+            
         $article = new CatalogArticle($request->all());
-        $article->slug = $checkSlug;
+        
+        if($request->slug) 
+            $article->slug = $this->checkSlug($request->slug);
+
         $article->user_id = \Auth::guard('user')->user()->id;
 
         $images = $request->file('images');
@@ -364,15 +374,17 @@ class ArticlesController extends Controller
         {
             try 
             {
-                foreach ($request->variants as $index => $data)
-                {
-                    $item = new CatalogVariant();
-                    $item->article_id = $article->id;
-                    $item->combination = $index;
-                    $item->color_id = $data['color'];
-                    $item->size_id = $data['size'];
-                    $item->stock = $data['stock'];
-                    $item->save();
+                if($request->variants) {
+                    foreach ($request->variants as $index => $data)
+                    {
+                        $item = new CatalogVariant();
+                        $item->article_id = $article->id;
+                        $item->combination = $index;
+                        $item->color_id = $data['color'];
+                        $item->size_id = $data['size'];
+                        $item->stock = $data['stock'];
+                        $item->save();
+                    }
                 }
             } 
             catch (\Exception $e) 
@@ -504,10 +516,8 @@ class ArticlesController extends Controller
 
         $article->fill($request->all());
         
-        if ($request->slug)
-            $checkSlug = $this->checkSlug($request->slug);
-        
-        $article->slug = $checkSlug;
+        if($request->slug)
+            $article->slug  = $this->checkSlug($request->slug, $article->id);
         
         $images = $request->file('images');
         $featuredImage = $request->featuredImage;
@@ -527,26 +537,29 @@ class ArticlesController extends Controller
             // dd($request->variants);
             try 
             {   
-                foreach ($request->variants as $newVariant => $data)
-                {
-                    // echo $newVariant.'<br>';
-                    $existingVariant = CatalogVariant::where('article_id', $article->id)->where('combination', $newVariant)->first();
-                    
-                    if($existingVariant)
+                if($request->variants) {
+
+                    foreach ($request->variants as $newVariant => $data)
                     {
-                        $existingVariant->stock = $data['stock'];
-                        $existingVariant->save();   
+                        // echo $newVariant.'<br>';
+                        $existingVariant = CatalogVariant::where('article_id', $article->id)->where('combination', $newVariant)->first();
+                        
+                        if($existingVariant)
+                        {
+                            $existingVariant->stock = $data['stock'];
+                            $existingVariant->save();   
+                        }
+                        else
+                        {
+                            $item = new CatalogVariant();
+                            $item->article_id = $article->id;
+                            $item->combination = $newVariant;
+                            $item->color_id = $data['color'];
+                            $item->size_id = $data['size'];
+                            $item->stock = $data['stock'];
+                            $item->save();   
+                        }    
                     }
-                    else
-                    {
-                        $item = new CatalogVariant();
-                        $item->article_id = $article->id;
-                        $item->combination = $newVariant;
-                        $item->color_id = $data['color'];
-                        $item->size_id = $data['size'];
-                        $item->stock = $data['stock'];
-                        $item->save();   
-                    }    
                 }
             } 
             catch (\Exception $e) 
