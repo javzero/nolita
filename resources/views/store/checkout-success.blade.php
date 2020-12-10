@@ -24,7 +24,7 @@
                     </div>
 
                     <p>
-                        En las próximas 48hs. estaremos respondiendo la recepción del pedido y luego en 72hs. lo estaremos 
+                        En las próximas 24hs. estaremos respondiendo la recepción del pedido y luego en 72hs. lo estaremos 
                         preparando (<b>en días hábiles</b>).<br>El envío se realizará por el medio elegido y el cobro  del envío
                         correrá por cuenta de cada cliente. <br>
                         Nosotros les <b>facilitamos</b> la llegada de la compra al transporte elegido. <br>
