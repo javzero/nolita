@@ -140,7 +140,12 @@
 							<input type="hidden" value="{{ $article->id }}" name="articleId">
 						@else
 							<button class="btn main-btn" disabled>Venta Suspendida</button>
-							
+							<div style="margin-top: 10px; border: 1px solid #fff; padding: 10px">
+							@if(env('BUY_DISABLED_MESSAGE') != '')
+								<h3 style="color: #000">{{ env('BUY_DISABLED_MESSAGE') }}</h3>
+							@endif
+							</div>
+
 						@endif
 					{!! Form::close() !!}
 				</div>
