@@ -27,7 +27,10 @@
                         Enviar link de recuperación
                     </button>
                 </div>
-                <div class="help"><i class="fas fa-info-circle"></i> Se le enviará a la dirección de email con la que está registrad@. Luego deberá seguir los pasos y elegir una nueva contraseña </div>
+                <div class="help"><i class="fas fa-info-circle"></i> Se le enviará a la dirección de email con la que está registrad@. Luego deberá seguir los pasos y elegir una nueva contraseña 
+                    <br><br>
+                    <b>No olvide revisar su carpeta de correo no deseado</b>
+                </div>
             </form>
         </div>
     </div>
