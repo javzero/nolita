@@ -5,7 +5,10 @@
 		.floating-bottom-cta {  
 			bottom: 70px
 		}
-				
+
+		tr.no-border > td {
+			border-top: 0 !important
+		}
 	</style>
 @endsection
 
@@ -149,15 +152,34 @@
 							<tr>
 								<td></td>
 								<td></td>
-								<td><b>SUBTOTAL</b></td>
-								<td>$ <b><span class="SubTotal"></span></b></td>
+								<td>SUBTOTAL</td>
+								<td>$ {{ $activeCart['cartSubTotal']}}</td>
 								<td></td>
 							</tr>
+							{{-- {{ dd($activeCart)}} --}}
+							@if($activeCart['orderDiscount'] > 0 )
+							<tr class="no-border">
+								<td></td>
+								<td></td>
+								<td>Descuento</td>
+								<td>
+									% {{ $activeCart['rawdata']->order_discount }}
+								</td>
+							</tr>
+							<tr class="no-border">
+								<td></td>
+								<td></td>
+								<td><b>TOTAL</b></td>
+								<td>
+									<b>$ {{ $activeCart['cartTotal'] }}</b>
+								</td>
+							</tr>
+							@endif
 						</tbody>
 					</table>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<div class="form-group small-form">
 							<label class="sub-title">¿ Tenés un cupón ?</label>
 							<div id="CouponDiv">
@@ -198,10 +220,10 @@
 				</div>
 				
 				
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<div class="text-right hide-768">
 							<button type="button" class="UpdateDataBtn btn btn-main">Actualizar <i class="fas fa-sync-alt"></i></button>
-							<button type="button" class="SubmitDataBtn btn btn-main">Continuar <i class="fa fa-arrow-right"></i></button>
+							<button type="button" class="SubmitDataBtn btn btn-main cursor-pointer">Continuar <i class="fa fa-arrow-right"></i></button>
 						</div>
 					</div>
 				</div>
@@ -217,4 +239,10 @@
 
 @section('scripts')
 	@include('store.components.bladejs')
+	<script>
+		$('.TotalItemPrice').each(function (index) {
+			sum += parseInt($(this).html());
+		});
+	</script>
+
 @endsection

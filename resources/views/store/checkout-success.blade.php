@@ -1,7 +1,7 @@
 @extends('store.partials.main')
 
 @section('content')
-
+{{-- {{ dd($cart)}} --}}
 <div class="container padding-bottom-3x mb-2 marg-top-25">
 	<div class="back-to-store"><a href="{{ url('tienda') }}"><i class="icon-arrow-left"></i> Volver a la tienda</a></div>
     <div class="row">
@@ -16,7 +16,13 @@
                         <b>#{{ $cart['rawdata']['id'] }}</b>
                     </p>
                     <p class="card-text">Podés revisar el estado del mismo en la <b><a href="{{ route('store.customer-orders') }}">"Lista de Pedidos"</a></b> desde tu perfil.<br>
-                    <p><b>Monto total: </b> $ {{ $cart['total'] }}</p>
+                    <p><b>Monto total: 
+                        @if($cart['discountValue'] != null && $cart['discountValue'] > 0)
+                            <span style="text-decoration: line-through; color: #a0a0a0">(${{ $cart['subTotal'] }}) </span>
+                            <span style="margin-left: 5px"> ${{ $cart['total'] }}</span>
+                        @else 
+                            </b> ${{ $cart['total'] }}</p>
+                        @endif
                     
                     <div class="padding-top-1x padding-bottom-1x">
                         <a class="btn btn-primary" href="{{ url('tienda/descargar-comprobante', [$cart['rawdata']['id'], 'stream']) }}" target="_blank"><i class="icon-eye"></i> Ver Comprobante</a>
