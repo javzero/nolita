@@ -320,6 +320,8 @@ class StoreController extends Controller
         //     return redirect()->route('store')->with('message', 'La página ha expirado');
         // }
 
+        
+
         $geoprovs = GeoProv::pluck('name','id');
         $shippings = Shipping::orderBy('name', 'ASC')->get();
         $payment_methods = Payment::orderBy('name', 'ASC')->get();
@@ -332,7 +334,7 @@ class StoreController extends Controller
 
     public function processCheckout(Request $request)
     {
-        
+
         // Check if customer has required data completed
         $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
         if($checkCustomer['response'] == 'error')
@@ -348,25 +350,27 @@ class StoreController extends Controller
             return back()->with('error', 'missing-shipping');
         
         // Set fixed prices on checkout confirmation
-        foreach($cart->items as $item){
+        foreach($cart->items as $item)
+        {
             $order = CartItem::find($item->id);
-            if(auth()->guard('customer')->user()->group == '3'){
-                $order->final_price = calcValuePercentNeg($item->article->reseller_price, $item->article->reseller_discount);
+            if(auth()->guard('customer')->user()->group == '3')
+            {
+                // if($item->article->reseller_discount != 0)
+                $order->final_price = calcValuePercentNeg($item->article->reseller_price, $item->article->reseller_discount);    
             } else {
                 $order->final_price = calcValuePercentNeg($item->article->price, $item->article->discount);
             }   
             $order->save();    
         }
-
+        // dd($order);
+        $cart = Cart::findOrFail($request->cart_id);  
         $cart->status = 'Process';
-        
+
         try {
             $cart->save();
             try
             {
                 $customerEmail = auth()->guard('customer')->user()->email;
-                // dd($customerEmail);
-                //$customerEmail = 'javzero1@gmail.com';
                 // Notify Customer
                 Mail::to($customerEmail)->send(new SendMail('Compra recibida !', 'CustomerCheckout', ''));
                 // Notify Bussiness
@@ -382,6 +386,7 @@ class StoreController extends Controller
     
         // return back()->with('message','Su compra se ha registrado. Muchas gracias !.');
         $order = $this->calcCartData($cart);
+        // dd($order);
         return view('store.checkout-success')
             ->with('cart', $order);
     }

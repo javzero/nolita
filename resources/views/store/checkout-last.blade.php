@@ -82,6 +82,7 @@
 					</div>
 				{!! Form::close() !!} 
 			<br>
+			
 			{{-- Proccess Checkout --}}
 			{!! Form::open(['id' => 'CheckoutForm', 'route' => 'store.processCheckout', 'method' => 'POST', 'class' => 'loader-on-submit']) !!}	
 				<div class="row small-form">
