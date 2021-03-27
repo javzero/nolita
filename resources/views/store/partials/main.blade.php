@@ -2,9 +2,9 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>{{ APP_BUSSINESS_NAME }} | Tienda</title>
+		<title>Venta online de indumentaria femenina mayorista | Nolita</title>
 		<!-- SEO Meta Tags-->
-		<meta name="description" content="{{ APP_BUSSINESS_NAME }} | Tienda">
+		<meta name="description" content="Tienda oficial de Nolita.   Venta online mayorista de indumentaria femenina.  Envíos a todo el país.  Registrate y hacé tu pedido online.">
 		<meta name="keywords" content="nolita, indumentaria, ropa, vestidos, ropa interior, lenceria, bombachas, tangas">
 		<meta name="author" content="Vimana Studio">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,8 +27,10 @@
 		<!-- Modernizr-->
 		<script src="{{ asset('store-ui/js/modernizr.min.js') }}"></script>
 		{!! $google_analytics !!}
-		<!-- Facebook Pixel Code -->
 
+		<link rel="canonical" href="https://www.nolita.com.ar/"/>
+		
+		<!-- Facebook Pixel Code -->
 		<script>
 			!function(f,b,e,v,n,t,s)
 			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -42,6 +44,7 @@
 			fbq('track', 'PageView');
 		</script>
 		<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1002215936641276&ev=PageView&noscript=1"/></noscript>
+		
 		<!-- End Facebook Pixel Code -->
 		<!-- Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
