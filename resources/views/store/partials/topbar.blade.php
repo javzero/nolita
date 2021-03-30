@@ -26,7 +26,7 @@
 		{{-- </span> --}}
 	</div>
 	<div class="topbar-column topbar-column-right">
-		<a class="social-button sb-facebook shape-none sb-dark" href="https://www.facebook.com/nolitavos/" target="_blank">
+		<a class="social-button sb-facebook shape-none sb-dark" href="https://www.facebook.com/nolita.com.ar/" target="_blank">
 			<i class="socicon-facebook"></i>
 		</a>
 		<a class="social-button sb-instagram shape-none sb-dark" href="https://www.instagram.com/nolita.com.ar/" target="_blank">
