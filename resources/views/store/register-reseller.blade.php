@@ -19,7 +19,7 @@
             <div class="row">
                     {{-- Username --}}
                     <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                        <label for="reg-fn">Nombre de Usuario (Apodo)</label>
+                        <label for="reg-fn">Nombre de Usuario (Letras y Números)</label>
                         <input id="username" type="text" name="username" class="form-control round" placeholder="Ingrese su nombre de usuario" value="{{ old('name') }}" required>
                         @if ($errors->has('username'))
                             <span class="help-block">
