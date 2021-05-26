@@ -22,6 +22,12 @@
         <div class="col-md-6 col-lg-6">
             <img src="{{ asset('images/web/geometrales2.jpg') }}" class="img-fluid" alt="Nolita Geometrales">
         </div>
+        <div class="col-md-12 mb-5" style="text-align: center">
+            <img style="text-align: center" src="{{ asset('images/web/medidas1.jpg') }}" class="img-fluid" alt="Nolita Medidas">
+        </div>
+        <div class="col-md-12 mb-5" style="text-align: center">
+            <img src="{{ asset('images/web/medidas2.jpg') }}" class="img-fluid" alt="Nolita Medidas">
+        </div>
     </div>
 </div>
 @endsection
